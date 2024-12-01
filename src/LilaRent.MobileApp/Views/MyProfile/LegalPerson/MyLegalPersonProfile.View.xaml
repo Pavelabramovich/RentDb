@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+    xmlns:converters="clr-namespace:LilaRent.MobileApp.Converters"
+    xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+	xmlns:views="clr-namespace:LilaRent.MobileApp.Views"
+    xmlns:dt="clr-namespace:LilaRent.MobileApp.Resources.DataTemplates"
+	xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+
+    x:Class="LilaRent.MobileApp.Views.MyLegalPersonProfileView"
+    x:DataType="viewModels:MyLegalPersonProfileViewModel"
+
+	Title="{markup:Localize 'My profile'}"
+    Style="{StaticResource PageWithTabsStyle}">
+
+
+    <Grid Margin="16" RowDefinitions="*,Auto">
+        <VerticalStackLayout Grid.Row="0" VerticalOptions="Fill">
+			<Border 
+				Style="{StaticResource MediumBlockBorderStyle}"
+				Margin="0,0,0,16">
+
+                <Grid HeightRequest="100" ColumnDefinitions="100,*,50">
+                    <Image 
+						Grid.Column="0" 
+						Source="{Binding MyProfile.ImageUri}" 
+						Aspect="AspectFill" />
+
+					<VerticalStackLayout Grid.Column="1" VerticalOptions="Start" Margin="15,15">
+						<Label 
+							Text="{Binding MyProfile.Name}" 
+							Style="{StaticResource CardHeaderDarkStyle}" 
+							Margin="0,0,0,5" />
+
+                        <Label 
+							Text="{markup:Localize {Binding MyProfile.LegalEntityType}, InitialConverter={converters:LegalEntityTypeToStringConverter}}" 
+							Style="{StaticResource PrimaryDarkLabelStyle}" />
+
+					</VerticalStackLayout>
+
+					<Image 
+						Grid.Column="2" 
+						VerticalOptions="Center" 
+						Style="{StaticResource AdditionalActionImage}" 
+						Margin="3" />
+
+				</Grid>
+			</Border>
+
+			<HorizontalStackLayout HeightRequest="50">
+                <Image Source="user_card.svg" Margin="10,10,20,10" Aspect="AspectFit" WidthRequest="25" />
+                <Label Text="{markup:Localize 'My announcements'}" Style="{StaticResource PrimaryDarkLabelStyle}" VerticalOptions="Center" />
+
+                <HorizontalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ToMyAnnouncementsCommand}" />
+                </HorizontalStackLayout.GestureRecognizers>
+			</HorizontalStackLayout>
+
+            <components:Line Style="{StaticResource AccentLineStyle}"/>
+
+            <HorizontalStackLayout HeightRequest="50">
+                <Image Source="bell.svg" Margin="12.5,10,22.5,10" Aspect="AspectFit" WidthRequest="20" />
+                <Label Text="{markup:Localize 'Notifications'}" Style="{StaticResource PrimaryDarkLabelStyle}" VerticalOptions="Center" />
+
+                <HorizontalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ToNotificationsCommand}" />
+                </HorizontalStackLayout.GestureRecognizers>
+            </HorizontalStackLayout>
+
+            <components:Line Style="{StaticResource AccentLineStyle}"/>
+
+            <Grid ColumnDefinitions="Auto,*,Auto" HeightRequest="50">
+                <Image 
+                    Grid.Column="0"
+                    Source="user_page.svg" 
+                    Margin="10,10,20,10" 
+                    Aspect="AspectFit" 
+                    WidthRequest="25" />
+
+				<Label
+                    Grid.Column="1"
+                    Text="{markup:Localize 'Clients'}" 
+                    Style="{StaticResource PrimaryDarkLabelStyle}" 
+                    VerticalOptions="Center" />
+
+                <Label
+                    Grid.Column="2"
+                    Text="{Binding ClientsCount, StringFormat='+{0}'}" 
+                    Style="{StaticResource PrimaryDarkLabelStyle}"
+                    TextColor="Gray"
+                    VerticalOptions="Center"
+                    Margin="5"/>
+
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ToClientsCommand}" />
+                </Grid.GestureRecognizers>
+            </Grid>
+
+            <components:Line Style="{StaticResource AccentLineStyle}"/>
+
+            <HorizontalStackLayout HeightRequest="50">
+                <Image Source="question_mark_in_circle.svg" Margin="10,10,20,10" Aspect="AspectFit" WidthRequest="25" />
+                <Label Text="{markup:Localize 'Help and Feedback'}" Style="{StaticResource PrimaryDarkLabelStyle}" VerticalOptions="Center" />
+
+                <HorizontalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ToFeedbackCommand}" />
+                </HorizontalStackLayout.GestureRecognizers>
+            </HorizontalStackLayout>
+
+            <components:Line Style="{StaticResource AccentLineStyle}"/>
+
+            <HorizontalStackLayout HeightRequest="50">
+                <Image Source="butterfly.svg" Margin="10,10,20,10" Aspect="AspectFit" WidthRequest="25" />
+                <Label Text="{markup:Localize 'About us'}" Style="{StaticResource PrimaryDarkLabelStyle}" VerticalOptions="Center" />
+
+                <HorizontalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ToAboutUsCommand}" />
+                </HorizontalStackLayout.GestureRecognizers>
+            </HorizontalStackLayout>
+
+            <components:Line Style="{StaticResource AccentLineStyle}"/>
+
+            <HorizontalStackLayout HeightRequest="50">
+                <Image Source="right_exit_arrow.svg" Margin="10,10,20,10" Aspect="AspectFit" WidthRequest="25" />
+                <Label Text="{markup:Localize 'Exit'}" Style="{StaticResource PrimaryDarkLabelStyle}" VerticalOptions="Center"/>
+
+                <HorizontalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ExitCommand}" />
+                </HorizontalStackLayout.GestureRecognizers>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+
+
+        <components:ContentButton
+            Grid.Row="1"
+            Style="{StaticResource PrimaryContentButtonStyle}"
+            Command="{Binding ToCreateAnnouncementCommand}">
+
+            <Grid ColumnDefinitions="*,Auto">
+                <Label 
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Text="{markup:Localize 'Create announcement'}" 
+                    Style="{StaticResource ButtonLightLabelStyle}"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center" />
+
+                <Image 
+                    Grid.Column="1"
+                    Margin="0,0,32,0"
+                    Source="plus.svg" 
+                    Aspect="AspectFit" 
+                    HeightRequest="20">
+
+                    <Image.Behaviors>
+                        <toolkit:IconTintColorBehavior TintColor="{toolkit:AppThemeResource BlockBackgroundColor}" />
+                    </Image.Behaviors>
+                </Image>
+            </Grid>
+        </components:ContentButton>
+    </Grid>
+</ContentPage>

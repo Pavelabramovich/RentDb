@@ -1,0 +1,661 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Change locale" xml:space="preserve">
+    <value>Change locale</value>
+  </data>
+  <data name="Notifications, bookings and offers settings" xml:space="preserve">
+    <value>Notifications, bookings and offers settings</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Add a header to your profile" xml:space="preserve">
+    <value>Add a header to your profile</value>
+  </data>
+  <data name="Name is required" xml:space="preserve">
+    <value>Name is required</value>
+  </data>
+  <data name="Phone is required" xml:space="preserve">
+    <value>Phone is required</value>
+  </data>
+  <data name="Photo is required" xml:space="preserve">
+    <value>Photo is required</value>
+  </data>
+  <data name="About the developers" xml:space="preserve">
+    <value>About the developers</value>
+  </data>
+  <data name="Advertising" xml:space="preserve">
+    <value>Advertising</value>
+  </data>
+  <data name="Advertising advertisements" xml:space="preserve">
+    <value>Advertising advertisements</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Analytics" xml:space="preserve">
+    <value>Analytics</value>
+  </data>
+  <data name="Announcement owner: {0}" xml:space="preserve">
+    <value>Announcement owner: {0}</value>
+  </data>
+  <data name="Archive of my advertisements" xml:space="preserve">
+    <value>Archive of my advertisements</value>
+  </data>
+  <data name="Area, m2" xml:space="preserve">
+    <value>Area, m2</value>
+  </data>
+  <data name="Beauty saloon" xml:space="preserve">
+    <value>Beauty saloon</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Catalog" xml:space="preserve">
+    <value>Catalog</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="Change background color" xml:space="preserve">
+    <value>Change background color</value>
+  </data>
+  <data name="Contact developers" xml:space="preserve">
+    <value>Contact developers</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="Coworking type" xml:space="preserve">
+    <value>Coworking type</value>
+  </data>
+  <data name="Coworkings" xml:space="preserve">
+    <value>Coworkings</value>
+  </data>
+  <data name="Create announcement" xml:space="preserve">
+    <value>Create announcement</value>
+  </data>
+  <data name="Current" xml:space="preserve">
+    <value>Current</value>
+  </data>
+  <data name="Data and cache" xml:space="preserve">
+    <value>Data and cache</value>
+  </data>
+  <data name="Date: {0}" xml:space="preserve">
+    <value>Date: {0}</value>
+  </data>
+  <data name="Doesnt matter" xml:space="preserve">
+    <value>Doesnt matter</value>
+  </data>
+  <data name="Edit your page description" xml:space="preserve">
+    <value>Edit your page description</value>
+  </data>
+  <data name="Enter" xml:space="preserve">
+    <value>Enter</value>
+  </data>
+  <data name="Enter login" xml:space="preserve">
+    <value>Enter login</value>
+  </data>
+  <data name="Enter password" xml:space="preserve">
+    <value>Enter password</value>
+  </data>
+  <data name="Equipment" xml:space="preserve">
+    <value>Equipment</value>
+  </data>
+  <data name="Equipment type" xml:space="preserve">
+    <value>Equipment type</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="from" xml:space="preserve">
+    <value>from</value>
+  </data>
+  <data name="Forgot password?" xml:space="preserve">
+    <value>Forgot password?</value>
+  </data>
+  <data name="Geolocation" xml:space="preserve">
+    <value>Geolocation</value>
+  </data>
+  <data name="Go to advertisement page" xml:space="preserve">
+    <value>Go to advertisement page</value>
+  </data>
+  <data name="Go to the owner's page" xml:space="preserve">
+    <value>Go to the owner's page</value>
+  </data>
+  <data name="Hairdressing salon" xml:space="preserve">
+    <value>Hairdressing salon</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="In the city?" xml:space="preserve">
+    <value>In the city?</value>
+  </data>
+  <data name="Long-term" xml:space="preserve">
+    <value>Long-term</value>
+  </data>
+  <data name="My announcements" xml:space="preserve">
+    <value>My announcements</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Number of people" xml:space="preserve">
+    <value>Number of people</value>
+  </data>
+  <data name="On guarantee" xml:space="preserve">
+    <value>On guarantee</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Past" xml:space="preserve">
+    <value>Past</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Rating</value>
+  </data>
+  <data name="Real estate" xml:space="preserve">
+    <value>Real estate</value>
+  </data>
+  <data name="Recommendations" xml:space="preserve">
+    <value>Recommendations</value>
+  </data>
+  <data name="Records and visits of my clients" xml:space="preserve">
+    <value>Records and visits of my clients</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Registration</value>
+  </data>
+  <data name="Rent object: {0}" xml:space="preserve">
+    <value>Rent object: {0}</value>
+  </data>
+  <data name="Rent term" xml:space="preserve">
+    <value>Rent term</value>
+  </data>
+  <data name="Rented by me" xml:space="preserve">
+    <value>Rented by me</value>
+  </data>
+  <data name="Replace with background image" xml:space="preserve">
+    <value>Replace with background image</value>
+  </data>
+  <data name="Reviews about me" xml:space="preserve">
+    <value>Reviews about me</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Short-term" xml:space="preserve">
+    <value>Short-term</value>
+  </data>
+  <data name="Social networks, other contacts" xml:space="preserve">
+    <value>Social networks, other contacts</value>
+  </data>
+  <data name="Status: {0}" xml:space="preserve">
+    <value>Status: {0}</value>
+  </data>
+  <data name="to" xml:space="preserve">
+    <value>to</value>
+  </data>
+  <data name="Upcoming" xml:space="preserve">
+    <value>Upcoming</value>
+  </data>
+  <data name="Workplace" xml:space="preserve">
+    <value>Workplace</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="Filters" xml:space="preserve">
+    <value>Filters</value>
+  </data>
+  <data name="Enter email associated with account" xml:space="preserve">
+    <value>Enter email associated with account</value>
+  </data>
+  <data name="Enter temporary password, sent to your mail" xml:space="preserve">
+    <value>Enter temporary password, sent to your mail</value>
+  </data>
+  <data name="recover password" xml:space="preserve">
+    <value>recover password</value>
+  </data>
+  <data name="Enter the temporary password sent to your email" xml:space="preserve">
+    <value>Enter the temporary password sent to your email</value>
+  </data>
+  <data name="Login successful! Enter your new password" xml:space="preserve">
+    <value>Login successful! Enter your new password</value>
+  </data>
+  <data name="Password successfully changed" xml:space="preserve">
+    <value>Password successfully changed</value>
+  </data>
+  <data name="Repeat password" xml:space="preserve">
+    <value>Repeat password</value>
+  </data>
+  <data name="Add your contacts" xml:space="preserve">
+    <value>Add your contacts</value>
+  </data>
+  <data name="Add your photo or logo" xml:space="preserve">
+    <value>Add your photo or logo</value>
+  </data>
+  <data name="Attach a lease agreement template" xml:space="preserve">
+    <value>Attach a lease agreement template</value>
+  </data>
+  <data name="Create password" xml:space="preserve">
+    <value>Create password</value>
+  </data>
+  <data name="Enter description of the services provided" xml:space="preserve">
+    <value>Enter description of the services provided</value>
+  </data>
+  <data name="Enter organization name" xml:space="preserve">
+    <value>Enter organization name</value>
+  </data>
+  <data name="Enter verification code" xml:space="preserve">
+    <value>Enter verification code</value>
+  </data>
+  <data name="Enter your email address" xml:space="preserve">
+    <value>Enter your email address</value>
+  </data>
+  <data name="For these individuals, the opportunity to post rental ads is available only in the “Real Estate” category" xml:space="preserve">
+    <value>For these individuals, the opportunity to post rental ads is available only in the “Real Estate” category</value>
+  </data>
+  <data name="Individual" xml:space="preserve">
+    <value>Individual</value>
+  </data>
+  <data name="Legal person" xml:space="preserve">
+    <value>Legal person</value>
+  </data>
+  <data name="Profile description" xml:space="preserve">
+    <value>Profile description</value>
+  </data>
+  <data name="Register as" xml:space="preserve">
+    <value>Register as</value>
+  </data>
+  <data name="Registration successfully completed" xml:space="preserve">
+    <value>Registration successfully completed</value>
+  </data>
+  <data name="SEND VERIFICATION CODE" xml:space="preserve">
+    <value>SEND VERIFICATION CODE</value>
+  </data>
+  <data name="These individuals can create ads for rent in all categories and view ad ratings" xml:space="preserve">
+    <value>These individuals can create ads for rent in all categories and view ad ratings</value>
+  </data>
+  <data name="Appointment" xml:space="preserve">
+    <value>Appointment</value>
+  </data>
+  <data name="Other announcements" xml:space="preserve">
+    <value>Other announcements</value>
+  </data>
+  <data name="Prices" xml:space="preserve">
+    <value>Prices</value>
+  </data>
+  <data name="Reviews" xml:space="preserve">
+    <value>Reviews</value>
+  </data>
+  <data name="This profile doesnt have announcements" xml:space="preserve">
+    <value>This profile doesnt have announcements</value>
+  </data>
+  <data name="Length should be equals 6" xml:space="preserve">
+    <value>Length should be equals 6</value>
+  </data>
+  <data name="Medium password" xml:space="preserve">
+    <value>Medium password</value>
+  </data>
+  <data name="Strong password" xml:space="preserve">
+    <value>Strong password</value>
+  </data>
+  <data name="Weak password" xml:space="preserve">
+    <value>Weak password</value>
+  </data>
+  <data name="Legal entity type is required" xml:space="preserve">
+    <value>Legal entity type is required</value>
+  </data>
+  <data name="About myself is required" xml:space="preserve">
+    <value>About myself is required</value>
+  </data>
+  <data name="ad creating" xml:space="preserve">
+    <value>ad creating</value>
+  </data>
+  <data name="Attach a photo" xml:space="preserve">
+    <value>Attach a photo</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="In which city is your proposal?" xml:space="preserve">
+    <value>In which city is your proposal?</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Tell more about your proposal..." xml:space="preserve">
+    <value>Tell more about your proposal...</value>
+  </data>
+  <data name="What are you offering?" xml:space="preserve">
+    <value>What are you offering?</value>
+  </data>
+  <data name="24 hours a day" xml:space="preserve">
+    <value>24 hours a day</value>
+  </data>
+  <data name="Select the facility`s work schedule" xml:space="preserve">
+    <value>Select the facility`s work schedule</value>
+  </data>
+  <data name="Select time" xml:space="preserve">
+    <value>Select time</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="How long is the rental booked for?" xml:space="preserve">
+    <value>How long is the rental booked for?</value>
+  </data>
+  <data name="Specify the time" xml:space="preserve">
+    <value>Specify the time</value>
+  </data>
+  <data name="What is the interval between entries during which a new one cannot be created?" xml:space="preserve">
+    <value>What is the interval between entries during which a new one cannot be created?</value>
+  </data>
+  <data name="My profile" xml:space="preserve">
+    <value>My profile</value>
+  </data>
+  <data name="Announcements" xml:space="preserve">
+    <value>Announcements</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>Favorites</value>
+  </data>
+  <data name="Owners" xml:space="preserve">
+    <value>Owners</value>
+  </data>
+  <data name="Recently viewed" xml:space="preserve">
+    <value>Recently viewed</value>
+  </data>
+  <data name="days" xml:space="preserve">
+    <value>days</value>
+  </data>
+  <data name="hours" xml:space="preserve">
+    <value>hours</value>
+  </data>
+  <data name="minutes" xml:space="preserve">
+    <value>minutes</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Cancel order" xml:space="preserve">
+    <value>Cancel order</value>
+  </data>
+  <data name="Cancelation is successful" xml:space="preserve">
+    <value>Cancelation is successful</value>
+  </data>
+  <data name="Do you want to cancel your order?" xml:space="preserve">
+    <value>Do you want to cancel your order?</value>
+  </data>
+  <data name="Leave it" xml:space="preserve">
+    <value>Leave it</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="Thanks for being with us" xml:space="preserve">
+    <value>Thanks for being with us</value>
+  </data>
+  <data name="Warning! This action cant be undone." xml:space="preserve">
+    <value>Warning! This action cant be undone.</value>
+  </data>
+  <data name="Time: from {0} to {1}" xml:space="preserve">
+    <value>Time: from {0} to {1}</value>
+  </data>
+  <data name="Rent object" xml:space="preserve">
+    <value>Rent object</value>
+  </data>
+  <data name="Manicure table" xml:space="preserve">
+    <value>Manicure table</value>
+  </data>
+  <data name="Where is the rental object located?" xml:space="preserve">
+    <value>Where is the rental object located?</value>
+  </data>
+  <data name="Tell us about the object..." xml:space="preserve">
+    <value>Tell us about the object...</value>
+  </data>
+  <data name="City, street..." xml:space="preserve">
+    <value>City, street...</value>
+  </data>
+  <data name="Attach a photo of the rental object" xml:space="preserve">
+    <value>Attach a photo of the rental object</value>
+  </data>
+  <data name="Upload photo" xml:space="preserve">
+    <value>Upload photo</value>
+  </data>
+  <data name="Attach the Offer Agreement" xml:space="preserve">
+    <value>Attach the Offer Agreement</value>
+  </data>
+  <data name="Upload agreement" xml:space="preserve">
+    <value>Upload agreement</value>
+  </data>
+  <data name="File {0} is loaded" xml:space="preserve">
+    <value>File {0} is loaded</value>
+  </data>
+  <data name="Private coworking Clients need to be added to the list so they can make appointments" xml:space="preserve">
+    <value>Private coworking
+Clients need to be added to the list so they can make appointments</value>
+  </data>
+  <data name="Can clients change records themselves" xml:space="preserve">
+    <value>Can clients change records themselves</value>
+  </data>
+  <data name="Can clients cancel their appointments themselves" xml:space="preserve">
+    <value>Can clients cancel their appointments themselves</value>
+  </data>
+  <data name="access settings" xml:space="preserve">
+    <value>access settings</value>
+  </data>
+  <data name="discount parameters" xml:space="preserve">
+    <value>discount parameters</value>
+  </data>
+  <data name="Specify the renting duration" xml:space="preserve">
+    <value>Specify the renting duration</value>
+  </data>
+  <data name="Rental price for {0}" xml:space="preserve">
+    <value>Rental price for {0}</value>
+  </data>
+  <data name="hour" xml:space="preserve">
+    <value>hour</value>
+  </data>
+  <data name="day" xml:space="preserve">
+    <value>day</value>
+  </data>
+  <data name="10 minutes" xml:space="preserve">
+    <value>10 minutes</value>
+  </data>
+  <data name="Use discount" xml:space="preserve">
+    <value>Use discount</value>
+  </data>
+  <data name="Client Access Settings" xml:space="preserve">
+    <value>Client Access Settings</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="Closed for booking by clients break between appointments" xml:space="preserve">
+    <value>Closed for booking by clients break between appointments</value>
+  </data>
+  <data name="Specify time in minutes" xml:space="preserve">
+    <value>Specify time in minutes</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="You can offer your customers a discount after a certain rental period." xml:space="preserve">
+    <value>You can offer your customers a discount after a certain rental period.</value>
+  </data>
+  <data name="Specify the time after which the discount is active." xml:space="preserve">
+    <value>Specify the time after which the discount is active.</value>
+  </data>
+  <data name="Specify the discount percentage" xml:space="preserve">
+    <value>Specify the discount percentage</value>
+  </data>
+  <data name="For example, 10%" xml:space="preserve">
+    <value>For example, 10%</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Publish</value>
+  </data>
+  <data name="Completed!" xml:space="preserve">
+    <value>Completed!</value>
+  </data>
+  <data name="Your ad has been updated successfully" xml:space="preserve">
+    <value>Your ad has been updated successfully</value>
+  </data>
+  <data name="Notifications" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="Help and Feedback" xml:space="preserve">
+    <value>Help and Feedback</value>
+  </data>
+  <data name="About us" xml:space="preserve">
+    <value>About us</value>
+  </data>
+  <data name="Clients" xml:space="preserve">
+    <value>Clients</value>
+  </data>
+  <data name="Welcome to Lila Rent!" xml:space="preserve">
+    <value>Welcome to Lila Rent!</value>
+  </data>
+  <data name="Koworkings" xml:space="preserve">
+    <value>Koworkings</value>
+  </data>
+  <data name="Working places" xml:space="preserve">
+    <value>Working places</value>
+  </data>
+  <data name="Your ad has been successfully published" xml:space="preserve">
+    <value>Your ad has been successfully published</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+</root>

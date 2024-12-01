@@ -1,0 +1,619 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+        <ItemGroup>
+          <ProjectCapability Include="ConfigurableFileNesting" />
+          <ProjectCapability Include="ConfigurableFileNestingFeatureEnabled" />
+        </ItemGroup>
+
+
+
+
+
+
+
+
+	<PropertyGroup>
+		<TargetFrameworks>net8.0;net8.0-android;net8.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.19041.0</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
+
+		<!-- Note for MacCatalyst:
+		The default runtime is maccatalyst-x64, except in Release config, in which case the default is maccatalyst-x64;maccatalyst-arm64.
+		When specifying both architectures, use the plural <RuntimeIdentifiers> instead of the singular <RuntimeIdentifier>.
+		The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
+		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
+		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
+
+		<OutputType Condition="'$(TargetFramework)' != 'net8.0'">Exe</OutputType>
+		<RootNamespace>LilaRent.MobileApp</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- Display name -->
+		<ApplicationTitle>Lila rent</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.companyname.mobileapp</ApplicationId>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">11.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'maccatalyst'">13.1</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.png" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#FFFFFF" BaseSize="280,280" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\dotnet_bot.svg" />
+	  <None Remove="Resources\Images\Group 1171274911.svg" />
+	  <None Remove="Resources\Images\Group 1171274912.svg" />
+	  <None Remove="Resources\Images\like_gray.svg" />
+	  <None Remove="Resources\Images\narayana.png" />
+	  <None Remove="Resources\Images\right_vector.svg" />
+	  <None Remove="Resources\Images\sigmastare1.jpg" />
+	  <None Remove="Resources\Images\sigmastare2.jpg" />
+	  <None Remove="Resources\Images\sigmastare3.jpg" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="8.0.1" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+		<PackageReference Include="FluentValidation" Version="11.10.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Components\FieldEditor.xaml.cs">
+	    <DependentUpon>FieldEditor.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Components\FieldEntry.xaml.cs">
+	    <DependentUpon>FieldEntry.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Components\CheckBox.xaml.cs">
+	    <DependentUpon>CheckBox.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Components\Views\OrderCardView.xaml.cs">
+	    <DependentUpon>OrderCardView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\DataTemplates\ManagementAnnouncementTemplate.xaml.cs">
+	    <DependentUpon>ManagementAnnouncementTemplate.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\DataTemplates\DateDayTemplate.xaml.cs">
+	    <DependentUpon>DateDayTemplate.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\DataTemplates\AnnouncementTemplate.xaml.cs">
+	    <DependentUpon>AnnouncementTemplate.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\AnnouncementCreation\NewAnnouncementOfferAgreement.View.xaml.cs">
+	    <DependentUpon>NewAnnouncementOfferAgreement.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\AnnouncementCreation\NewAnnouncementAccessSettings.View.xaml.cs">
+	    <DependentUpon>NewAnnouncementAccessSettings.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\AnnouncementCreation\NewAnnouncementDuration.View.xaml.cs">
+	    <DependentUpon>NewAnnouncementDuration.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\AnnouncementCreation\NewAnnouncementDiscountParameters.View.xaml.cs">
+	    <DependentUpon>NewAnnouncementDiscountParameters.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\AnnouncementCreation\NewAnnouncementCompleted.View.xaml.cs">
+	    <DependentUpon>NewAnnouncementCompleted.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\AnnouncementCreation\NewAnnouncementSchedule.View.xaml.cs">
+	    <DependentUpon>NewAnnouncementSchedule.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\AnnouncementCreation\NewAnnouncementTarget.View.xaml.cs">
+	    <DependentUpon>NewAnnouncementTarget.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Authentication\NewPassword\NewPasswordCode.View.xaml.cs">
+	    <DependentUpon>NewPasswordCode.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ConfirmationCanceled.View.xaml.cs">
+	    <DependentUpon>ConfirmationCanceled.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ConfirmationCancel.View.xaml.cs">
+	    <DependentUpon>ConfirmationCancel.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\NewAnnouncement\NewAnnouncementFilesView.xaml.cs">
+	    <DependentUpon>NewAnnouncementFilesView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\FirstLaunch\YourGoal.View.xaml.cs">
+	    <DependentUpon>YourGoal.View.xaml</DependentUpon>
+      </Compile>
+	  <Compile Update="Views\Management\Management.View.xaml.cs">
+	    <DependentUpon>Management.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\NewAnnouncement\NewAnnouncementCompleted.View.xaml.cs">
+	    <DependentUpon>NewAnnouncementCompleted.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Tab2\History.NavigationView.xaml.cs">
+	    <DependentUpon>History.NavigationView.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Catalog\CatalogNavigation.View.xaml.cs">
+	    <DependentUpon>CatalogNavigation.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\ConfirmationDone.View.xaml.cs">
+	    <DependentUpon>ConfirmationDone.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Confirmation.View.xaml.cs">
+	    <DependentUpon>Confirmation.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Authentication\PasswordChanged.View.xaml.cs">
+	    <DependentUpon>PasswordChanged.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Authentication\RecoverPassword.View.xaml.cs">
+	    <DependentUpon>RecoverPassword.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Authentication\Login.View.xaml.cs">
+	    <DependentUpon>Login.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Landing.View.xaml.cs">
+	    <DependentUpon>Landing.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Authentication\NewPassword.View.xaml.cs">
+	    <DependentUpon>NewPassword.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Authentication\TemporaryPassword.View.xaml.cs">
+	    <DependentUpon>TemporaryPassword.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Authentication\Registration\RegistrationCompleted.View.xaml.cs">
+	    <DependentUpon>RegistrationCompleted.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Authentication\Registration\RegistrationContacts.View.xaml.cs">
+	    <DependentUpon>RegistrationContacts.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Authentication\Registration\RegistrationProfile.View.xaml.cs">
+	    <DependentUpon>RegistrationProfile.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Authentication\Registration\RegistrationLogo.View.xaml.cs">
+	    <DependentUpon>RegistrationLogo.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Authentication\Registration\RegistrationAs.View.xaml.cs">
+	    <DependentUpon>RegistrationAs.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Authentication\Registration\RegistrationPassword.View.xaml.cs">
+	    <DependentUpon>RegistrationPassword.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Authentication\Registration\VerificationCode.View.xaml.cs">
+	    <DependentUpon>VerificationCode.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Authentication\Registration\RegistrationLogin.View.xaml.cs">
+	    <DependentUpon>RegistrationLogin.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\MyProfile\AboutUs.View.xaml.cs">
+	    <DependentUpon>AboutUs.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\MyProfile\Exit.View.xaml.cs">
+	    <DependentUpon>Exit.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\MyProfile\Individual\Announcements.View.xaml.cs">
+	    <DependentUpon>Announcements.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\MyProfile\Individual\Favorites.View.xaml.cs">
+	    <DependentUpon>Favorites.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\MyProfile\Individual\MyIndividualProfile.View.xaml.cs">
+	    <DependentUpon>MyIndividualProfile.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\MyProfile\MyProfileNavigation.View.xaml.cs">
+	    <DependentUpon>MyProfileNavigation.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\MyProfile\Individual\Owners.View.xaml.cs">
+	    <DependentUpon>Owners.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\Tab2\History.View.xaml.cs">
+	    <DependentUpon>History.View.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\MyProfile\LegalPerson\MyLegalPersonProfile.View.xaml.cs">
+	    <DependentUpon>MyLegalPersonProfile.View.xaml</DependentUpon>
+	  </Compile>
+
+	  <Compile Update="Views\MyOrders.View.xaml.cs">
+	    <DependentUpon>MyOrders.View.xaml</DependentUpon>
+	  </Compile>
+
+	  <Compile Update="Views\MyPastOrders.View.xaml.cs">
+	    <DependentUpon>MyPastOrders.View.xaml</DependentUpon>
+	  </Compile>
+
+	  <Compile Update="Views\Navigation\Navigation.View.xaml.cs">
+	    <DependentUpon>Navigation.View.xaml</DependentUpon>
+	  </Compile>
+
+	  <Compile Update="Views\Profile.View.xaml.cs">
+	    <DependentUpon>Profile.View.xaml</DependentUpon>
+	  </Compile>
+
+	  <Compile Update="Views\Management\ManagementCalendar.View.xaml.cs">
+	    <DependentUpon>ManagementCalendar.View.xaml</DependentUpon>
+	  </Compile>
+
+	  <Compile Update="Views\Management\MangementNavigation.View.xaml.cs">
+	    <DependentUpon>MangementNavigation.View.xaml</DependentUpon>
+	  </Compile>
+
+	  <Compile Update="Views\TabbedViews\Tabbed.View.xaml.cs">
+	    <DependentUpon>Tabbed.View.xaml</DependentUpon>
+	  </Compile>
+
+	  <Compile Update="Views\UpdateAnnouncement\UpdateAnnouncementTarget.View.xaml.cs">
+	    <DependentUpon>UpdateAnnouncementTarget.View.xaml</DependentUpon>
+	  </Compile>
+
+	  <Compile Update="Views\UpdateAnnouncement\UpdateAnnouncementSchedule.View.xaml.cs">
+	    <DependentUpon>UpdateAnnouncementSchedule.View.xaml</DependentUpon>
+	  </Compile>
+
+	  <Compile Update="Views\UpdateAnnouncement\UpdateAnnouncementFilesView.xaml.cs">
+	    <DependentUpon>UpdateAnnouncementFilesView.xaml</DependentUpon>
+	  </Compile>
+
+	  <Compile Update="Views\UpdateAnnouncement\UpdateAnnouncementDuration.View.xaml.cs">
+	    <DependentUpon>UpdateAnnouncementDuration.View.xaml</DependentUpon>
+	  </Compile>
+
+	  <Compile Update="Views\UpdateAnnouncement\UpdateAnnouncementDiscountParameters.View.xaml.cs">
+	    <DependentUpon>UpdateAnnouncementDiscountParameters.View.xaml</DependentUpon>
+	  </Compile>
+
+	  <Compile Update="Views\UpdateAnnouncement\UpdateAnnouncementCompleted.View.xaml.cs">
+	    <DependentUpon>UpdateAnnouncementCompleted.View.xaml</DependentUpon>
+	  </Compile>
+
+	  <Compile Update="Views\UpdateAnnouncement\UpdateAnnouncementAccessSettings.View.xaml.cs">
+	    <DependentUpon>UpdateAnnouncementAccessSettings.View.xaml</DependentUpon>
+	  </Compile>
+        </ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Update="Resources\Localization\Views\Views.resx">
+	    <Generator></Generator>
+	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\Localization\ErrorMessages\ErrorMessages.resx">
+	    <Generator></Generator>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+        
+
+	<ItemGroup>
+	  <MauiXaml Update="Components\FieldEditor.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\FieldEntry.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\ContentButton.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\Core\CollectionExpanderView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\Core\TimePickerWithPlaceholder.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\CheckBox.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\PasswordStrengthBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\PinEntry.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\Views\BigButterflyView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\Views\OrderCardView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\Views\ProfileCardView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\DataTemplates\ManagementAnnouncementTemplate.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\DataTemplates\DateDayTemplate.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Converters\Converters.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\DataTemplates\AnnouncementTemplate.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\DataTemplates\CommonFilterForm.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\DataTemplates\CrownedAnnouncementTemplate.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\DataTemplates\EquipmentForm.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\Line.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\DataTemplates\OrderNoteDataTemplate.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\DataTemplates\OtherForm.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\DataTemplates\RealEstateForm.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\DataTemplates\CoworkingsForm.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\DefaultStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styling\Styles.Tabs.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styling\Styles.Border.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styling\Styles.Input.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styling\Styles.Buttons.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styling\Styles.Page.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styling\Styles.Label.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styling\Styles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Management\Management.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\NewAnnouncement\NewAnnouncementCompleted.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\RemovingAnnouncement\RemovingAnnouncementClosedView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\RemovingAnnouncement\RemovingAnnouncementCompletedView.xaml">
+            <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AnnouncementCreation\NewAnnouncementOfferAgreement.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AnnouncementCreation\NewAnnouncementPhotosView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AnnouncementCreation\NewAnnouncementAccessSettings.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AnnouncementCreation\NewAnnouncementDuration.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AnnouncementCreation\NewAnnouncementDiscountParameters.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AnnouncementCreation\NewAnnouncementCompleted.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ConfirmationCanceled.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ConfirmationCancel.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Tab2\History.NavigationView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Catalog\CatalogNavigation.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\ConfirmationDone.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MyProfile\AboutUs.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MyProfile\Exit.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MyProfile\Individual\MyIndividualProfile.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Management\ManagementCalendar.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Management\MangementNavigation.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AnnouncementCreation\NewAnnouncementSchedule.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\AnnouncementCreation\NewAnnouncementTarget.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Confirmation.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Appointment.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Authentication\PasswordChanged.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Authentication\RecoverPassword.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Authentication\Login.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Authentication\NewPassword.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Authentication\TemporaryPassword.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Authentication\Registration\RegistrationCompleted.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Authentication\Registration\RegistrationContacts.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Authentication\Registration\RegistrationProfile.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Authentication\Registration\RegistrationLogo.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Authentication\Registration\RegistrationAs.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Authentication\Registration\RegistrationPassword.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Authentication\Registration\VerificationCode.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Authentication\Registration\RegistrationLogin.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CatalogViews\Announcement.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CatalogViews\Catalog.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CatalogViews\FilterChoice.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MyProfile\Individual\Announcements.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MyProfile\MyProfileNavigation.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MyProfile\Individual\Owners.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Tab2\History.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Login.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MyProfile\LegalPerson\MyLegalPersonProfile.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MyProfile\Individual\Favorites.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MyOrders.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MyPastOrders.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Navigation\MainNavigation.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Navigation\Navigation.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Profile.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Settings.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TabbedViews\Tabbed.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Tabbed\TabsView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\Core\TitledView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\UpdateAnnouncement\UpdateAnnouncementAccessSettings.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\UpdateAnnouncement\UpdateAnnouncementCompleted.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\UpdateAnnouncement\UpdateAnnouncementDiscountParameters.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\UpdateAnnouncement\UpdateAnnouncementDuration.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\UpdateAnnouncement\UpdateAnnouncementFilesView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\UpdateAnnouncement\UpdateAnnouncementSchedule.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\UpdateAnnouncement\UpdateAnnouncementTarget.View.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
+        
+
+	<ItemGroup>
+	  <MauiFont Include="Resources\Fonts\Montserrat\Montserrat-Black.ttf" />
+	</ItemGroup>
+
+        
+
+	<ItemGroup>
+	  <ProjectReference Include="..\LilaRent.Application\LilaRent.Application.csproj" />
+	  <ProjectReference Include="..\LilaRent.Domain\LilaRent.Domain.csproj" />
+	  <ProjectReference Include="..\LilaRent.Presentation\LilaRent.Requests\LilaRent.Requests.csproj" />
+	</ItemGroup>
+
+        
+
+	<ItemGroup>
+	  <Folder Include="ViewModels\NewAnnouncement\" />
+	</ItemGroup>
+
+    <PropertyGroup>
+        <NullabilityInfoContextSupport>true</NullabilityInfoContextSupport>
+    </PropertyGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="appsettings.json" />
+	</ItemGroup>
+</Project>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dto="clr-namespace:LilaRent.Application.Dto;assembly=LilaRent.Application"
+    xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+
+    x:Class="LilaRent.MobileApp.Resources.DataTemplates.CrownedAnnouncementTemplate"
+    x:DataType="dto:AnnouncementSummaryDto"
+    
+    HeightRequest="360">
+
+
+    <Border Style="{StaticResource MediumBlockBorderStyle}">
+        <Grid RowDefinitions="*,*">
+            <Grid 
+                Grid.Row="0"
+                RowDefinitions="10,40,*,Auto"
+                ColumnDefinitions="*,40,10">
+
+                <CarouselView 
+                    x:Name="ImagesCarouselView"
+                    Grid.Row="0"
+                    Grid.RowSpan="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    ItemsSource="{Binding Images}"
+                    IndicatorView="indicatorView"
+                    BackgroundColor="Black" />
+
+                <IndicatorView 
+                    x:Name="indicatorView"
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Style="{StaticResource CarouselIndicatorStyle}"
+                    Margin="0,0,0,10"/>
+
+                <ImageButton
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Style="{StaticResource BlockImageButtonStyle}"
+                    Padding="4"
+                    Source="crown.svg"
+                    Aspect="AspectFit" />
+
+            </Grid>
+
+            <Grid 
+                Grid.Row="1"
+                Margin="12,6,12,8"
+                RowDefinitions="Auto,Auto,*,Auto">
+
+                <Label 
+                    Grid.Row="0"
+                    Style="{StaticResource CardHeaderDarkStyle}"
+                    Text="{Binding RentObjectName}" />
+
+                <Label 
+                    Grid.Row="1"
+                    Style="{StaticResource AdditionalDarkLabelStyle}"
+                    Text="{Binding Price.Value, StringFormat='{0} руб в час'}" />
+
+                <Label
+                    Grid.Row="2"
+                    Margin="0,6,0,0"
+                    Style="{StaticResource CardLabelDarkStyle}"
+                    LineBreakMode="TailTruncation"
+                    MaxLines="4"
+                    Text="{Binding Description}" />
+
+                <HorizontalStackLayout 
+                    Grid.Row="3"
+                    Spacing="10">
+
+                    <Image 
+                        Grid.Row="3"
+                        Source="spot.svg"
+                        Aspect="AspectFit"/>
+
+                    <Label
+                        Grid.Row="3"
+                        Style="{StaticResource AdditionalDarkLabelStyle}"
+                        Text="{Binding Address}" />
+
+                </HorizontalStackLayout>
+            </Grid>
+        </Grid>
+    </Border>
+</ContentView>

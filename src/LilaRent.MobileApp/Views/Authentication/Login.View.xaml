@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+    xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+    xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+    xmlns:views="clr-namespace:LilaRent.MobileApp.Views"
+    xmlns:behaviors="clr-namespace:LilaRent.MobileApp.Behaviors"
+    xmlns:coreComponents="clr-namespace:LilaRent.MobileApp.Components.Core"
+    xmlns:converters="clr-namespace:LilaRent.MobileApp.Converters"
+    xmlns:validation="clr-namespace:LilaRent.Application.Validation;assembly=LilaRent.Application"
+
+    x:Class="LilaRent.MobileApp.Views.LoginView"
+    x:DataType="viewModels:LoginViewModel"
+    
+    Style="{StaticResource TabslessPageStyle}"
+    behaviors:LoadingBehaviour.IsLoading="{Binding IsServerRequested}">
+
+
+    <Grid 
+        Margin="{Thickness 
+            Left='16', 
+            Top={StaticResource AuthenticationHeaderMargin}, 
+            Right='16', 
+            Bottom='0'}"
+        RowDefinitions="Auto,*,Auto">
+
+        <VerticalStackLayout
+            Grid.Row="0"
+            Spacing="16">
+
+            <Label 
+                x:Name="EnterEntry"
+                Text="Вход"
+                Style="{StaticResource SecondaryHeaderDarkStyle}"
+                TextTransform="Uppercase"
+                HorizontalTextAlignment="Center" />
+
+            <components:FieldEntry
+                LabelText="Логин" 
+                Placeholder="{markup:Localize 'Введите e-mail...'}"
+                Text="{Binding Login}"
+                Keyboard="Email"
+                IsValid="{Binding LoginError, Converter={StaticResource IsNullConverter}}"
+                MaxLength="{x:Static validation:EmailConstraints.MaxLength}" />
+
+            <components:FieldEntry
+                LabelText="Пароль" 
+                Placeholder="{markup:Localize 'Enter password'}"
+                Text="{Binding Password}"
+                IsPassword="True"
+                IsPasswordButtonVisible="True"
+                IsValid="{Binding PasswordError, Converter={StaticResource IsNullConverter}}"
+                MaxLength="{x:Static validation:PasswordConstraints.MaxLength}" />  
+
+            <Label Style="{StaticResource PrimaryDarkLabelStyle}">
+                <Label.Text>
+                    <markup:Localize FinalConverter="{StaticResource FirstUpperRestLowerConverter}">
+                        <MultiBinding Converter="{StaticResource FirstNotNullOrNullMultiConverter}">
+                            <Binding Path="LoginError" />
+                            <Binding Path="PasswordError" />
+                        </MultiBinding>
+                    </markup:Localize>
+                </Label.Text>
+            </Label>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout
+            Grid.Row="2"
+            Spacing="12">
+
+            <Button
+                Style="{StaticResource PrimaryButtonStyle}"
+                Text="Войти"
+                Command="{Binding ContinueCommand}" />
+
+            <Grid
+                HeightRequest="{StaticResource ButtonHeight}"
+                RowDefinitions="*,Auto,*"
+                ColumnDefinitions="*,Auto,*">
+
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="Забыли пароль?"
+                    Style="{StaticResource PrimaryDarkLabelStyle}">
+
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

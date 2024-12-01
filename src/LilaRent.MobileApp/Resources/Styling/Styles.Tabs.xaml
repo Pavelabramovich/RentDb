@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:coreComponents="clr-namespace:LilaRent.MobileApp.Components.Core"
+    xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+    xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+    xmlns:views="clr-namespace:LilaRent.MobileApp.Views"
+    xmlns:android="clr-namespace:CommunityToolkit.Maui.PlatformConfiguration.AndroidSpecific;assembly=CommunityToolkit.Maui">
+
+
+    <Style x:Key="TabsStyle" TargetType="TabbedPage" ApplyToDerivedTypes="True" BaseResourceKey="PageWithTabsStyle">
+        <Setter Property="SelectedTabColor" Value="{toolkit:AppThemeResource SelectedTabColor}" />
+        <Setter Property="UnselectedTabColor" Value="{toolkit:AppThemeResource UnselectedTabColor}" />
+        <Setter Property="BarBackgroundColor" Value="{toolkit:AppThemeResource BlockBackgroundColor}" />
+    </Style>
+
+    <Style x:Key="TopTabsStyle" TargetType="components:TabbedViewPage" ApplyToDerivedTypes="True" BaseResourceKey="PageWithTabsStyle">
+        <Setter Property="TabsControlTemplate">
+            <ControlTemplate>
+                <Grid 
+                    RowDefinitions="Auto,*"
+                    ColumnDefinitions="*,Auto,*">
+
+                    <coreComponents:CollectionPresenter 
+                        x:Name="TabsCollection"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="10">
+
+                        <coreComponents:CollectionPresenter.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="16" />
+                        </coreComponents:CollectionPresenter.ItemsLayout>
+                    </coreComponents:CollectionPresenter>
+
+                    <ContentPresenter 
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3" />
+
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+
+        <Setter Property="TabTemplate">
+            <DataTemplate>
+                <VerticalStackLayout>
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup Name="CommonStates">
+                            <VisualState Name="Normal" />
+
+                            <VisualState Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter 
+                                        TargetName="SelectionUnderline" 
+                                        Property="Border.BackgroundColor" 
+                                        Value="{toolkit:AppThemeResource SelectionUnderlineColor}" />
+
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+
+                    <Label 
+                        Style="{StaticResource AdditionalDarkLabelStyle}"
+                        Text="{markup:Localize {Binding Title}}" 
+                        Margin="0,6" />
+
+                    <Border 
+                        x:Name="SelectionUnderline"
+                        HeightRequest="2" 
+                        BackgroundColor="Transparent" 
+                        StrokeThickness="0" />
+
+                </VerticalStackLayout>
+            </DataTemplate>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

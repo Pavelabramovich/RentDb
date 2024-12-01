@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+	<style name="SplashTheme" parent="@style/Maui.SplashTheme">
+		<item name="android:statusBarColor">@color/splashBarColor</item>
+        <item name="android:windowLightStatusBar">true</item>
+        
+		<item name="android:navigationBarColor">@color/splashBarColor</item>
+        <item name="android:windowLightNavigationBar">true</item>
+	</style>
+</resources>

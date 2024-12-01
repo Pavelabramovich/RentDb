@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:components="clr-namespace:LilaRent.MobileApp.Components">
+
+
+    <Style TargetType="Button">
+        <Setter Property="FontFamily" Value="Montserrat" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="LineBreakMode" Value="WordWrap" />
+        <Setter Property="CornerRadius" Value="10" />
+        <Setter Property="BorderWidth" Value="1" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="BorderColor" Value="Black" />
+    </Style>
+
+
+    <Style x:Key="BaseButtonStyle" TargetType="Button">
+        <Setter Property="FontFamily" Value="{StaticResource ButtonTextFont}" />
+        <Setter Property="FontSize" Value="{StaticResource ButtonTextFontSize}" />
+        <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
+        <Setter Property="BorderWidth" Value="{StaticResource BorderWidth}" />
+        <Setter Property="BorderColor" Value="{toolkit:AppThemeResource OutlineColor}" />
+    </Style>
+
+
+    <Style x:Key="OneLineButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+        <Setter Property="LineBreakMode" Value="NoWrap" />
+    </Style>
+
+    <Style x:Key="FieldButtonStyle" TargetType="Button" BasedOn="{StaticResource OneLineButtonStyle}">
+        <Setter Property="HeightRequest" Value="{StaticResource ButtonHeight}" />
+    </Style>
+
+
+    <Style x:Key="ManyLineButtonStyle" TargetType="Button" BasedOn="{StaticResource BaseButtonStyle}">
+        <Setter Property="LineBreakMode" Value="WordWrap"/>
+    </Style>
+
+
+    <Style x:Key="PrimaryButtonStyle" TargetType="Button" BasedOn="{StaticResource FieldButtonStyle}">
+        <Setter Property="BackgroundColor" Value="{toolkit:AppThemeResource PrimaryButtonColor}" />
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryLightTextColor}" />
+    </Style>
+
+    <Style x:Key="SecondaryButtonStyle" TargetType="Button" BasedOn="{StaticResource FieldButtonStyle}">
+        <Setter Property="BackgroundColor" Value="{toolkit:AppThemeResource SecondaryButtonColor}" />
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryLightTextColor}" />
+    </Style>
+
+    <Style x:Key="AdditionalButtonStyle" TargetType="Button" BasedOn="{StaticResource FieldButtonStyle}">
+        <Setter Property="BackgroundColor" Value="{toolkit:AppThemeResource BlockBackgroundColor}"/>
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryDarkTextColor}"/>
+    </Style>
+
+
+    <Style x:Key="BaseContentButtonStyle" TargetType="components:ContentButton">
+        <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
+        <Setter Property="BorderWidth" Value="{StaticResource BorderWidth}" />
+        <Setter Property="BorderColor" Value="{toolkit:AppThemeResource OutlineColor}" />
+    </Style>
+
+    <Style x:Key="FieldContentButtonStyle" TargetType="components:ContentButton" BasedOn="{StaticResource BaseContentButtonStyle}">
+        <Setter Property="HeightRequest" Value="{StaticResource ButtonHeight}" />
+    </Style>
+
+
+    <Style x:Key="PrimaryContentButtonStyle" TargetType="components:ContentButton" BasedOn="{StaticResource FieldContentButtonStyle}">
+        <Setter Property="BackgroundColor" Value="{toolkit:AppThemeResource PrimaryButtonColor}" />
+    </Style>
+
+    <Style x:Key="SecondaryContentButtonStyle" TargetType="components:ContentButton" BasedOn="{StaticResource FieldContentButtonStyle}">
+        <Setter Property="BackgroundColor" Value="{toolkit:AppThemeResource SecondaryButtonColor}" />
+    </Style>
+
+    <Style x:Key="AdditionalContentButtonStyle" TargetType="components:ContentButton" BasedOn="{StaticResource FieldContentButtonStyle}">
+        <Setter Property="BackgroundColor" Value="{toolkit:AppThemeResource BlockBackgroundColor}" />
+    </Style>
+
+
+    <Style x:Key="BlockImageButtonStyle" TargetType="ImageButton">
+        <Setter Property="CornerRadius" Value="{StaticResource MediumCornerRadius}" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="BackgroundColor" Value="{toolkit:AppThemeResource BlockBackgroundColor}" />
+    </Style>
+
+
+    <Style TargetType="RadioButton" x:Key="FieldRadioButton">
+        <Setter Property="ControlTemplate">
+            <ControlTemplate>
+                <Border 
+                    Style="{StaticResource MediumAdditionalBorderStyle}"
+                    HeightRequest="{StaticResource ButtonHeight}"> 
+
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroupList>
+                            <VisualStateGroup x:Name="CheckedStates">
+
+                                <VisualState x:Name="Checked">
+                                    <VisualState.Setters>
+                                        <Setter TargetName="CheckBoxEllipse" Property="Opacity" Value="1" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                                <VisualState x:Name="Unchecked">
+                                    <VisualState.Setters>
+                                        <Setter TargetName="CheckBoxEllipse" Property="Opacity" Value="0" />
+                                    </VisualState.Setters>
+                                </VisualState>
+
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </VisualStateManager.VisualStateGroups>
+
+                    <HorizontalStackLayout>
+                        <Grid Margin="13">
+                            <Ellipse 
+                                Stroke="{toolkit:AppThemeResource OutlineColor}"
+                                StrokeThickness="{StaticResource BorderWidth}"
+                                Fill="Transparent"
+                                WidthRequest="24"
+                                HeightRequest="24"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center" />
+
+                            <Ellipse 
+                                x:Name="CheckBoxEllipse"
+                                Fill="{toolkit:AppThemeResource SecondaryButtonColor}"
+                                WidthRequest="12"
+                                HeightRequest="12"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center" />
+
+                        </Grid>
+
+                        <Label 
+                            Text="{TemplateBinding Content}" 
+                            Style="{StaticResource AdditionalLabelStyle}" 
+                            VerticalOptions="Center" />
+
+                    </HorizontalStackLayout>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+
+
+
+    <Style x:Key="LikeButton" TargetType="ImageButton">
+        <Setter Property="Source" Value="heart.svg"/>
+        <Setter Property="VerticalOptions" Value="Center"/>
+    </Style>
+
+    <Style x:Key="TopImageButton" TargetType="ImageButton">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="HeightRequest" Value="34" />
+        <Setter Property="WidthRequest" Value="34" />
+        <Setter Property="Aspect" Value="AspectFit" />
+    </Style>
+
+    <Style x:Key="FilterTopImageButton" TargetType="ImageButton" BasedOn="{StaticResource TopImageButton}">
+        <Setter Property="Source" Value="filter_icon.png"/>
+    </Style>
+
+    <Style x:Key="BackTopImageButton" TargetType="ImageButton" BasedOn="{StaticResource TopImageButton}">
+        <Setter Property="Source" Value="back_arrow.svg"/>
+        <Setter Property="Aspect" Value="Center"/>
+    </Style>
+
+
+    <Style x:Key="NextDayButton" TargetType="ImageButton">
+        <Setter Property="Source" Value="right_vector.svg"/>
+        <Setter Property="Aspect" Value="Center"/>
+    </Style>
+
+    <Style x:Key="PreviousDayButton" TargetType="ImageButton">
+        <Setter Property="Source" Value="left_vector.svg"/>
+        <Setter Property="Aspect" Value="Center"/>
+    </Style>
+
+</ResourceDictionary>

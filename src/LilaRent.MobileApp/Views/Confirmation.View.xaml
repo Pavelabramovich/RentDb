@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+	xmlns:converters="clr-namespace:LilaRent.MobileApp.Converters"
+	xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+	xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+	xmlns:componentsViews="clr-namespace:LilaRent.MobileApp.Components.Views"
+	xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+
+    x:Class="LilaRent.MobileApp.Views.ConfirmationView"
+	x:DataType="viewModels:ConfirmationViewModel"
+
+    Title="{markup:Localize 'Забронировать'}">
+
+    <ContentPage.Resources>
+        <converters:TimeOnlyToTimeSpanConverter x:Key="TimeOnlyToTimeSpanConverter" />
+    </ContentPage.Resources>
+
+    <Grid 
+		Margin="16" 
+		RowDefinitions="*,Auto"
+        RowSpacing="16">
+
+        <VerticalStackLayout 
+			HorizontalOptions="Fill" 
+			VerticalOptions="Fill"
+            Spacing="16">
+
+            <componentsViews:ProfileCardView BindingContext="{Binding Profile}" />
+
+            <Border Style="{StaticResource MediumBlockBorderStyle}" Padding="16">
+                <VerticalStackLayout Spacing="16">
+                    <VerticalStackLayout Spacing="8">
+                        <Label 
+							Text="Что арендуете?" 
+							Style="{StaticResource PrimaryDarkLabelStyle}"/>
+
+                        <Border 
+                            Style="{StaticResource MediumAccentBorderStyle}" 
+                            HeightRequest="{StaticResource InputHeight}">
+
+                            <Picker x:Name="positionsPicker" SelectedItem="{Binding CurrentPosition}" Style="{StaticResource FieldPickerStyle}" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="8">
+                        <Label 
+							Text="Дата брони"  
+							Style="{StaticResource PrimaryDarkLabelStyle}" />
+
+                        <Border 
+                            Style="{StaticResource MediumAccentBorderStyle}" 
+                            HeightRequest="{StaticResource InputHeight}">
+
+                            <Picker ItemsSource="{Binding Dates}" SelectedItem="{Binding Date}" Style="{StaticResource FieldPickerStyle}" />
+                        </Border>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="8">
+                        <Label 
+                            Text="Укажите время" 
+                            Style="{StaticResource PrimaryDarkLabelStyle}" />
+   
+                        <Grid ColumnDefinitions="*,*" ColumnSpacing="16">
+                            <Border 
+								Style="{StaticResource MediumAccentBorderStyle}" 
+                                HeightRequest="{StaticResource InputHeight}"
+								Grid.Column="0" 
+								HorizontalOptions="Fill">
+
+                                <components:TimePickerWithPlaceholder Time="{Binding Begin}" Style="{StaticResource FieldTimePickerStyle}" />
+                            </Border>
+
+                            <Border 
+								Style="{StaticResource MediumAccentBorderStyle}" 
+                                HeightRequest="{StaticResource InputHeight}"
+								Grid.Column="1" 
+								HorizontalOptions="Fill">
+
+                                <components:TimePickerWithPlaceholder Time="{Binding End}" Style="{StaticResource FieldTimePickerStyle}" />
+                            </Border>
+                        </Grid>
+
+                        <Label Margin="0,4,0,0" 
+							Style="{StaticResource CardHeaderDarkStyle}" 
+							LineBreakMode="TailTruncation"
+							Text="{markup:Localize {Binding ErrorMessage}}">
+
+                            <Label.Triggers>
+                                <DataTrigger Binding="{Binding IsValid}" Value="True" TargetType="Label">
+                                    <Setter Property="IsVisible" Value="False"/>
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding IsValid}" Value="False" TargetType="Label">
+                                    <Setter Property="IsVisible" Value="True"/>
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <Label Grid.Column="0" Text="Стоимость аренды:" Style="{StaticResource PrimaryDarkLabelStyle}"/>
+                <Label Grid.Column="2" Text="123 BYN" Style="{StaticResource CardHeaderDarkStyle}"/>
+            </Grid>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Row="1" VerticalOptions="End" Spacing="12">
+            <Button 
+				Style="{StaticResource AdditionalButtonStyle}" 
+				Text="Написать арендатору" 
+				VerticalOptions="End" />
+
+            <Button 
+				Style="{StaticResource PrimaryButtonStyle}" 
+				Command="{Binding CreateOrderCommand}"
+				Text="Забронировать" 
+				VerticalOptions="End" />
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,661 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Change locale" xml:space="preserve">
+    <value>Сменить локаль</value>
+  </data>
+  <data name="Notifications, bookings and offers settings" xml:space="preserve">
+    <value>Настройка уведомлений, бронирований и предложений</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="Add a header to your profile" xml:space="preserve">
+    <value>Добавьте шапку Вашего профиля</value>
+  </data>
+  <data name="Name is required" xml:space="preserve">
+    <value>Имя обязательно</value>
+  </data>
+  <data name="Phone is required" xml:space="preserve">
+    <value>Телефон обязателен</value>
+  </data>
+  <data name="Photo is required" xml:space="preserve">
+    <value>Фото обязательно</value>
+  </data>
+  <data name="About the developers" xml:space="preserve">
+    <value>О разработчиках</value>
+  </data>
+  <data name="Advertising" xml:space="preserve">
+    <value>Реклама</value>
+  </data>
+  <data name="Advertising advertisements" xml:space="preserve">
+    <value>Реклама объявления</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="Analytics" xml:space="preserve">
+    <value>Аналитика</value>
+  </data>
+  <data name="Announcement owner: {0}" xml:space="preserve">
+    <value>Владелец объявления: {0}</value>
+  </data>
+  <data name="Archive of my advertisements" xml:space="preserve">
+    <value>Архив моих объявлений</value>
+  </data>
+  <data name="Area, m2" xml:space="preserve">
+    <value>Площадь, м2</value>
+  </data>
+  <data name="Beauty saloon" xml:space="preserve">
+    <value>Салон красоты</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Категория</value>
+  </data>
+  <data name="Catalog" xml:space="preserve">
+    <value>Каталог</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Категории</value>
+  </data>
+  <data name="Change background color" xml:space="preserve">
+    <value>Изменить цвет фона</value>
+  </data>
+  <data name="Contact developers" xml:space="preserve">
+    <value>Связь с разработчиками</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Далее</value>
+  </data>
+  <data name="Coworking type" xml:space="preserve">
+    <value>Тип коворкинга</value>
+  </data>
+  <data name="Coworkings" xml:space="preserve">
+    <value>Коворкинги</value>
+  </data>
+  <data name="Create announcement" xml:space="preserve">
+    <value>Создать объявление</value>
+  </data>
+  <data name="Current" xml:space="preserve">
+    <value>Текущее</value>
+  </data>
+  <data name="Data and cache" xml:space="preserve">
+    <value>Данные и кэш</value>
+  </data>
+  <data name="Date: {0}" xml:space="preserve">
+    <value>Дата: {0}</value>
+  </data>
+  <data name="Doesnt matter" xml:space="preserve">
+    <value>Не важно</value>
+  </data>
+  <data name="Edit your page description" xml:space="preserve">
+    <value>Редактировать описание вашей страницы</value>
+  </data>
+  <data name="Enter" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="Enter login" xml:space="preserve">
+    <value>Введите логин</value>
+  </data>
+  <data name="Enter password" xml:space="preserve">
+    <value>Введите пароль</value>
+  </data>
+  <data name="Equipment" xml:space="preserve">
+    <value>Оборудование</value>
+  </data>
+  <data name="Equipment type" xml:space="preserve">
+    <value>Тип оборудования</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="from" xml:space="preserve">
+    <value>с</value>
+  </data>
+  <data name="Forgot password?" xml:space="preserve">
+    <value>Забыли пароль?</value>
+  </data>
+  <data name="Geolocation" xml:space="preserve">
+    <value>Геопозиция</value>
+  </data>
+  <data name="Go to advertisement page" xml:space="preserve">
+    <value>Перейти на страницу объявления</value>
+  </data>
+  <data name="Go to the owner's page" xml:space="preserve">
+    <value>Перейти на страницу арендодателя</value>
+  </data>
+  <data name="Hairdressing salon" xml:space="preserve">
+    <value>Парикмахерская</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Логин</value>
+  </data>
+  <data name="In the city?" xml:space="preserve">
+    <value>В черте города?</value>
+  </data>
+  <data name="Long-term" xml:space="preserve">
+    <value>Долгосрочная</value>
+  </data>
+  <data name="My announcements" xml:space="preserve">
+    <value>Мои объявления</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Нет</value>
+  </data>
+  <data name="Number of people" xml:space="preserve">
+    <value>Количество человек</value>
+  </data>
+  <data name="On guarantee" xml:space="preserve">
+    <value>На гарантии</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Другое</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="Past" xml:space="preserve">
+    <value>Прошедшее</value>
+  </data>
+  <data name="Price" xml:space="preserve">
+    <value>Цена</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Рейтинг</value>
+  </data>
+  <data name="Real estate" xml:space="preserve">
+    <value>Недвижимость</value>
+  </data>
+  <data name="Recommendations" xml:space="preserve">
+    <value>Рекомендации</value>
+  </data>
+  <data name="Records and visits of my clients" xml:space="preserve">
+    <value>Записи и визиты моих клиентов</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="Rent object: {0}" xml:space="preserve">
+    <value>Объект аренды: {0}</value>
+  </data>
+  <data name="Rent term" xml:space="preserve">
+    <value>Срок аренды</value>
+  </data>
+  <data name="Rented by me" xml:space="preserve">
+    <value>Арендуемое мной</value>
+  </data>
+  <data name="Replace with background image" xml:space="preserve">
+    <value>Заменить на фоновое изображение</value>
+  </data>
+  <data name="Reviews about me" xml:space="preserve">
+    <value>Отзывы обо мне</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="Short-term" xml:space="preserve">
+    <value>Краткосрочная</value>
+  </data>
+  <data name="Social networks, other contacts" xml:space="preserve">
+    <value>Соцсети, другие контакты</value>
+  </data>
+  <data name="Status: {0}" xml:space="preserve">
+    <value>Статус: {0}</value>
+  </data>
+  <data name="to" xml:space="preserve">
+    <value>до</value>
+  </data>
+  <data name="Upcoming" xml:space="preserve">
+    <value>Предстоящее</value>
+  </data>
+  <data name="Workplace" xml:space="preserve">
+    <value>Рабочий</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Принять</value>
+  </data>
+  <data name="Filters" xml:space="preserve">
+    <value>Фильтры</value>
+  </data>
+  <data name="Enter email associated with account" xml:space="preserve">
+    <value>Введите e-mail, привязанный к аккаунту</value>
+  </data>
+  <data name="Enter temporary password, sent to your mail" xml:space="preserve">
+    <value>Введите временный пароль, отправленный вам на почту</value>
+  </data>
+  <data name="recover password" xml:space="preserve">
+    <value>восстановление пароля</value>
+  </data>
+  <data name="Enter the temporary password sent to your email" xml:space="preserve">
+    <value>Введите временный пароль, отправленный на Вашу почту</value>
+  </data>
+  <data name="Login successful! Enter your new password" xml:space="preserve">
+    <value>Вход успешен! Введите свой новый пароль</value>
+  </data>
+  <data name="Password successfully changed" xml:space="preserve">
+    <value>Пароль успешно изменён</value>
+  </data>
+  <data name="Repeat password" xml:space="preserve">
+    <value>Повторите пароль</value>
+  </data>
+  <data name="Add your contacts" xml:space="preserve">
+    <value>Добавьте Ваши контакты</value>
+  </data>
+  <data name="Add your photo or logo" xml:space="preserve">
+    <value>Добавьте Ваше фото или логотип</value>
+  </data>
+  <data name="Attach a lease agreement template" xml:space="preserve">
+    <value>Прикрепите шаблон договора аренды</value>
+  </data>
+  <data name="Create password" xml:space="preserve">
+    <value>Придумайте пароль</value>
+  </data>
+  <data name="Enter description of the services provided" xml:space="preserve">
+    <value>Введите описание предоставляемых услуг</value>
+  </data>
+  <data name="Enter organization name" xml:space="preserve">
+    <value>Введите название организации</value>
+  </data>
+  <data name="Enter verification code" xml:space="preserve">
+    <value>Введите проверочный код</value>
+  </data>
+  <data name="Enter your email address" xml:space="preserve">
+    <value>Укажите адрес эл. почты</value>
+  </data>
+  <data name="For these individuals, the opportunity to post rental ads is available only in the “Real Estate” category" xml:space="preserve">
+    <value>Для данных лиц возможность размещения объявлений об аренде доступна только в категории “Недвижимость”</value>
+  </data>
+  <data name="Individual" xml:space="preserve">
+    <value>Физическое лицо</value>
+  </data>
+  <data name="Legal person" xml:space="preserve">
+    <value>Юридическое лицо</value>
+  </data>
+  <data name="Profile description" xml:space="preserve">
+    <value>Описание профиля</value>
+  </data>
+  <data name="Register as" xml:space="preserve">
+    <value>Зарегистрироваться как</value>
+  </data>
+  <data name="Registration successfully completed" xml:space="preserve">
+    <value>Регистрация успешно завершена</value>
+  </data>
+  <data name="SEND VERIFICATION CODE" xml:space="preserve">
+    <value>ОТПРАВИТЬ ПРОВЕРОЧНЫЙ КОД</value>
+  </data>
+  <data name="These individuals can create ads for rent in all categories and view ad ratings" xml:space="preserve">
+    <value>Для данных лиц доступно создание объявлений для аренды во всех категориях, просмотр рейтингов объявлений</value>
+  </data>
+  <data name="Appointment" xml:space="preserve">
+    <value>Записаться</value>
+  </data>
+  <data name="Other announcements" xml:space="preserve">
+    <value>Другие объявления</value>
+  </data>
+  <data name="Prices" xml:space="preserve">
+    <value>Прайсы</value>
+  </data>
+  <data name="Reviews" xml:space="preserve">
+    <value>Отзывы</value>
+  </data>
+  <data name="This profile doesnt have announcements" xml:space="preserve">
+    <value>У этого профиля нет объявлений</value>
+  </data>
+  <data name="Length should be equals 6" xml:space="preserve">
+    <value>Допустимая длина 6 символов</value>
+  </data>
+  <data name="Medium password" xml:space="preserve">
+    <value>Средний пароль</value>
+  </data>
+  <data name="Strong password" xml:space="preserve">
+    <value>Сильный пароль</value>
+  </data>
+  <data name="Weak password" xml:space="preserve">
+    <value>Слабый пароль</value>
+  </data>
+  <data name="Legal entity type is required" xml:space="preserve">
+    <value>Тип субъекта обязателен</value>
+  </data>
+  <data name="About myself is required" xml:space="preserve">
+    <value>Обязательно расскажите о себе</value>
+  </data>
+  <data name="ad creating" xml:space="preserve">
+    <value>создание объявления</value>
+  </data>
+  <data name="Attach a photo" xml:space="preserve">
+    <value>Прикрепите фото</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Город</value>
+  </data>
+  <data name="In which city is your proposal?" xml:space="preserve">
+    <value>В каком городе Ваше предложение?</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="Tell more about your proposal..." xml:space="preserve">
+    <value>Расскажите подробнее о Вашем предложении...</value>
+  </data>
+  <data name="What are you offering?" xml:space="preserve">
+    <value>Что Вы предлагаете?</value>
+  </data>
+  <data name="24 hours a day" xml:space="preserve">
+    <value>Круглосуточно</value>
+  </data>
+  <data name="Select the facility`s work schedule" xml:space="preserve">
+    <value>Выберите рабочий график объекта</value>
+  </data>
+  <data name="Select time" xml:space="preserve">
+    <value>Выбрать время</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Описание</value>
+  </data>
+  <data name="How long is the rental booked for?" xml:space="preserve">
+    <value>На сколько бронируется аренда?</value>
+  </data>
+  <data name="Specify the time" xml:space="preserve">
+    <value>Укажите время</value>
+  </data>
+  <data name="What is the interval between entries during which a new one cannot be created?" xml:space="preserve">
+    <value>Какой перерыв между записями в течении которого нельзя создавать новую?</value>
+  </data>
+  <data name="My profile" xml:space="preserve">
+    <value>Мой профиль</value>
+  </data>
+  <data name="Announcements" xml:space="preserve">
+    <value>Объявления</value>
+  </data>
+  <data name="Favorites" xml:space="preserve">
+    <value>Избранное</value>
+  </data>
+  <data name="Owners" xml:space="preserve">
+    <value>Арендодатели</value>
+  </data>
+  <data name="Recently viewed" xml:space="preserve">
+    <value>Ранее смотрели</value>
+  </data>
+  <data name="days" xml:space="preserve">
+    <value>суток</value>
+  </data>
+  <data name="hours" xml:space="preserve">
+    <value>часов</value>
+  </data>
+  <data name="minutes" xml:space="preserve">
+    <value>минут</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>История</value>
+  </data>
+  <data name="Cancel order" xml:space="preserve">
+    <value>Отменить бронь</value>
+  </data>
+  <data name="Cancelation is successful" xml:space="preserve">
+    <value>Отмена брони прошла успешно</value>
+  </data>
+  <data name="Do you want to cancel your order?" xml:space="preserve">
+    <value>Вы действительно хотите отменить заказ?</value>
+  </data>
+  <data name="Leave it" xml:space="preserve">
+    <value>Оставить</value>
+  </data>
+  <data name="Ok" xml:space="preserve">
+    <value>Ок</value>
+  </data>
+  <data name="Thanks for being with us" xml:space="preserve">
+    <value>Спасибо, что были с нами</value>
+  </data>
+  <data name="Warning! This action cant be undone." xml:space="preserve">
+    <value>Внимание! Данное действие нельзя отменить.</value>
+  </data>
+  <data name="Time: from {0} to {1}" xml:space="preserve">
+    <value>Время: с {0} по {1}</value>
+  </data>
+  <data name="Rent object" xml:space="preserve">
+    <value>Объект сдачи</value>
+  </data>
+  <data name="Manicure table" xml:space="preserve">
+    <value>Маникюрный стол</value>
+  </data>
+  <data name="Where is the rental object located?" xml:space="preserve">
+    <value>Где расположен объект сдачи?</value>
+  </data>
+  <data name="Tell us about the object..." xml:space="preserve">
+    <value>Расскажите об объекте...</value>
+  </data>
+  <data name="City, street..." xml:space="preserve">
+    <value>Город, улица...</value>
+  </data>
+  <data name="Attach a photo of the rental object" xml:space="preserve">
+    <value>Прикрепите фото объекта сдачи</value>
+  </data>
+  <data name="Upload photo" xml:space="preserve">
+    <value>Загрузить фото</value>
+  </data>
+  <data name="Attach the Offer Agreement" xml:space="preserve">
+    <value>Прикрепите Договор оферты</value>
+  </data>
+  <data name="Upload agreement" xml:space="preserve">
+    <value>Загрузить договор</value>
+  </data>
+  <data name="File {0} is loaded" xml:space="preserve">
+    <value>Файл {0} загружен</value>
+  </data>
+  <data name="Private coworking Clients need to be added to the list so they can make appointments" xml:space="preserve">
+    <value>Приватный коворикнг
+Клиентов нужно добавить в список чтобы они могли оформлять записи</value>
+  </data>
+  <data name="Can clients change records themselves" xml:space="preserve">
+    <value>Могут ли клиенты сами изменять записи</value>
+  </data>
+  <data name="Can clients cancel their appointments themselves" xml:space="preserve">
+    <value>Могут ли клиенты сами отменять записи</value>
+  </data>
+  <data name="access settings" xml:space="preserve">
+    <value>настройки доступа</value>
+  </data>
+  <data name="discount parameters" xml:space="preserve">
+    <value>параметры скидки</value>
+  </data>
+  <data name="Specify the renting duration" xml:space="preserve">
+    <value>Укажите длительность записи</value>
+  </data>
+  <data name="Rental price for {0}" xml:space="preserve">
+    <value>Стоимость аренды за {0}</value>
+  </data>
+  <data name="hour" xml:space="preserve">
+    <value>час</value>
+  </data>
+  <data name="day" xml:space="preserve">
+    <value>сутки</value>
+  </data>
+  <data name="10 minutes" xml:space="preserve">
+    <value>10 минут</value>
+  </data>
+  <data name="Use discount" xml:space="preserve">
+    <value>Использовать скидку</value>
+  </data>
+  <data name="Client Access Settings" xml:space="preserve">
+    <value>Настройки доступа для клиентов</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Время</value>
+  </data>
+  <data name="Closed for booking by clients break between appointments" xml:space="preserve">
+    <value>Закрытый для бронирования клиентами перерыв между записями</value>
+  </data>
+  <data name="Specify time in minutes" xml:space="preserve">
+    <value>Укажите время в минутах</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="You can offer your customers a discount after a certain rental period." xml:space="preserve">
+    <value>Вы можете предлагать своим клиентам скидку после определённой продолжительности аренды.</value>
+  </data>
+  <data name="Specify the time after which the discount is active." xml:space="preserve">
+    <value>Укажите время после которого скидка активна.</value>
+  </data>
+  <data name="Specify the discount percentage" xml:space="preserve">
+    <value>Укажите процент скидки</value>
+  </data>
+  <data name="For example, 10%" xml:space="preserve">
+    <value>Например, 10%</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>Опубликовать</value>
+  </data>
+  <data name="Completed!" xml:space="preserve">
+    <value>Готово!</value>
+  </data>
+  <data name="Your ad has been updated successfully" xml:space="preserve">
+    <value>Ваше объявление успешно обновлено</value>
+  </data>
+  <data name="Notifications" xml:space="preserve">
+    <value>Уведомления</value>
+  </data>
+  <data name="Help and Feedback" xml:space="preserve">
+    <value>Помощь и обратная связь</value>
+  </data>
+  <data name="About us" xml:space="preserve">
+    <value>О нас</value>
+  </data>
+  <data name="Clients" xml:space="preserve">
+    <value>Клиенты</value>
+  </data>
+  <data name="Welcome to Lila Rent!" xml:space="preserve">
+    <value>Вас приветствует Lila Rent!</value>
+  </data>
+  <data name="Koworkings" xml:space="preserve">
+    <value>Коворкинги</value>
+  </data>
+  <data name="Working places" xml:space="preserve">
+    <value>Рабочие места</value>
+  </data>
+  <data name="Your ad has been successfully published" xml:space="preserve">
+    <value>Ваше объявление успешно опубликовано</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>Готово</value>
+  </data>
+</root>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+	xmlns:dt="clr-namespace:LilaRent.MobileApp.Resources.DataTemplates"
+	xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+	xmlns:views="clr-namespace:LilaRent.MobileApp.Views"
+	xmlns:viewModel="clr-namespace:LilaRent.MobileApp.ViewModels"
+	xmlns:entities="clr-namespace:LilaRent.MobileApp.Entities"
+    xmlns:behaviors="clr-namespace:LilaRent.MobileApp.Behaviors"
+	xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+    xmlns:dto="clr-namespace:LilaRent.Application.Dto;assembly=LilaRent.Application"
+
+	x:Class="LilaRent.MobileApp.Views.AnnouncementView"
+	x:DataType="viewModel:AnnouncementViewModel"
+    
+    behaviors:LoadingBehaviour.IsLoading="{Binding IsServerRequested}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:IsListNotNullOrEmptyConverter x:Key="IsListNotNullOrEmptyConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <views:NavigationView.PageTitleView>
+        <Grid 
+			ColumnDefinitions="*,Auto,Auto"
+			Margin="16,16,16,0"
+			ColumnSpacing="6">
+
+            <ImageButton
+                Grid.Column="1"
+                HeightRequest="34"
+                WidthRequest="34"
+                Source="heart.svg"
+                Aspect="AspectFit"
+                BackgroundColor="Transparent"
+                Command="{Binding LikeCommand}" />
+
+            <ImageButton 
+                Grid.Column="2"
+                HeightRequest="34"
+                WidthRequest="34"
+                Padding="2"
+                Source="share_icon.svg"
+                Aspect="AspectFit"
+                BackgroundColor="Transparent"
+                Command="{Binding ShareCommand}" />
+
+        </Grid>
+    </views:NavigationView.PageTitleView>
+
+    <ScrollView Padding="16,0" Margin="0,12,0,0">
+        <VerticalStackLayout Spacing="16">
+            <Border Style="{StaticResource MediumBlockBorderStyle}">
+                <VerticalStackLayout>
+                    <Grid HeightRequest="213">
+                        <CarouselView
+							ItemsSource="{Binding Announcement.Images}" 
+							IndicatorView="IndicatorView"
+							BackgroundColor="Black"
+                            Loop="False">
+
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate x:DataType="dto:FileDto">
+                                    <VerticalStackLayout>
+                                        <Image HeightRequest="213" Source="{Binding Uri}" Aspect="AspectFill" />
+                                    </VerticalStackLayout>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+
+                        <IndicatorView 
+							x:Name="IndicatorView"
+							Grid.Row="0" 
+							Style="{StaticResource CarouselIndicatorStyle}" 
+							Margin="10" />
+
+                    </Grid>
+
+                    <VerticalStackLayout Padding="16">
+                        <Label Text="{Binding Announcement.RentObjectName}" Margin="0,2" Style="{StaticResource SecondaryHeaderDarkStyle}" />
+                        <Label Text="{Binding Announcement.Price.Value, StringFormat='{0} BYN / час'}" Margin="0,2" Style="{StaticResource AdditionalDarkLabelStyle}" />
+                        <Label Text="{Binding Announcement.Description}" Margin="0,2" Style="{StaticResource PrimaryDarkLabelStyle}" />
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <components:ContentButton
+                Padding="27,0"
+                Style="{StaticResource AdditionalContentButtonStyle}"
+                Command="{Binding ToProfileCommand}">
+
+                <Grid ColumnDefinitions="*,Auto,24" ColumnSpacing="5">
+                    <Label 
+			            Grid.Column="0" 
+                        VerticalTextAlignment="Center"
+			            Text="{Binding Announcement.ProfileName}" 
+			            Style="{StaticResource PrimaryDarkLabelStyle}" 
+			            FontFamily="{StaticResource CardHeaderFont}"/>
+
+                    <Label 
+			            Grid.Column="1" 
+			            Text="Арендодатель" 
+                        VerticalTextAlignment="Center"
+			            Margin="10, 0" 
+			            Style="{StaticResource AdditionalDarkLabelStyle}"/>
+
+                    <Image 
+			            Grid.Column="2" 
+			            Style="{StaticResource AdditionalActionImage}" 
+			            Aspect="AspectFit" 
+                        HeightRequest="20"
+			            Margin="4" />
+
+                </Grid>
+            </components:ContentButton>
+
+            <components:ContentButton
+                Style="{StaticResource SecondaryContentButtonStyle}">
+
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label 
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Style="{StaticResource ButtonLightLabelStyle}"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="Договор оферты" />
+
+                    <Image 
+                        Grid.Column="1" 
+                        Source="sheet_with_arrow.svg" 
+                        Aspect="AspectFit" 
+                        Margin="0,7,20,7">
+
+                        <Image.Behaviors>
+                            <toolkit:IconTintColorBehavior TintColor="{toolkit:AppThemeResource BlockBackgroundColor}" />
+                        </Image.Behaviors>
+                    </Image>
+
+                </Grid>
+            </components:ContentButton>
+
+            <Button 
+                Style="{StaticResource PrimaryButtonStyle}" 
+                Text="Записаться" 
+                Command="{Binding ToAppointmentCommand}" />
+
+            <Label 
+				Text="Похожие предложения" 
+				Style="{StaticResource SecondaryHeaderDarkStyle}"
+				IsVisible="{Binding Recomendantions, Converter={StaticResource IsListNotNullOrEmptyConverter}}" />
+
+            <VerticalStackLayout>
+                <CollectionView 
+					x:Name="RecommendationsCollectionView"
+					ItemsSource="{Binding Recomendantions}"
+					SelectionMode="None"
+					Margin="0,0,0,10">
+
+                    <CollectionView.EmptyView>
+                        <Label 
+							Text="{markup:Localize 'Это предложение уникально! Ничто на него не похоже!'}" 
+							HorizontalTextAlignment="Center" 
+							Style="{StaticResource PrimaryDarkLabelStyle}"
+							Margin="0,0,0,14" />
+
+                    </CollectionView.EmptyView>
+
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical" ItemSpacing="16" />
+                    </CollectionView.ItemsLayout>
+                </CollectionView>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

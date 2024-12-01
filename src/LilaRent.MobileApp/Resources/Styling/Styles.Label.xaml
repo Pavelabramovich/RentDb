@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+
+
+    <Style TargetType="Label">
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="VerticalTextAlignment" Value="Start" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontFamily" Value="OpenSansRegular" />
+        <Setter Property="FontAttributes" Value="None" />
+    </Style>
+
+
+    <Style x:Key="PrimaryHeaderStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource PrimaryHeaderFont}" />
+        <Setter Property="FontSize" Value="{StaticResource PrimaryHeaderFontSize}" />
+        <Setter Property="TextTransform" Value="Uppercase" />
+    </Style>
+
+    <Style x:Key="PrimaryHeaderDarkStyle" TargetType="Label" BasedOn="{StaticResource PrimaryHeaderStyle}">
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryDarkTextColor}" />
+    </Style>
+
+    <Style x:Key="PrimaryHeaderLightStyle" TargetType="Label" BasedOn="{StaticResource PrimaryHeaderStyle}">
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryLightTextColor}" />
+    </Style>
+
+
+    <Style x:Key="SecondaryHeaderStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource SecondaryHeaderFont}" />
+        <Setter Property="FontSize" Value="{StaticResource SecondaryHeaderFontSize}" />
+    </Style>
+
+    <Style x:Key="SecondaryHeaderDarkStyle" TargetType="Label" BasedOn="{StaticResource SecondaryHeaderStyle}">
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryDarkTextColor}" />
+    </Style>
+
+    <Style x:Key="SecondaryHeaderLightStyle" TargetType="Label" BasedOn="{StaticResource SecondaryHeaderStyle}">
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryLightTextColor}" />
+    </Style>
+
+
+    <Style x:Key="PrimaryLabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource PrimaryTextFont}" />
+        <Setter Property="FontSize" Value="{StaticResource PrimaryTextFontSize}" />
+    </Style>
+
+    <Style x:Key="PrimaryDarkLabelStyle" TargetType="Label" BasedOn="{StaticResource PrimaryLabelStyle}">
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryDarkTextColor}" />
+    </Style>
+
+    <Style x:Key="PrimaryLightLabelStyle" TargetType="Label" BasedOn="{StaticResource PrimaryLabelStyle}">
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryLightTextColor}" />
+    </Style>
+
+
+    <Style x:Key="AdditionalLabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource AdditionalTextFont}" />
+        <Setter Property="FontSize" Value="{StaticResource AdditionalTextFontSize}" />
+		<Setter Property="TextColor" Value="{toolkit:AppThemeResource AdditionalTextColor}"/>
+	</Style>
+
+    <Style x:Key="AdditionalDarkLabelStyle" TargetType="Label" BasedOn="{StaticResource AdditionalLabelStyle}">
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryDarkTextColor}" />
+    </Style>
+
+    <Style x:Key="AdditionalLightLabelStyle" TargetType="Label" BasedOn="{StaticResource AdditionalLabelStyle}">
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryLightTextColor}" />
+    </Style>
+
+
+    <Style x:Key="CardHeaderStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource CardHeaderFont}" />
+        <Setter Property="FontSize" Value="{StaticResource CardHeaderFontSize}" />
+    </Style>
+
+    <Style x:Key="CardHeaderDarkStyle" TargetType="Label" BasedOn="{StaticResource CardHeaderStyle}">
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryDarkTextColor}" />
+    </Style>
+
+    <Style x:Key="CardHeaderLightStyle" TargetType="Label" BasedOn="{StaticResource CardHeaderStyle}">
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryLightTextColor}" />
+    </Style>
+
+
+    <Style x:Key="CardLabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource CardTextFont}" />
+        <Setter Property="FontSize" Value="{StaticResource CardTextFontSize}" />
+    </Style>
+
+    <Style x:Key="CardLabelDarkStyle" TargetType="Label" BasedOn="{StaticResource CardLabelStyle}">
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryDarkTextColor}" />
+    </Style>
+
+    <Style x:Key="CardLabelLightStyle" TargetType="Label" BasedOn="{StaticResource CardLabelStyle}">
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryLightTextColor}" />
+    </Style>
+
+
+    <Style x:Key="ButtonLabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource ButtonTextFont}" />
+        <Setter Property="FontSize" Value="{StaticResource ButtonTextFontSize}" />
+    </Style>
+
+    <Style x:Key="ButtonDarkLabelStyle" TargetType="Label" BasedOn="{StaticResource ButtonLabelStyle}">
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryDarkTextColor}" />
+    </Style>
+
+    <Style x:Key="ButtonLightLabelStyle" TargetType="Label" BasedOn="{StaticResource ButtonLabelStyle}">
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryLightTextColor}" />
+    </Style>
+
+
+    <Style x:Key="SignStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="{StaticResource SignFont}" />
+        <Setter Property="FontSize" Value="{StaticResource SignFontSize}" />
+    </Style>
+
+    <Style x:Key="SignDarkStyle" TargetType="Label" BasedOn="{StaticResource SignStyle}">
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryDarkTextColor}" />
+    </Style>
+
+	<Style x:Key="SignLightStyle" TargetType="Label" BasedOn="{StaticResource SignStyle}">
+		<Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryLightTextColor}" />
+	</Style>
+
+
+    <!--<Style x:Key="ErrorLabelStyle" TargetType="Label" BasedOn="{StaticResource PrimaryDarkLabelStyle}">
+        <Style.Triggers>
+            <DataTrigger 
+                TargetType="Label"
+                Binding="{Binding Text, Source={RelativeSource Self}, Converter={StaticResource IsStringNullOrEmptyConverter}}"
+                Value="True">
+
+                <Setter Property="IsVisible" Value="False" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>-->
+</ResourceDictionary>

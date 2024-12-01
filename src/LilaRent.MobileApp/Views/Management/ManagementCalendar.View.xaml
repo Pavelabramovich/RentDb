@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+	xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+
+    x:Class="LilaRent.MobileApp.Views.ManagementCalendarView"
+    x:DataType="viewModels:ManagementCalendarViewModel"
+
+    Title="График работы">
+    
+    <VerticalStackLayout Padding="16">
+		<ScrollView 
+			Orientation="Horizontal"
+			HorizontalScrollBarVisibility="Never">
+
+			<CollectionView 
+				x:Name="MonthsCv"
+				ItemsSource="{Binding Months}" 
+				SelectionMode="Single">
+
+				<CollectionView.ItemsLayout>
+					<LinearItemsLayout Orientation="Horizontal" ItemSpacing="16"/>
+				</CollectionView.ItemsLayout>
+
+				<CollectionView.ItemTemplate>
+					<DataTemplate>
+						<Border 
+							Style="{StaticResource MediumBlockBorderStyle}"
+							Padding="8"
+							WidthRequest="110"
+							x:Name="MonthBorder">
+							<VerticalStackLayout>
+								<Label 
+									Text="{Binding StringFormat='{0:MMMM}'}"
+									Style="{StaticResource CardHeaderStyle}"
+									HorizontalOptions="Center"/>
+								<Label 
+									Margin="0, 4, 0, 0"
+									Text="{Binding StringFormat='{0:yyyy}'}"
+									Style="{StaticResource AdditionalLabelStyle}"
+									HorizontalOptions="Center"/>
+							</VerticalStackLayout>
+							<VisualStateManager.VisualStateGroups>
+								<VisualStateGroup Name="CommonStates">
+
+									<VisualState Name="Normal">
+										<VisualState.Setters>
+											<Setter 
+												TargetName="MonthBorder" 
+												Property="Style" 
+												Value="{StaticResource MediumBlockBorderStyle}"/>
+										</VisualState.Setters>
+									</VisualState>
+
+									<VisualState Name="Selected">
+										<VisualState.Setters>
+											<Setter 
+												TargetName="MonthBorder" 
+												Property="Style" 
+												Value="{StaticResource MediumOutlinedBorderStyle}"/>
+											<Setter
+												TargetName="MonthBorder"
+												Property="BackgroundColor"
+												Value="{toolkit:AppThemeResource BlockBackgroundColor}"/>
+										</VisualState.Setters>
+									</VisualState>
+								</VisualStateGroup>
+							</VisualStateManager.VisualStateGroups>
+						</Border>
+					</DataTemplate>
+				</CollectionView.ItemTemplate>
+			</CollectionView>
+		</ScrollView>
+
+		<Grid 
+			Margin="0, 16, 0, 0"
+			RowDefinitions="60, *"
+			ColumnDefinitions="60, *"
+			RowSpacing="16"
+			ColumnSpacing="16">
+
+			<ScrollView
+				Grid.Row="0"
+				Grid.Column="1"
+				x:Name="PositionsScroll"
+				Orientation="Horizontal"
+				HorizontalScrollBarVisibility="Never"
+				VerticalOptions="Center">
+
+				<!--позиции-->
+				<Grid 
+					x:Name="PositionsGrid" 
+					VerticalOptions="Center"/>
+
+			</ScrollView>
+
+			<ScrollView
+				Grid.Row="1"
+				Grid.Column="0"
+				x:Name="DatesScroll"
+				Orientation="Vertical"
+				VerticalScrollBarVisibility="Never">
+				<!--даты-->
+				<Grid x:Name="DatesGrid"/>
+
+			</ScrollView>
+
+
+			<ScrollView
+				x:Name="TimeRangesScroll"
+				Grid.Row="1"
+				Grid.Column="1"
+				Orientation="Both"
+				VerticalScrollBarVisibility="Never">
+				<Border Style="{StaticResource MediumOutlinelessBorderStyle}" VerticalOptions="Start">
+					<!--временные промежутки-->
+					<Grid x:Name="TimeRangesGrid" RowSpacing="-1" ColumnSpacing="-1" />
+				</Border>
+			</ScrollView>
+		</Grid>
+	</VerticalStackLayout>
+</ContentPage>

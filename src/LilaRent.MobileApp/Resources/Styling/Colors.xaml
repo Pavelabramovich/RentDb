@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:toolkitCore="clr-namespace:CommunityToolkit.Maui.Core;assembly=CommunityToolkit.Maui.Core">
+
+    <!-- Note: For Android please see also Platforms\Android\Resources\... -->
+
+    <toolkit:AppThemeColor x:Key="BackgroundColor" Light="#F6F6F6" Dark="#121212" />
+    <toolkit:AppThemeColor x:Key="BlockBackgroundColor" Light="White" Dark="#0A0A0A" />
+
+    <toolkit:AppThemeColor x:Key="PrimaryDarkTextColor" Light="Black" Dark="White" />
+    <toolkit:AppThemeColor x:Key="PrimaryLightTextColor" Light="White" Dark="Black" />
+    <toolkit:AppThemeColor x:Key="AdditionalTextColor" Light="#A8A8A8" Dark="#8A8A8A" />
+
+    <toolkit:AppThemeColor x:Key="PrimaryButtonColor" Light="#393054" Dark="#EB50A0" />
+    <toolkit:AppThemeColor x:Key="SecondaryButtonColor" Light="#62538F" Dark="#F569E2" />
+
+    <toolkit:AppThemeColor x:Key="OutlineColor" Light="#C6BFCB" Dark="#394034" />
+
+    <toolkit:AppThemeColor x:Key="AccentColor" Light="#E4E0E7" Dark="#323236" />
+
+    <toolkit:AppThemeColor x:Key="SelectedTabColor" Light="#62538F" Dark="#F569E2" />
+    <toolkit:AppThemeColor x:Key="UnselectedTabColor" Light="Black" Dark="White" />
+
+    <toolkit:AppThemeColor x:Key="SelectionUnderlineColor" Light="#393054" Dark="#EB50A0" />
+
+    <toolkit:AppThemeColor x:Key="ErrorColor" Light="#FF0004" Dark="MediumVioletRed" />
+
+
+    <toolkit:AppThemeObject 
+        x:Key="PageStatusBarStyle" 
+        Light="{Static toolkitCore:StatusBarStyle.DarkContent}" 
+        Dark="{Static toolkitCore:StatusBarStyle.LightContent}" />
+
+    <toolkit:AppThemeObject
+        x:Key="PageNavigationBarStyle"
+        Light="{Static toolkitCore:NavigationBarStyle.DarkContent}"
+        Dark="{Static toolkitCore:NavigationBarStyle.LightContent}" />
+
+</ResourceDictionary>

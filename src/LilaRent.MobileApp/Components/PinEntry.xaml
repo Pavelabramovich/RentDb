@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+
+    x:Class="LilaRent.MobileApp.Components.PinEntry"
+    x:Name="This">
+
+
+    <Grid>
+        <Entry
+            HorizontalTextAlignment="Start"    
+            IsReadOnly="True"
+            FontSize="{Binding FontSize, Source={x:Reference This}}"                      
+            PlaceholderColor="{Binding PlaceholderColor, Source={x:Reference This}}"
+            FontFamily="Consolas"
+            CharacterSpacing="{Binding CharacterSpacing, Source={x:Reference This}}" >
+
+            <Entry.Placeholder>
+                <MultiBinding Converter="{components:PlaceholderConverter}">
+                    <Binding Path="Text" Source="{x:Reference This}" />
+                    <Binding Path="PlaceholderCharacter" Source="{x:Reference This}" />
+                    <Binding Path="Length" Source="{x:Reference This}" />
+                </MultiBinding>
+            </Entry.Placeholder>
+        </Entry>
+
+        <Entry
+            HorizontalTextAlignment="Start"
+            MaxLength="{Binding Length, Source={x:Reference This}}"
+            Text="{Binding Text, Source={x:Reference This}, Mode=TwoWay}"
+            TextColor="{Binding TextColor, Source={x:Reference This}}"
+            FontSize="{Binding FontSize, Source={x:Reference This}}"
+            FontFamily="Consolas"
+            Keyboard="{Binding Keyboard, Source={x:Reference This}}"
+            CharacterSpacing="{Binding CharacterSpacing, Source={x:Reference This}}" />
+
+    </Grid>
+</ContentView>

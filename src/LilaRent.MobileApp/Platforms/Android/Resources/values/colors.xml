@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#62538F</color>
+    <color name="colorAccent">#393054</color>
+    
+    <color name="splashBarColor">#FFFFFF</color>
+</resources>

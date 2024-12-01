@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+    xmlns:converters="clr-namespace:LilaRent.MobileApp.Converters"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+
+    x:Class="LilaRent.MobileApp.Components.FieldEntry"
+    x:Name="This">
+
+
+    <VerticalStackLayout Spacing="6">
+        <Label 
+            Text="{Binding LabelText, Source={Reference This}}"
+            Style="{StaticResource PrimaryDarkLabelStyle}"
+            IsVisible="{Binding Text, Source={RelativeSource Self}, Converter={StaticResource IsStringNotNullOrEmptyConverter}}" />
+
+        <Border 
+            Style="{StaticResource MediumAccentBorderStyle}"
+            Padding="{Binding StrokeThickness, Source={RelativeSource Self}, Converter={converters:DoubleNegateConverter}}">
+
+            <Border.Triggers>
+                <MultiTrigger TargetType="Border">
+                    <MultiTrigger.Conditions>
+                        <BindingCondition 
+                            Binding="{Binding IsValid, Source={Reference This}}"
+                            Value="False" />
+
+                        <BindingCondition 
+                            Binding="{Binding Text, 
+                                Source={Reference This}, 
+                                Converter={StaticResource IsStringNullOrWhiteSpaceConverter}}"
+                            Value="True" />
+
+                    </MultiTrigger.Conditions>
+
+                    <Setter Property="Stroke" Value="{toolkit:AppThemeResource ErrorColor}" />
+                    <Setter Property="StrokeThickness" Value="{StaticResource ErrorBorderWidth}" />
+                </MultiTrigger>
+            </Border.Triggers>
+
+            <Grid ColumnDefinitions="*">
+                <Grid.Triggers>
+                    <DataTrigger 
+                        TargetType="Grid"
+                        Binding="{Binding IsPasswordButtonVisible, Source={x:Reference This}}"
+                        Value="True">
+
+                        <Setter Property="ColumnDefinitions" Value="*,Auto" />
+                    </DataTrigger>
+                </Grid.Triggers>
+
+                <Entry 
+                    x:Name="Entry"
+                    Grid.Column="0"
+                    Style="{StaticResource FieldEntryStyle}"
+                    Text="{Binding Text, Source={Reference This}, Mode=TwoWay}"
+                    Placeholder="{Binding Placeholder, Source={Reference This}}"
+                    Keyboard="{Binding Keyboard, Source={Reference This}}"
+                    IsPassword="{Binding IsPassword, Source={Reference This}}"
+                    MaxLength="{Binding MaxLength, Source={Reference This}}"
+                    CursorPosition="{Binding CursorPosition, Source={Reference This}, Mode=TwoWay}">
+
+                    <Entry.Triggers>
+                        <MultiTrigger TargetType="Entry">
+                            <MultiTrigger.Conditions>
+                                <BindingCondition 
+                                    Binding="{Binding IsValid, Source={Reference This}}"
+                                    Value="False" />
+
+                                <BindingCondition 
+                                    Binding="{Binding Text, 
+                                        Source={Reference This}, 
+                                        Converter={StaticResource IsStringNullOrWhiteSpaceConverter}}"
+                                    Value="False" />
+
+                            </MultiTrigger.Conditions>
+
+                            <Setter Property="TextColor" Value="{toolkit:AppThemeResource ErrorColor}" />
+                        </MultiTrigger>
+                    </Entry.Triggers>
+                </Entry>
+
+                <Image
+                    Grid.Column="1"
+                    WidthRequest="30"
+                    Margin="0,0,16,0"
+                    IsVisible="{Binding IsPasswordButtonVisible, Source={Reference This}}"
+                    Source="eye.svg" 
+                    Aspect="AspectFit">
+
+                    <Image.Triggers>
+                        <DataTrigger 
+                            TargetType="Image"
+                            Binding="{Binding IsPassword, Source={Reference This}}"
+                            Value="False">
+
+                            <Setter Property="Source" Value="crossed_out_eye.svg" />
+                        </DataTrigger>
+                    </Image.Triggers>
+
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="EyeButton_Clicked" />
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+        </Border>
+
+        <Label 
+            Text="{Binding ErrorText, Source={Reference This}}"
+            Style="{StaticResource PrimaryDarkLabelStyle}"
+            IsVisible="{Binding Text, Source={RelativeSource Self}, Converter={StaticResource IsStringNotNullOrEmptyConverter}}" />
+
+    </VerticalStackLayout>
+</ContentView>

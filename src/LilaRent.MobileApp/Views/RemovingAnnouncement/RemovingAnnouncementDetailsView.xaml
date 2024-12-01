@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<components:BigButterflyPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+    xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+    xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+    xmlns:validation="clr-namespace:LilaRent.Application.Validation;assembly=LilaRent.Application"
+    
+    x:Class="LilaRent.MobileApp.Views.RemovingAnnouncementDetailsView"
+    x:DataType="viewModels:RemovingAnnouncementDetailsViewModel"
+    
+    Title="Удаление объявления"
+    HeaderText="Спасибо, что были с нами">
+
+    <VerticalStackLayout Spacing="6">
+        <Label 
+            Text="Расскажите о причине. Это поможет улучшить качество нашего приложения."
+            Style="{StaticResource PrimaryDarkLabelStyle}" />
+
+        <Border Style="{StaticResource MediumAccentBorderStyle}">
+            <Editor
+                AutoSize="TextChanges"
+                Style="{StaticResource FieldEditorStyle}"
+                Placeholder="{markup:Localize 'Расскажите подробнее...'}"
+                Text="{Binding Details}" 
+                MaximumHeightRequest="250"
+                MaxLength="{x:Static validation:DescriptionConstraints.MaxLength}" />
+
+        </Border>
+
+        <Label 
+            Text="{markup:Localize {Binding DetailsError}}"
+            Style="{StaticResource PrimaryDarkLabelStyle}"
+            IsVisible="{Binding DetailsError, Converter={StaticResource IsStringNotNullOrEmptyConverter}}" />
+
+    </VerticalStackLayout>
+
+    <components:BigButterflyPage.Buttons>
+        <Button 
+            Text="Удалить" 
+            Style="{StaticResource PrimaryButtonStyle}"
+            Command="{Binding RemoveCommand}" />
+
+    </components:BigButterflyPage.Buttons>
+</components:BigButterflyPage>

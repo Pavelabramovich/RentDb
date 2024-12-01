@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <x:String x:Key="PrimaryHeaderFont">InterMedium</x:String>
+    <x:Double x:Key="PrimaryHeaderFontSize">16</x:Double>
+
+    <x:String x:Key="SecondaryHeaderFont">InterBold</x:String>
+    <x:Double x:Key="SecondaryHeaderFontSize">20</x:Double>
+
+    <x:String x:Key="PrimaryTextFont">InterRegular</x:String>
+    <x:Double x:Key="PrimaryTextFontSize">16</x:Double>
+
+    <x:String x:Key="AdditionalTextFont">InterLight</x:String>
+    <x:Double x:Key="AdditionalTextFontSize">14</x:Double>
+
+    <x:String x:Key="CardHeaderFont">InterBold</x:String>
+    <x:Double x:Key="CardHeaderFontSize">16</x:Double>
+
+    <x:String x:Key="CardTextFont">InterRegular</x:String>
+    <x:Double x:Key="CardTextFontSize">14</x:Double>
+
+    <x:String x:Key="ButtonTextFont">InterMedium</x:String>
+    <x:Double x:Key="ButtonTextFontSize">16</x:Double>
+
+    <x:String x:Key="SignFont">InterMedium</x:String>
+    <x:Double x:Key="SignFontSize">8</x:Double>
+</ResourceDictionary>

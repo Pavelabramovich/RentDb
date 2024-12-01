@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:dt="clr-namespace:LilaRent.MobileApp.Resources.DataTemplates"
+	xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+	xmlns:converters="clr-namespace:LilaRent.MobileApp.Converters"
+    xmlns:views="clr-namespace:LilaRent.MobileApp.Views"
+	xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+	xmlns:entities="clr-namespace:LilaRent.MobileApp.Entities"
+    xmlns:fields="clr-namespace:LilaRent.Domain.Fields;assembly=LilaRent.Domain"
+	xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+
+	x:Class="LilaRent.MobileApp.Views.ProfileView"
+	x:DataType="viewModels:ProfileViewModel">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:IsListNotNullOrEmptyConverter x:Key="IsListNotNullOrEmptyConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <views:NavigationView.PageTitleView>
+        <Grid 
+            ColumnDefinitions="*,Auto,Auto"
+            Margin="16,16,16,0"
+            ColumnSpacing="6">
+
+            <ImageButton
+                Grid.Column="1"
+                HeightRequest="34"
+                WidthRequest="34"
+                Source="heart.svg"
+                Aspect="AspectFit"
+                BackgroundColor="Transparent"
+                Command="{Binding LikeCommand}" />
+
+            <ImageButton 
+                Grid.Column="2"
+                HeightRequest="34"
+                WidthRequest="34"
+                Padding="2"
+                Source="share_icon.svg"
+                Aspect="AspectFit"
+                BackgroundColor="Transparent"
+                Command="{Binding ShareCommand}" />
+
+        </Grid>
+    </views:NavigationView.PageTitleView>
+
+    <ScrollView Margin="0,6,0,0">
+        <Grid
+			RowDefinitions="13,205,13,*"
+			ColumnDefinitions="*,300,*">
+
+            <Image
+				Grid.Row="0"
+				Grid.RowSpan="2"
+				Grid.Column="0"
+				Grid.ColumnSpan="3"
+				Aspect="AspectFill"
+				Source="{Binding Profile.Image}" />
+
+            <Grid 
+				Grid.Row="1"
+                Grid.RowSpan="2"
+				Grid.Column="1"
+				RowDefinitions="*,Auto">
+
+                <Border
+					Grid.Row="1"
+					Style="{StaticResource MediumBlockBorderStyle}">
+
+                    <VerticalStackLayout 
+						VerticalOptions="Center"
+						Margin="0,4,0,6">
+
+                        <Label 
+							Text="{Binding Profile.Name}" 
+							HorizontalTextAlignment="Center"
+							Style="{StaticResource SecondaryHeaderDarkStyle}" />
+
+                        <Label 
+							Text="{markup:Localize 'Legal person'}" 
+							HorizontalTextAlignment="Center"
+							Style="{StaticResource PrimaryDarkLabelStyle}" />
+
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+
+            <VerticalStackLayout
+				Grid.Row="3"
+				Grid.Column="0"
+				Grid.ColumnSpan="3"
+				Margin="16,5,16,0"
+				Spacing="24">
+
+                <Label 
+					Style="{StaticResource PrimaryDarkLabelStyle}"
+					Text="{Binding Profile.Description}" />
+
+                <Border 
+					Style="{StaticResource MediumBlockBorderStyle}"
+					Padding="16">
+
+                    <Border.IsVisible>
+                        <MultiBinding Converter="{StaticResource IsAnyNotNullMultiConverter}">
+                            <Binding Path="Profile.Address" />
+                            <Binding Path="Profile.Floor" />
+                            <Binding Path="Profile.Station" />
+                            <Binding Path="Profile.Area" />
+                        </MultiBinding>
+                    </Border.IsVisible>
+
+                    <VerticalStackLayout Spacing="10">
+                        <VerticalStackLayout IsVisible="{Binding Profile.Address, Converter={StaticResource IsStringNotNullOrEmptyConverter}}">
+                            <Label Style="{StaticResource SecondaryHeaderDarkStyle}" Margin="0,0,0,10" Text="Характеристики" />
+
+                            <Label Text="Адрес" Style="{StaticResource CardHeaderDarkStyle}"/>
+                            <Label Text="{Binding Profile.Address}" Margin="0,15" Style="{StaticResource PrimaryDarkLabelStyle}"/>
+
+                            <components:Line Style="{StaticResource AccentLineStyle}" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout IsVisible="{Binding Profile.Floor, Converter={StaticResource IsStringNotNullOrEmptyConverter}}">
+                            <Label Text="Этаж" Style="{StaticResource CardHeaderDarkStyle}"/>
+                            <Label Text="{Binding Profile.Floor}" Margin="0,15" Style="{StaticResource PrimaryDarkLabelStyle}"/>
+
+                            <components:Line Style="{StaticResource AccentLineStyle}" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout IsVisible="{Binding Profile.Station, Converter={StaticResource IsStringNotNullOrEmptyConverter}}">
+                            <Label Text="Остановка рядом" Style="{StaticResource CardHeaderDarkStyle}"/>
+                            <Label Text="{Binding Profile.Station}" Margin="0,15" Style="{StaticResource PrimaryDarkLabelStyle}"/>
+
+                            <components:Line Style="{StaticResource AccentLineStyle}" />
+                        </VerticalStackLayout>
+
+                        <VerticalStackLayout IsVisible="{Binding Profile.Area, Converter={StaticResource IsStringNotNullOrEmptyConverter}}">
+                            <Label Text="Площадь помещения" Margin="0,5" Style="{StaticResource CardHeaderDarkStyle}"/>
+                            <Label Text="{Binding Profile.Area}" Style="{StaticResource PrimaryDarkLabelStyle}"/>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Button Style="{StaticResource PrimaryButtonStyle}" Text="Записаться" Command="{Binding ToAppointmentCommand}" />
+
+                <VerticalStackLayout Spacing="16">
+                    <Label 
+						Text="{Binding Profile.Name, StringFormat='Объявления, автор которых {0}'}"
+						HorizontalOptions="Start"
+						IsVisible="{Binding Announcements, Converter={StaticResource IsListNotNullOrEmptyConverter}}"
+						Style="{StaticResource PrimaryDarkLabelStyle}" />
+
+                    <CollectionView
+						x:Name="AnnouncementsCollectionView"
+						Margin="0,0,0,10"
+						ItemsSource="{Binding Announcements}">
+
+                        <CollectionView.EmptyView>
+                            <Label 
+								Text="{markup:Localize 'This profile doesnt have announcements'}" 
+								HorizontalTextAlignment="Center" 
+								Style="{StaticResource PrimaryDarkLabelStyle}"
+								Margin="0,0,0,14" />
+
+                        </CollectionView.EmptyView>
+
+                        <CollectionView.ItemsLayout>
+							<LinearItemsLayout Orientation="Vertical" ItemSpacing="16" />
+						</CollectionView.ItemsLayout>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="{x:Type entities:AnnouncementInfo}">
+                                <dt:AnnouncementTemplate>
+                                    <dt:AnnouncementTemplate.GestureRecognizers>
+                                        <TapGestureRecognizer 
+						                    Command="{Binding ClickCommand, Source={RelativeSource AncestorType={x:Type viewModels:ProfileViewModel}}}" 
+						                    CommandParameter="{Binding}"/>
+
+                                    </dt:AnnouncementTemplate.GestureRecognizers>
+                                </dt:AnnouncementTemplate>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

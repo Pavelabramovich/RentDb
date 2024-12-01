@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:converters="clr-namespace:LilaRent.MobileApp.Converters"
+	xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+	xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+	xmlns:vm="clr-namespace:LilaRent.MobileApp.ViewModels"
+	
+	x:Class="LilaRent.MobileApp.Views.AppointmentView"
+	x:DataType="vm:AppointmentViewModel"
+	
+	Title="{Binding Announcement.Title}">
+
+    <ContentPage.Resources>
+        <converters:TimeOnlyToTimeSpanConverter x:Key="TimeOnlyToTimeSpanConverter" />
+    </ContentPage.Resources>
+
+
+    <Grid 
+		x:Name="ParentGrid" 
+		Margin="5" 
+		RowDefinitions="90,120,*,Auto">
+
+        <Grid 
+			x:Name="DateScrollWrapper"
+			Grid.Row="0" 
+			Style="{StaticResource BlockLayoutStyle}"
+			Margin="0,15"
+			ColumnDefinitions="50,*,50">
+
+            <ImageButton Grid.Column="0" Style="{StaticResource PreviousDayButton}"/>
+			<ImageButton Grid.Column="2" Style="{StaticResource NextDayButton}"/>
+
+			<ScrollView 
+				Grid.Column="1" 
+				VerticalOptions="Center" 
+				HorizontalOptions="Fill">
+
+                <CollectionView 
+					x:Name="datesCv" 
+					ItemsSource="{Binding Dates}" 
+					SelectionMode="Single">
+
+					<CollectionView.ItemsLayout>
+						<LinearItemsLayout Orientation="Horizontal"/>
+					</CollectionView.ItemsLayout>
+
+					<CollectionView.ItemTemplate>
+						<DataTemplate x:DataType="vm:MyDateOnly">
+							<VerticalStackLayout 
+								VerticalOptions="Center" 
+								HorizontalOptions="Center" 
+								Margin="10,0">
+
+                                <Label 
+									x:Name="Day" 
+									Style="{StaticResource CardHeaderDarkStyle}"
+									LineBreakMode="TailTruncation"
+									VerticalOptions="Center" 
+									HorizontalOptions="Center">
+
+									<Label.Text>
+                                        <markup:MultiLocalizeFormat StringFormat="{}{0} {1}">
+                                            <Binding Path="DateOnly.Day"/>
+											<markup:Localize Key="{Binding DateOnly.DayOfWeek, Converter={converters:DayOfWeekToStringConverter}}"/>
+										</markup:MultiLocalizeFormat>
+									</Label.Text>
+								</Label>
+
+								<Label 
+									x:Name="Month"
+									Text="{Binding DateOnly.Month}" 
+									Style="{StaticResource PrimaryDarkLabelStyle}"
+									VerticalOptions="Center" 
+									HorizontalOptions="Center"/>
+
+								<VisualStateManager.VisualStateGroups>
+									<VisualStateGroup Name="CommonStates">
+
+										<VisualState Name="Normal">
+											<VisualState.Setters>
+												<Setter  TargetName="Day"   Property="Label.TextColor" Value="{StaticResource PrimaryDarkTextColor}"/>
+												<Setter  TargetName="Month" Property="Label.TextColor" Value="{StaticResource PrimaryDarkTextColor}"/>
+											</VisualState.Setters>
+										</VisualState>
+
+										<VisualState Name="Selected">
+											<VisualState.Setters>
+												<Setter TargetName="Day" Property="Label.TextColor" Value="{toolkit:AppThemeResource SecondaryButtonColor}"/>
+												<Setter TargetName="Month" Property="Label.TextColor" Value="{toolkit:AppThemeResource SecondaryButtonColor}"/>
+												<Setter Property="BackgroundColor" Value="Transparent"/>
+											</VisualState.Setters>
+										</VisualState>
+
+									</VisualStateGroup>
+								</VisualStateManager.VisualStateGroups>
+							</VerticalStackLayout>
+						</DataTemplate>
+					</CollectionView.ItemTemplate>
+
+				</CollectionView>
+			</ScrollView>
+		</Grid>
+
+		<ScrollView  
+			x:Name="headerScroll"
+			Orientation="Horizontal" 
+			HorizontalScrollBarVisibility="Never"
+			VerticalOptions="Fill" 
+			HorizontalOptions="Fill" 
+			Grid.Row="1" 
+			Padding="50,0,0,0">
+
+			<Grid x:Name="headerGrid" HorizontalOptions="Fill"/>
+		</ScrollView>
+
+        <Grid 
+			Grid.Row="2" 
+			Style="{StaticResource BlockLayoutStyle}"
+			ColumnDefinitions="50,*">
+
+            <ScrollView 
+				x:Name="timeScroll"
+				Grid.Column="0"
+				Orientation="Vertical" 
+				VerticalScrollBarVisibility="Never"
+				HorizontalOptions="Fill" 
+				VerticalOptions="Fill">
+
+				<Grid x:Name="timeGrid"/>
+			</ScrollView>
+
+            <ScrollView 
+				x:Name="lineScroll" 
+				Grid.Column="1"
+				Orientation="Both" 
+				VerticalScrollBarVisibility="Never" 
+				HorizontalScrollBarVisibility="Never"
+				HorizontalOptions="Fill" 
+				VerticalOptions="Fill">
+
+                <Grid 
+					x:Name="lineGrid" 
+					VerticalOptions="Fill" 
+					HorizontalOptions="Fill" />
+
+            </ScrollView>
+        </Grid>
+
+		<Button 
+			Grid.Row="3" 
+			Text="{markup:Localize 'Sign'}" 
+			Style="{StaticResource PrimaryButtonStyle}" 
+			Command="{Binding ToConfirmationCommand}" />
+
+	</Grid>
+</ContentPage>

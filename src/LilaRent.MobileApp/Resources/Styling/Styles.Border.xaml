@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:views="clr-namespace:LilaRent.MobileApp.Views"
+    xmlns:components="clr-namespace:LilaRent.MobileApp.Components">
+
+
+    <Style TargetType="Border">
+        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="Stroke" Value="Black" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 10" />
+        <Setter Property="StrokeThickness" Value="1" />
+    </Style>
+
+
+    <Style x:Key="OutlinedBorderStyle" TargetType="Border">
+        <Setter Property="StrokeThickness" Value="{StaticResource BorderWidth}" />
+        <Setter Property="Stroke" Value="{toolkit:AppThemeResource OutlineColor}" />
+    </Style>
+
+    <Style x:Key="OutlinelessBorderStyle" TargetType="Border">
+        <Setter Property="StrokeThickness" Value="0" />
+    </Style>
+
+
+    <Style x:Key="SmallOutlinedBorderStyle" TargetType="Border" BasedOn="{StaticResource OutlinedBorderStyle}">
+        <Setter Property="StrokeShape" Value="{StaticResource SmallRoundRectangle}" />
+    </Style>
+
+    <Style x:Key="MediumOutlinedBorderStyle" TargetType="Border" BasedOn="{StaticResource OutlinedBorderStyle}">
+        <Setter Property="StrokeShape" Value="{StaticResource MediumRoundRectangle}" />
+    </Style>
+
+
+    <Style x:Key="SmallOutlinelessBorderStyle" TargetType="Border" BasedOn="{StaticResource OutlinelessBorderStyle}">
+        <Setter Property="StrokeShape" Value="{StaticResource SmallRoundRectangle}" />
+    </Style>
+
+    <Style x:Key="MediumOutlinelessBorderStyle" TargetType="Border" BasedOn="{StaticResource OutlinelessBorderStyle}">
+        <Setter Property="StrokeShape" Value="{StaticResource MediumRoundRectangle}" />
+    </Style>
+
+
+    <Style x:Key="SmallBlockBorderStyle" TargetType="Border" BasedOn="{StaticResource SmallOutlinelessBorderStyle}">
+        <Setter Property="BackgroundColor" Value="{toolkit:AppThemeResource BlockBackgroundColor}" />
+    </Style>
+
+    <Style x:Key="MediumBlockBorderStyle" TargetType="Border" BasedOn="{StaticResource MediumOutlinelessBorderStyle}">
+        <Setter Property="BackgroundColor" Value="{toolkit:AppThemeResource BlockBackgroundColor}" />
+    </Style>
+
+
+    <Style x:Key="MediumAccentBorderStyle" TargetType="Border" BasedOn="{StaticResource MediumOutlinelessBorderStyle}">
+        <Setter Property="BackgroundColor" Value="{toolkit:AppThemeResource AccentColor}" />
+    </Style>
+
+
+    <Style x:Key="MediumAdditionalBorderStyle" TargetType="Border" BasedOn="{StaticResource MediumOutlinedBorderStyle}">
+        <Setter Property="BackgroundColor" Value="{toolkit:AppThemeResource BlockBackgroundColor}" />
+    </Style>
+
+
+	<Style x:Key="ManagementCellBorder" TargetType="Border">
+		<Setter Property="Stroke" Value="{toolkit:AppThemeResource BackgroundColor}" />
+		<Setter Property="BackgroundColor" Value="Transparent" />
+		<Setter Property="StrokeShape" Value="Rectangle" />
+		<Setter Property="StrokeThickness" Value="1" />
+	</Style>
+</ResourceDictionary>

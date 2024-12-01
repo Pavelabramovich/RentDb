@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<NavigationPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:LilaRent.MobileApp.Views"
+
+    x:Class="LilaRent.MobileApp.Views.NavigationView">
+
+
+    <NavigationPage.Resources>
+        <ControlTemplate x:Key="DefaultControlTemplate">
+            <Grid 
+                RowDefinitions="Auto,*"
+                ColumnDefinitions="Auto,*">
+
+                <ContentPresenter 
+                    x:Name="TitleView" 
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2" />
+
+                <ContentPresenter 
+                    x:Name="BackButton" 
+                    Grid.Row="0"
+                    Grid.Column="0" />
+
+                <ContentPresenter 
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2" />
+
+            </Grid>
+        </ControlTemplate>
+
+        <Style x:Key="DefaultBackButtonStyle" TargetType="ImageButton">
+            <Setter Property="Aspect" Value="AspectFit" />
+            <Setter Property="Source" Value="{FontImageSource Glyph='←', Color='Black'}" />
+        </Style>
+    </NavigationPage.Resources>
+</NavigationPage>

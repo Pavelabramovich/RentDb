@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:entities="clr-namespace:LilaRent.MobileApp.Entities"
+
+    x:Class="LilaRent.MobileApp.Components.Views.ProfileCardView"
+    x:DataType="entities:Profile"
+    
+    HeightRequest="140">
+
+
+	<Border Style="{StaticResource MediumBlockBorderStyle}">
+        <Grid ColumnDefinitions="110,*">
+            <Image 
+				Grid.Column="0" 
+				WidthRequest="110" 
+				HeightRequest="140" 
+				Source="{Binding ImagePath}" 
+				Aspect="AspectFill" />
+
+            <Grid 
+				Grid.Column="1" 
+				Margin="10,0" 
+				RowDefinitions="32,*">
+
+                <Grid 
+					Grid.Row="0" 
+					ColumnDefinitions="*,24">
+
+                    <Label 
+						Grid.Column="0" 
+						Text="{Binding Name}" 
+						Margin="0,5"  
+						Style="{StaticResource CardHeaderDarkStyle}"
+						LineBreakMode="TailTruncation" />
+
+					<!-- Removed from MVC -->
+					<!--<ImageButton 
+						Grid.Column="1" 
+						Style="{StaticResource LikeButton}" />-->
+
+				</Grid>
+
+				<Label 
+					Grid.Row="1" 
+					Margin="3" 
+					Text="{Binding Caption}" 
+					Style="{StaticResource CardLabelDarkStyle}"
+					LineBreakMode="TailTruncation"
+					MaxLines="4" />
+
+			</Grid>
+		</Grid>
+	</Border>
+</ContentView>

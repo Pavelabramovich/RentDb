@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+    xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+    xmlns:converters="clr-namespace:LilaRent.MobileApp.Converters"
+    xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+    xmlns:entities="clr-namespace:LilaRent.MobileApp.Entities"
+    
+    x:Class="LilaRent.MobileApp.Views.RegistrationGoalView"
+    x:DataType="viewModels:RegistrationGoalViewModel"
+    
+    Style="{StaticResource TabslessPageStyle}">
+
+
+    <Grid
+      Margin="{Thickness 
+          Left='16', 
+          Top={StaticResource AuthenticationHeaderMargin}, 
+          Right='16', 
+          Bottom='0'}"
+      RowDefinitions="Auto,*,Auto">
+
+        <VerticalStackLayout
+            Grid.Row="0"
+            RadioButtonGroup.GroupName="Reasons"
+            RadioButtonGroup.SelectedValue="{Binding RegistrationGoal, Mode=TwoWay}">
+
+            <!-- Special empty label so that the text position does not change when switching pages -->
+            <Label Style="{StaticResource SecondaryHeaderDarkStyle}" Margin="0,0,0,16" />
+
+            <Label
+                Text="Какая Ваша цель?"
+                Style="{StaticResource PrimaryDarkLabelStyle}"
+                Margin="0,0,0,6" />
+
+            <RadioButton 
+                Value="{x:Static viewModels:RegistrationGoal.RentOutPremises}"
+                Style="{StaticResource FieldRadioButton}"
+                Content="{markup:Localize 'Хочу сдавать помещения в аренду'}"
+                Margin="0,0,0,12" />
+
+            <RadioButton 
+                Value="{x:Static viewModels:RegistrationGoal.RentPremises}"
+                Style="{StaticResource FieldRadioButton}"
+                Content="{markup:Localize 'Буду арендовать места для работы'}"
+                Margin="0,0,0,24" />
+
+            <Label Style="{StaticResource PrimaryDarkLabelStyle}">
+                <Label.Triggers>
+                    <DataTrigger
+                        TargetType="Label"
+                        Binding="{Binding RegistrationGoal}"
+                        Value="{x:Static viewModels:RegistrationGoal.RentOutPremises}">
+
+                        <Setter Property="Text" Value="Удобнее контролировать сдачу в аренду мест и наблюдать за клиентами." />
+                    </DataTrigger>
+
+                    <DataTrigger
+                        TargetType="Label"
+                        Binding="{Binding RegistrationGoal}"
+                        Value="{x:Static viewModels:RegistrationGoal.RentPremises}">
+
+                        <Setter Property="Text" Value="Удобнее оформлять аренду и  контролировать свои бронирования." />
+                    </DataTrigger>
+                </Label.Triggers>
+            </Label>
+        </VerticalStackLayout>
+
+        <Button
+            Grid.Row="2"
+            Style="{StaticResource PrimaryButtonStyle}"
+            Text="Далее"
+            Command="{Binding ContinueCommand}" />
+
+    </Grid>
+</ContentPage>

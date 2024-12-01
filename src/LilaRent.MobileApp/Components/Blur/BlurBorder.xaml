@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:LilaRent.MobileApp.Converters"
+
+    x:Class="LilaRent.MobileApp.Components.BlurBorder"
+    x:Name="This">
+
+    <ContentView.Content>
+        <Grid>
+            <WebView 
+                BackgroundColor="Transparent">
+
+                <WebView.Source>
+                    <HtmlWebViewSource>
+                        <HtmlWebViewSource.Html>
+                            <MultiBinding>
+                                <MultiBinding.StringFormat>
+                                    <![CDATA[
+                                        <html lang="en" style="width: 100vw; height: 100vh; background-color: transparent;">
+                                        <head>
+                                            <style>
+                                                .blurred {{
+                                                    position: absolute;
+                                                    top: 0;
+                                                    left: 0;
+                                                    height: 100%;
+                                                    width: 100%;
+                                                  
+                                                    border-radius: {0};
+                                                   // background-color: rgba(255, 255, 255, 0.4);
+
+                                                   backdrop-filter: grayscale(80%);
+
+                                                    backdrop-filter: blur(4px);
+                                                   //  -webkit-backdrop-filter: blur(5px);
+
+                                                   // background-image: url("https://st2.depositphotos.com/1032749/7158/v/450/depositphotos_71588663-stock-illustration-checkered-abstract-background-checker-chess.jpg"); 
+                                                   // -webkit-filter: blur(10px);
+                                                   
+                                                }}
+                                            </style>
+                                        </head>
+                                        <body style="background-color: transparent;">
+                                            <div class="blurred" />                               
+                                        </body>
+                                        </html>
+                                    ]]>
+                                </MultiBinding.StringFormat>
+
+                                <MultiBinding.Bindings>
+                                    <MultiBinding StringFormat="{}{0}px {1}px {2}px {3}px">
+                                        <Binding Source="{x:Reference This}" Path="CornerRadius.TopLeft" />
+                                        <Binding Source="{x:Reference This}" Path="CornerRadius.TopRight" />
+                                        <Binding Source="{x:Reference This}" Path="CornerRadius.BottomLeft" />
+                                        <Binding Source="{x:Reference This}" Path="CornerRadius.BottomRight" />
+                                    </MultiBinding>
+
+                                    <Binding Source="{x:Reference This}" Path="BlurRadius" />
+                                </MultiBinding.Bindings>
+
+                            </MultiBinding>
+                        </HtmlWebViewSource.Html>
+                    </HtmlWebViewSource>
+                </WebView.Source>
+            </WebView>
+
+            <Border
+                Stroke="{Binding BorderColor, Source={x:Reference This}}"
+                StrokeThickness="{Binding BorderWidth, Source={x:Reference This}}"
+                BackgroundColor="{Binding BackgroundColor, Converter={converters:ColorToTranslucentConverter}, Source={x:Reference This}}"
+                Padding="{Binding Padding, Source={x:Reference This}}"
+                Content="{Binding InnerContent, Source={x:Reference This}}">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="{Binding CornerRadius, Source={x:Reference This}}" />
+                </Border.StrokeShape>
+            </Border>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

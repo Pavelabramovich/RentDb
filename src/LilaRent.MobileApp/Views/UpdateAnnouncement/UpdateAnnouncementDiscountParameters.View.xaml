@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+    xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+    xmlns:converters="clr-namespace:LilaRent.MobileApp.Converters"
+    xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+    xmlns:animations="clr-namespace:LilaRent.MobileApp.Animations"
+    xmlns:coreComponents="clr-namespace:LilaRent.MobileApp.Components.Core"
+    xmlns:fields="clr-namespace:LilaRent.Domain.Fields;assembly=LilaRent.Domain"
+    xmlns:behaviors="clr-namespace:LilaRent.MobileApp.Behaviors"
+
+    x:Class="LilaRent.MobileApp.Views.UpdateAnnouncementDiscountParametersView"
+    x:DataType="viewModels:UpdateAnnouncementDiscountParametersViewModel"
+    
+    Style="{StaticResource PageWithTabsStyle}"
+    Title="{markup:Localize 'discount parameters'}">
+
+
+    <Grid 
+        RowDefinitions="Auto,*,Auto"
+        Margin="16">
+
+        <Border
+            Style="{StaticResource MediumBlockBorderStyle}"
+            Grid.Row="0"
+            Padding="16">
+
+            <VerticalStackLayout Spacing="24">
+                <Label 
+                    Text="{markup:Localize 'You can offer your customers a discount after a certain rental period.'}"
+                    LineBreakMode="WordWrap"
+                    Style="{StaticResource PrimaryDarkLabelStyle}" />
+
+                <VerticalStackLayout Spacing="6">
+                    <Label
+                        Style="{StaticResource PrimaryDarkLabelStyle}"
+                        Text="{markup:Localize 'Specify the time after which the discount is active.'}" />
+
+                    <Grid 
+                        ColumnDefinitions="*,*" 
+                        ColumnSpacing="16">
+
+                        <components:FieldEntry
+                            Grid.Column="0"
+                            Placeholder="{markup:Localize 'from'}"
+                            Keyboard="Numeric"
+                            Text="{Binding MinTimeForDiscount, Converter={StaticResource StringToIntConverter}}"
+                            IsValid="{Binding MinTimeForDiscountError, Converter={StaticResource IsNullConverter}}"
+                            PropertyChanged="FromEntryChanged">
+
+                            <components:FieldEntry.Behaviors>
+                                <behaviors:NumericCoercingBehavior
+                                    x:TypeArguments="components:FieldEntry"
+                                    MaximumDecimalPlaces="0"
+                                    MinimumValue="0" />
+
+                            </components:FieldEntry.Behaviors>
+                        </components:FieldEntry>
+
+                        <components:FieldEntry
+                            Grid.Column="1"
+                            Placeholder="{markup:Localize 'to'}"
+                            Keyboard="Numeric"
+                            Text="{Binding MaxTimeForDiscount, Converter={StaticResource StringToIntConverter}}"
+                            IsValid="{Binding MaxTimeForDiscountError, Converter={StaticResource IsNullConverter}}"
+                            PropertyChanged="ToEntryChanged">
+
+                            <components:FieldEntry.Behaviors>
+                                <behaviors:NumericCoercingBehavior
+                                    x:TypeArguments="components:FieldEntry"
+                                    MaximumDecimalPlaces="0"
+                                    MinimumValue="0" />
+
+                            </components:FieldEntry.Behaviors>
+                        </components:FieldEntry>
+                    </Grid>
+
+                    <Label 
+                        Style="{StaticResource PrimaryDarkLabelStyle}"
+                        IsVisible="{Binding Text, Source={RelativeSource Self}, Converter={StaticResource IsStringNotNullOrEmptyConverter}}">
+
+                        <Label.Text>
+                            <markup:Localize FinalConverter="{StaticResource FirstUpperRestLowerConverter}">
+                                <MultiBinding Converter="{StaticResource FirstNotNullOrNullMultiConverter}">
+                                    <Binding Path="MinTimeForDiscountError" />
+                                    <Binding Path="MaxTimeForDiscountError" />
+                                </MultiBinding>
+                            </markup:Localize>
+                        </Label.Text>
+                    </Label>
+                </VerticalStackLayout>
+
+                <coreComponents:CollectionExpanderView 
+                    x:Name="Expander"
+                    Margin="0,0,0,6"
+                    Style="{StaticResource FieldCollectionExpanderStyle}"
+                    ItemsSource="{Binding TimeUnitsOptions}"
+                    SelectedItem="{Binding SelectedTimeUnit, Mode=TwoWay}">
+
+                    <coreComponents:CollectionExpanderView.HeaderTemplate>
+                        <DataTemplate x:DataType="fields:TimeUnit">
+                            <Label
+                                Style="{StaticResource AdditionalDarkLabelStyle}"
+                                VerticalOptions="Center" 
+                                Text="{markup:Localize {Binding}, InitialConverter={converters:TimeStepToStringConverter}}" />
+
+                        </DataTemplate>
+                    </coreComponents:CollectionExpanderView.HeaderTemplate>
+
+                    <coreComponents:CollectionExpanderView.ItemTemplate>
+                        <DataTemplate x:DataType="fields:TimeUnit">
+                            <VerticalStackLayout 
+                                BackgroundColor="{toolkit:AppThemeResource BlockBackgroundColor}"><!-- This should be fixed in collection view handler -->
+
+                                <Label 
+                                    Text="{markup:Localize {Binding}, InitialConverter={converters:TimeStepToStringConverter}}"
+                                    Style="{StaticResource AdditionalDarkLabelStyle}" 
+                                    Padding="16,0"
+                                    VerticalTextAlignment="Center"
+                                    HeightRequest="{StaticResource InputHeight}" />
+
+                                <components:Line Style="{StaticResource OutlineLineStyle}" />
+
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Normal" />
+
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Transparent" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </coreComponents:CollectionExpanderView.ItemTemplate>
+                </coreComponents:CollectionExpanderView>
+
+                <components:FieldEntry
+                    LabelText="{markup:Localize 'Specify the discount percentage'}"
+                    Placeholder="{markup:Localize 'For example, 10%'}"
+                    Keyboard="Numeric"
+                    Text="{Binding DiscountPercentage, Converter={StaticResource StringToIntConverter}}"
+                    IsValid="{Binding DiscountPercentageError, Converter={StaticResource IsNullConverter}}"
+                    ErrorText="{markup:Localize {Binding DiscountPercentageError}, 
+                        FinalConverter={StaticResource FirstUpperRestLowerConverter}}">
+
+                    <components:FieldEntry.Behaviors>
+                        <behaviors:NumericCoercingBehavior
+                            x:TypeArguments="components:FieldEntry"
+                            MaximumDecimalPlaces="0"
+                            MinimumValue="0"
+                            MaximumValue="100" />
+
+                    </components:FieldEntry.Behaviors>
+                </components:FieldEntry>
+            </VerticalStackLayout>
+        </Border>
+
+        <Button
+            Grid.Row="2"
+            Command="{Binding SaveCommand}"
+            Text="{markup:Localize 'Save'}"
+            Style="{StaticResource PrimaryButtonStyle}"/>
+
+    </Grid>
+</ContentPage>

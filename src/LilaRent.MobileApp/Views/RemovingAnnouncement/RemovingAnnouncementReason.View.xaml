@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+    xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+
+    x:Class="LilaRent.MobileApp.Views.RemovingAnnouncementReasonView"
+    x:DataType="viewModels:RemovingAnnouncementReasonViewModel"
+    
+    Title="Удаление объявления">
+
+
+    <Grid
+        RowDefinitions="Auto,*,Auto"
+        Margin="16">
+
+        <Border
+            Grid.Row="0"
+            Style="{StaticResource MediumBlockBorderStyle}">
+
+            <VerticalStackLayout
+                Margin="16"
+                Spacing="12">
+
+                <Label 
+                    Text="По какой причине Вы хотите удалить объявление?"
+                    Style="{StaticResource PrimaryDarkLabelStyle}" />
+
+                <VerticalStackLayout 
+                    Spacing="6"
+                    RadioButtonGroup.GroupName="Reasons"
+                    RadioButtonGroup.SelectedValue="{Binding Reason, Mode=TwoWay}">
+
+                    <RadioButton 
+                        Value="{x:Static viewModels:RemovingAnnouncementReason.LongTermRenting}"
+                        Style="{StaticResource FieldRadioButton}"
+                        Content="{markup:Localize 'Объект сдан в долгосрочную аренду'}" />
+
+                    <RadioButton 
+                        Value="{x:Static viewModels:RemovingAnnouncementReason.RentObjectSelled}"
+                        Style="{StaticResource FieldRadioButton}"
+                        Content="{markup:Localize 'Объект продан'}" />
+
+                    <RadioButton 
+                        Value="{x:Static viewModels:RemovingAnnouncementReason.ClosedBusiness}"
+                        Style="{StaticResource FieldRadioButton}"
+                        Content="{markup:Localize 'Закрываю бизнес'}" />
+
+                    <RadioButton 
+                        Value="{x:Static viewModels:RemovingAnnouncementReason.DontLikeApp}"
+                        Style="{StaticResource FieldRadioButton}"
+                        Content="{markup:Localize 'Не нравится приложение'}" />
+
+                    <RadioButton 
+                        Value="{x:Static viewModels:RemovingAnnouncementReason.OtherReason}"
+                        Style="{StaticResource FieldRadioButton}"
+                        Content="{markup:Localize 'Другая причина'}" />
+
+                    <RadioButton 
+                        Value="{x:Static viewModels:RemovingAnnouncementReason.JustDelete}"
+                        Style="{StaticResource FieldRadioButton}"
+                        Content="{markup:Localize 'Просто удалите'}" />
+
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+
+        <Button
+            Grid.Row="2"
+            Text="Отправить ответ"
+            Style="{StaticResource PrimaryButtonStyle}"
+            Command="{Binding SendCommand}" />
+
+    </Grid>
+</ContentPage>

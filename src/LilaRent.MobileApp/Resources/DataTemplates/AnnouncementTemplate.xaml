@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:dto="clr-namespace:LilaRent.Application.Dto;assembly=LilaRent.Application"
+    xmlns:converters="clr-namespace:LilaRent.MobileApp.Converters"
+    xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+    
+    x:Class="LilaRent.MobileApp.Resources.DataTemplates.AnnouncementTemplate"			 
+	x:DataType="dto:AnnouncementSummaryDto">
+
+
+    <Border Style="{StaticResource MediumBlockBorderStyle}">
+        <Grid 
+			HeightRequest="140"
+			ColumnDefinitions="110,*">
+
+            <Image 
+				Grid.Column="0"
+				Source="{Binding Images[0]}" 
+				Aspect="AspectFill"/>
+
+			<!-- After MVC set ColumnDefinitions="*,24" -->
+            <Grid Grid.Column="1" Margin="10,3" RowDefinitions="Auto,22,*">
+                <Grid Grid.Row="0" ColumnDefinitions="*" ColumnSpacing="10">
+
+                    <Label 
+						Grid.Column="0" 
+						Text="{Binding RentObjectName}" 
+						Margin="0"  
+						Style="{StaticResource CardHeaderDarkStyle}"
+						LineBreakMode="TailTruncation" />
+
+                    <!-- Removed from MVC -->
+                    <!--<ImageButton
+						Margin="0,5,0,0"
+						Grid.Column="1" 
+						Style="{x:StaticResource LikeButton}" 
+						Aspect="AspectFit" /> -->
+
+                </Grid>
+
+				<Label 
+					Grid.Row="1" 
+					Text="{Binding Price.Value, StringFormat='{0} BYN'}"
+					Style="{StaticResource AdditionalDarkLabelStyle}" />
+
+				<Label 
+					Grid.Row="2" 
+					Margin="3" 
+					Text="{Binding Description}" 
+					Style="{StaticResource CardLabelDarkStyle}"
+					LineBreakMode="TailTruncation"
+					MaxLines="4" />
+
+			</Grid>
+		</Grid>
+	</Border>
+</ContentView>

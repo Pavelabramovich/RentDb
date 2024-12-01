@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+	<class name="DoubleNegateConverter">
+		<description>
+			<summary>
+				Converter to make a negative value from double properties in bindings.
+				Used to collapse borders (It makes margin = -borderThickness, so border collapses with border of parental block)		
+			</summary>
+		</description>
+	</class>
+</doc>

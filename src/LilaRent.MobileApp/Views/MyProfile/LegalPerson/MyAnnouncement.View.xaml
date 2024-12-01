@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+	xmlns:views="clr-namespace:LilaRent.MobileApp.Views"
+	xmlns:dt="clr-namespace:LilaRent.MobileApp.Resources.DataTemplates"
+	xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+	xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+	xmlns:entities="clr-namespace:LilaRent.MobileApp.Entities"
+	xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+    xmlns:dto="clr-namespace:LilaRent.Application.Dto;assembly=LilaRent.Application"
+
+	x:Class="LilaRent.MobileApp.Views.MyAnnouncementView"
+	x:DataType="viewModels:MyAnnouncementViewModel">
+
+
+    <views:NavigationView.PageTitleView>
+        <Grid 
+			ColumnDefinitions="*,Auto,Auto"
+			Margin="16,16,16,0"
+			ColumnSpacing="6">
+
+            <ImageButton
+                Grid.Column="1"
+                HeightRequest="34"
+                WidthRequest="34"
+                Padding="3"
+                Source="trash_can.svg"
+                Aspect="AspectFit"
+                BackgroundColor="Transparent"
+                Command="{Binding DeleteCommand}" />
+
+            <ImageButton 
+                Grid.Column="2"
+                HeightRequest="34"
+                WidthRequest="34"
+                Padding="2"
+                Source="share_icon.svg"
+                Aspect="AspectFit"
+                BackgroundColor="Transparent"
+                Command="{Binding ShareCommand}" />
+
+        </Grid>
+    </views:NavigationView.PageTitleView>
+
+    <Grid 
+		Margin="16"
+		RowDefinitions="Auto,*,Auto">
+
+        <Border
+            Grid.Row="0"
+            Style="{StaticResource MediumBlockBorderStyle}">
+
+            <VerticalStackLayout>
+                <Grid HeightRequest="213">
+                    <CarouselView
+					    ItemsSource="{Binding AnnouncementDetails.Images}" 
+					    IndicatorView="IndicatorView"
+					    BackgroundColor="White"
+                        Loop="False">
+
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate x:DataType="{x:Type dto:FileDto}">
+                                <Grid>
+                                    <ActivityIndicator
+                                        BackgroundColor="White"
+                                        Color="{toolkit:AppThemeResource AccentColor}"
+                                        HeightRequest="80"
+                                        IsRunning="{Binding IsLoading, Source={Reference Image}}" />
+
+                                    <Image 
+                                        x:Name="Image"
+                                        HeightRequest="213" 
+                                        Source="{Binding Uri}" 
+                                        Aspect="AspectFill" />
+                                </Grid>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+
+                    <IndicatorView 
+					    x:Name="IndicatorView"
+					    Grid.Row="0" 
+					    Style="{StaticResource CarouselIndicatorStyle}" 
+					    Margin="10" />
+
+                </Grid>
+
+                <VerticalStackLayout Padding="16">
+                    <Label 
+                        Text="{Binding AnnouncementDetails.RentObjectName}" 
+                        Margin="0,2" 
+                        Style="{StaticResource CardHeaderDarkStyle}" />
+
+                    <Label 
+                        Text="{Binding AnnouncementDetails.Price.Value, StringFormat='{0} BYN'}" 
+                        Margin="0,2" 
+                        Style="{StaticResource AdditionalDarkLabelStyle}" />
+
+                    <Label 
+                        Text="{Binding AnnouncementDetails.Description}" 
+                        Margin="0,2" 
+                        Style="{StaticResource PrimaryDarkLabelStyle}" />
+
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+
+        <VerticalStackLayout 
+			Grid.Row="2"
+			Spacing="12">
+
+
+            <!-- Removed from MVC -->
+            <!--<components:ContentButton
+				Style="{StaticResource SecondaryContentButtonStyle}"
+                Command="{Binding PromoteCommand}">
+
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label 
+						Grid.Column="0"
+						Grid.ColumnSpan="2"
+						Text="Продвигать" 
+						VerticalTextAlignment="Center"
+						HorizontalTextAlignment="Center"
+						TextColor="{toolkit:AppThemeResource PrimaryLightTextColor}"
+						Style="{StaticResource ButtonLabelStyle}" />
+
+                    <Image 
+						Grid.Column="1"
+						Margin="30,0"
+						Source="stonks_arrow.svg">
+
+                        <Image.Behaviors>
+                            <toolkit:IconTintColorBehavior TintColor="White" />
+                        </Image.Behaviors>
+                    </Image>
+                </Grid>
+            </components:ContentButton>-->
+
+            <components:ContentButton 
+				Style="{StaticResource PrimaryContentButtonStyle}"
+                Command="{Binding UpdateCommand}">
+
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label 
+						Grid.Column="0"
+						Grid.ColumnSpan="2"
+						Text="Редактировать" 
+						VerticalTextAlignment="Center"
+						HorizontalTextAlignment="Center"
+						Style="{StaticResource ButtonLightLabelStyle}" />
+
+                    <Image 
+						Grid.Column="1"
+						Margin="30,0"
+						Source="pencil.svg">
+
+                        <Image.Behaviors>
+                            <toolkit:IconTintColorBehavior TintColor="White" />
+                        </Image.Behaviors>
+                    </Image>
+                </Grid>
+            </components:ContentButton>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

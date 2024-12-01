@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+    xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+
+    x:Class="LilaRent.MobileApp.Views.WelcomeView"
+    x:DataType="viewModels:WelcomeViewModel"
+
+    Style="{StaticResource TabslessPageStyle}">
+
+    <Grid RowDefinitions="160,170,50,*,Auto" Margin="16,0">
+        <Image 
+            Grid.Row="1"
+            Source="big_butterfly_outlined.svg" 
+            Aspect="AspectFit" />
+
+        <VerticalStackLayout
+            Grid.Row="3"
+            Margin="25,0"
+            Spacing="16">
+
+            <Label 
+                Text="Вас приветствует Lila Rent!" 
+                Style="{StaticResource SecondaryHeaderDarkStyle}" />
+
+            <Label
+                Text="Это приложение о коворкинге. 
+                      Наша цель помочь найти Вам пространство, для временного или комфортного места работы."
+                Style="{StaticResource PrimaryDarkLabelStyle}" />
+
+        </VerticalStackLayout>
+
+        <Button 
+            Grid.Row="4"
+            Style="{StaticResource PrimaryButtonStyle}" 
+            Text="{markup:Localize 'Продолжить'}"
+            Command="{Binding ContinueCommand}" />
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+    xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+    xmlns:converters="clr-namespace:LilaRent.MobileApp.Converters"
+    xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+    xmlns:validation="clr-namespace:LilaRent.Application.Validation;assembly=LilaRent.Application"
+
+    x:Class="LilaRent.MobileApp.Views.NewAnnouncementTargetView"
+    x:DataType="viewModels:NewAnnouncementTargetViewModel"
+
+    Style="{StaticResource PageWithTabsStyle}"
+    Title="{markup:Localize 'ad creating'}">
+
+	<Grid 
+        RowDefinitions="Auto,*,Auto"
+        RowSpacing="20"
+        Margin="16">
+
+        <Border
+            Style="{StaticResource MediumBlockBorderStyle}"
+            Grid.Row="0"
+            Padding="16">
+
+            <VerticalStackLayout Spacing="16">
+                <components:FieldEntry
+                    LabelText="{markup:Localize 'Rent object'}" 
+                    Placeholder="{markup:Localize 'Manicure table'}"
+                    Text="{Binding RentObjectName}"
+                    IsValid="{Binding RentObjectNameError, Converter={StaticResource IsNullConverter}}"
+                    ErrorText="{markup:Localize {Binding RentObjectNameError}, FinalConverter={StaticResource FirstUpperRestLowerConverter}}"
+                    MaxLength="{x:Static validation:NameConstraints.MaxLength}" />
+
+                <components:FieldEntry
+                    LabelText="{markup:Localize 'Where is the rental object located?'}" 
+                    Placeholder="{markup:Localize 'City, street...'}"
+                    Text="{Binding Address}"
+                    IsValid="{Binding AddressError, Converter={StaticResource IsNullConverter}}"
+                    ErrorText="{markup:Localize {Binding AddressError}, FinalConverter={StaticResource FirstUpperRestLowerConverter}}"
+                    MaxLength="{x:Static validation:AddressConstraints.MaxLength}" />
+
+                <components:FieldEditor 
+                    LabelText="{markup:Localize 'Description'}"
+                    Placeholder="{markup:Localize 'Tell us about the object...'}"
+                    Text="{Binding Description}" 
+                    MaximumFieldHeightRequest="270" 
+                    IsValid="{Binding DescriptionError, Converter={StaticResource IsNullConverter}}"
+                    ErrorText="{markup:Localize {Binding DescriptionError}, FinalConverter={StaticResource FirstUpperRestLowerConverter}}"
+                    MaxLength="{x:Static validation:DescriptionConstraints.MaxLength}" />
+
+            </VerticalStackLayout>
+        </Border>
+
+        <Button
+            Grid.Row="2"
+            Command="{Binding NextCommand}"
+            Text="{markup:Localize 'Continue'}"
+            Style="{StaticResource PrimaryButtonStyle}"/>
+
+    </Grid>
+</ContentPage>

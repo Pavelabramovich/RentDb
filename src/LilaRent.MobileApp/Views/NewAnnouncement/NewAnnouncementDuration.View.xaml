@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+    xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+    xmlns:converters="clr-namespace:LilaRent.MobileApp.Converters"
+    xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+    xmlns:coreComponents="clr-namespace:LilaRent.MobileApp.Components.Core"
+    xmlns:animations="clr-namespace:LilaRent.MobileApp.Animations"
+    xmlns:fields="clr-namespace:LilaRent.Domain.Fields;assembly=LilaRent.Domain"
+    xmlns:behaviors="clr-namespace:LilaRent.MobileApp.Behaviors"
+    
+    x:Class="LilaRent.MobileApp.Views.NewAnnouncementDurationView"
+    x:DataType="viewModels:NewAnnouncementDurationViewModel"
+    x:Name="This"
+    
+    Style="{StaticResource PageWithTabsStyle}"
+    Title="{markup:Localize 'ad creating'}">
+
+
+    <Grid 
+        RowDefinitions="Auto,*,Auto"
+        Margin="16">
+
+        <Border
+            Style="{StaticResource MediumBlockBorderStyle}"
+            Padding="16,20,16,16"
+            Grid.Row="0">
+
+            <VerticalStackLayout Spacing="24">
+                <VerticalStackLayout Spacing="6">
+                    <Label
+                        Style="{StaticResource PrimaryDarkLabelStyle}"
+                        Text="{markup:Localize 'Specify the renting duration'}" />
+
+                    <Grid 
+                        ColumnDefinitions="*,*" 
+                        ColumnSpacing="16">
+
+                        <components:FieldEntry
+                            Grid.Column="0"
+                            Placeholder="{markup:Localize 'from'}"
+                            Keyboard="Numeric"
+                            Text="{Binding MinRentTime, Converter={StaticResource StringToIntConverter}}"
+                            IsValid="{Binding MinRentTimeError, Converter={StaticResource IsNullConverter}}">
+
+                            <components:FieldEntry.Behaviors>
+                                <behaviors:NumericCoercingBehavior
+                                    x:TypeArguments="components:FieldEntry"
+                                    MaximumDecimalPlaces="0"
+                                    MinimumValue="0" />
+
+                            </components:FieldEntry.Behaviors>
+                        </components:FieldEntry>
+
+                        <components:FieldEntry
+                            Grid.Column="1"
+                            Placeholder="{markup:Localize 'to'}"
+                            Keyboard="Numeric"
+                            Text="{Binding MaxRentTime, Converter={StaticResource StringToIntConverter}}"
+                            IsValid="{Binding MaxRentTimeError, Converter={StaticResource IsNullConverter}}">
+
+                            <components:FieldEntry.Behaviors>
+                                <behaviors:NumericCoercingBehavior
+                                    x:TypeArguments="components:FieldEntry"
+                                    MaximumDecimalPlaces="0"
+                                    MinimumValue="0" />
+
+                            </components:FieldEntry.Behaviors>
+                        </components:FieldEntry>
+                    </Grid>
+
+                    <Label 
+                        Style="{StaticResource PrimaryDarkLabelStyle}"
+                        IsVisible="{Binding Text, Source={RelativeSource Self}, Converter={StaticResource IsStringNotNullOrEmptyConverter}}">
+
+                        <Label.Text>
+                            <markup:Localize FinalConverter="{StaticResource FirstUpperRestLowerConverter}">
+                                <MultiBinding Converter="{StaticResource FirstNotNullOrNullMultiConverter}">
+                                    <Binding Path="MinRentTimeError" />
+                                    <Binding Path="MaxRentTimeError" />
+                                </MultiBinding>
+                            </markup:Localize>
+                        </Label.Text>
+                    </Label>
+                </VerticalStackLayout>
+
+                <coreComponents:CollectionExpanderView 
+                    Style="{StaticResource FieldCollectionExpanderStyle}"
+                    ItemsSource="{Binding TimeUnitsOptions}"
+                    SelectedItem="{Binding SelectedTimeUnit}">
+
+                    <coreComponents:CollectionExpanderView.HeaderTemplate>
+                        <DataTemplate x:DataType="fields:TimeUnit">
+                            <Label
+                                Style="{StaticResource AdditionalDarkLabelStyle}"
+                                VerticalOptions="Center" 
+                                Text="{markup:Localize {Binding}, InitialConverter={StaticResource TimeStepToStringConverter}}" />
+
+                        </DataTemplate>
+                    </coreComponents:CollectionExpanderView.HeaderTemplate>
+
+                    <coreComponents:CollectionExpanderView.ItemTemplate>
+                        <DataTemplate x:DataType="fields:TimeUnit">
+                            <VerticalStackLayout 
+                                BackgroundColor="{toolkit:AppThemeResource BlockBackgroundColor}"><!-- This should be fixed in collection view handler -->
+
+                                <Label 
+                                    Text="{markup:Localize {Binding}, InitialConverter={StaticResource TimeStepToStringConverter}}"
+                                    Style="{StaticResource AdditionalDarkLabelStyle}" 
+                                    Padding="16,0"
+                                    VerticalTextAlignment="Center"
+                                    HeightRequest="{StaticResource InputHeight}" />
+
+                                <components:Line Style="{StaticResource OutlineLineStyle}" />
+
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Normal" />
+
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Transparent" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </coreComponents:CollectionExpanderView.ItemTemplate>
+                </coreComponents:CollectionExpanderView>
+
+
+                <components:FieldEntry
+                    LabelText="{markup:Localize 
+                        {Binding SelectedTimeUnit, Converter={StaticResource TimeUnitToMultiplierStringConverter}}, 
+                        StringFormat='Rental price for {0}'}"
+                    Placeholder="BYN"
+                    Keyboard="Numeric"
+                    Text="{Binding TimeUnitRentCost, Converter={StaticResource StringToDecimalConverter}}"
+                    IsValid="{Binding TimeUnitRentCostError, Converter={StaticResource IsNullConverter}}"
+                    ErrorText="{markup:Localize {Binding TimeUnitRentCostError}, FinalConverter={StaticResource FirstUpperRestLowerConverter}}">
+
+                    <components:FieldEntry.Behaviors>
+                        <behaviors:NumericCoercingBehavior
+                            x:TypeArguments="components:FieldEntry"
+                            MaximumDecimalPlaces="2"
+                            MinimumValue="0" />
+
+                    </components:FieldEntry.Behaviors>
+                </components:FieldEntry>
+
+                <HorizontalStackLayout Spacing="10">
+                    <components:CheckBox 
+                        x:Name="CheckBox"
+                        Grid.Column="0" 
+                        IsChecked="{Binding IsDiscountUsed}" />
+
+                    <Label
+                        Grid.Column="1"
+                        Style="{StaticResource PrimaryDarkLabelStyle}"
+                        LineBreakMode="WordWrap"
+                        Text="{markup:Localize 'Use discount'}"
+                        VerticalTextAlignment="Center">
+
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </HorizontalStackLayout>
+
+               
+            </VerticalStackLayout>
+        </Border>
+
+        <VerticalStackLayout Grid.Row="2" Spacing="12">
+            <Button
+                Style="{StaticResource SecondaryButtonStyle}" 
+                Text="{markup:Localize 'discount parameters', FinalConverter={StaticResource FirstUpperRestLowerConverter}}"
+                Command="{Binding ToDiscountParametersCommand}" />
+
+            <Button
+                Command="{Binding PublishCommand}"
+                Text="{markup:Localize 'Publish'}"
+                Style="{StaticResource PrimaryButtonStyle}" />
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

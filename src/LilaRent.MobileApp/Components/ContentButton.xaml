@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+
+    x:Class="LilaRent.MobileApp.Components.ContentButton"
+    x:Name="This">
+
+    <ContentView.Content>
+        <Grid>
+            <Button 
+                x:Name="Button"
+                BackgroundColor="{Binding BackgroundColor, Source={x:Reference This}}"
+                BorderColor="{Binding BorderColor, Source={x:Reference This}}"
+                BorderWidth="{Binding BorderWidth, Source={x:Reference This}}"
+                CornerRadius="{Binding CornerRadius, Source={x:Reference This}}"
+                Command="{Binding Command, Source={x:Reference This}}" />
+
+            <Border
+                BackgroundColor="Transparent"
+                Padding="{Binding Padding, Source={x:Reference This}}"
+                Content="{Binding InnerContent, Source={x:Reference This}}" 
+                StrokeThickness="{Binding BorderWidth, Source={x:Reference This}}"
+                Stroke="{Binding BorderColor, Source={x:Reference This}}">
+
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="{Binding CornerRadius, Source={x:Reference This}}" />
+                </Border.StrokeShape>
+            </Border>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

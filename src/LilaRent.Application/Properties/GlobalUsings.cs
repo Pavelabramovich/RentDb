@@ -1,0 +1,1 @@
+﻿global using ThisAssemblyMarker = LilaRent.Application.UseCases.Commands.CreateAnnouncementHandler;

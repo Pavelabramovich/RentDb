@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+
+    x:Class="LilaRent.MobileApp.Components.Views.BigButterflyView"
+    x:Name="This">
+
+    <ContentView.Content>
+        <Border 
+            Style="{StaticResource MediumBlockBorderStyle}">
+
+            <VerticalStackLayout Margin="16" Spacing="40">
+                <Image 
+                    Source="big_butterfly.svg" 
+                    Aspect="AspectFit" 
+                    HeightRequest="125">
+
+                    <Image.Behaviors>
+                        <toolkit:IconTintColorBehavior TintColor="{toolkit:AppThemeResource PrimaryButtonColor}" />
+                    </Image.Behaviors>
+                </Image>
+
+                <VerticalStackLayout Spacing="10">
+                    <Label 
+                        Text="{Binding HeaderText, Source={Reference This}}" 
+                        Style="{StaticResource CardHeaderDarkStyle}" />
+
+                    <Grid>
+                        <Label
+                            x:Name="TextContent"
+                            IsVisible="False"
+                            Style="{StaticResource PrimaryDarkLabelStyle}" />
+
+                        <ContentView 
+                            x:Name="ViewContent"
+                            IsVisible="False" />
+
+                    </Grid>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+    </ContentView.Content>
+</ContentView>

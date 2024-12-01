@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+	xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+	xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+	xmlns:entities="clr-namespace:LilaRent.MobileApp.Entities"
+	xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+	xmlns:dt="clr-namespace:LilaRent.MobileApp.Resources.DataTemplates"
+	x:Class="LilaRent.MobileApp.Views.ManagementView"
+	x:DataType="viewModels:ManagementViewModel"
+
+	Title="Работа">
+	
+	<Grid
+		RowDefinitions="*, auto"
+		Margin="16"
+		RowSpacing="16">
+		<Border 
+			Grid.Row="0"
+			Style="{StaticResource OutlinelessBorderStyle}" 
+			VerticalOptions="Start">
+			<VerticalStackLayout Padding="16">
+				<HorizontalStackLayout>
+					<components:CheckBox IsChecked="{Binding All, Mode=TwoWay}"/>
+					<Label 
+						Margin="16, 0, 0, 0"
+						Text="Для всех мест"
+						Style="{StaticResource PrimaryLabelStyle}"
+						VerticalOptions="Center"/>
+				</HorizontalStackLayout>
+				<Border 
+					Margin="0, 16, 0, 0"
+					Style="{StaticResource MediumAccentBorderStyle}">
+					<Editor
+						AutoSize="TextChanges"
+						Style="{StaticResource FieldEditorStyle}"
+						Text="{Binding Days}"
+						Keyboard="Numeric"/>
+
+				</Border>
+				<Label 
+					Style="{StaticResource PrimaryLabelStyle}"
+					Margin="0, 8, 0, 0">
+					 <Label.Text>
+						<markup:Localize>
+							<Binding Path="DaysError" />
+						</markup:Localize>
+					</Label.Text>
+				</Label>
+				<VerticalStackLayout Margin="0, 16, 0, 0" VerticalOptions="Start">
+					<ScrollView VerticalOptions="Fill" MaximumHeightRequest="500">
+						<CollectionView
+							x:Name="cv"
+							Margin="8, 0"
+							ItemsSource="{Binding Positions}"
+							SelectionMode="Multiple"
+							SelectionChangedCommand="{Binding SelectionChangedCommand}"
+							SelectionChangedCommandParameter="{Binding Source={RelativeSource Self}, Path=SelectedItems}">
+
+							<CollectionView.ItemsLayout>
+								<LinearItemsLayout ItemSpacing="8" Orientation="Vertical"/>
+							</CollectionView.ItemsLayout>
+
+							<CollectionView.ItemTemplate>
+								<DataTemplate x:DataType="entities:Position">
+									<dt:ManagementPositionTemplate x:DataType="entities:Position" BindingContext="{Binding}">
+										<VisualStateManager.VisualStateGroups>
+											<VisualStateGroup Name="CommonState">
+												<VisualState Name="Selected">
+													<VisualState.Setters>
+														<Setter Property="BackgroundColor" Value="Transparent"/>
+														<Setter Property="dt:ManagementPositionTemplate.IsSelected" Value="True"/>
+													</VisualState.Setters>
+												</VisualState>
+												<VisualState Name="Normal"/>
+											</VisualStateGroup>
+										</VisualStateManager.VisualStateGroups>
+									</dt:ManagementPositionTemplate>
+								</DataTemplate>
+							</CollectionView.ItemTemplate>
+						</CollectionView>
+					</ScrollView>
+					<VerticalStackLayout.Triggers>
+						<DataTrigger 
+							Binding="{Binding All}" 
+							Value="True" 
+							TargetType="VerticalStackLayout">
+
+							<Setter Property="IsVisible" Value="False"/>
+						</DataTrigger>
+
+						<DataTrigger 
+							Binding="{Binding All}" 
+							Value="False" 
+							TargetType="VerticalStackLayout">
+
+							<Setter Property="IsVisible" Value="True"/>
+						</DataTrigger>
+					</VerticalStackLayout.Triggers>
+				</VerticalStackLayout>
+			</VerticalStackLayout>
+		</Border>
+		<Button 
+			Command="{Binding SaveCommand}"
+			Style="{StaticResource PrimaryButtonStyle}"
+			Text="Сохранить"
+			VerticalOptions="End"
+			Grid.Row="1"/>
+	</Grid>
+</ContentPage>

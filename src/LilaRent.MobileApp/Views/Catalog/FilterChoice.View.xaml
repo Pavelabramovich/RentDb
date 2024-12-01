@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:converters="clr-namespace:LilaRent.MobileApp.Converters"
+	xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+	xmlns:coreComponents="clr-namespace:LilaRent.MobileApp.Components.Core"
+	xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+	xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+	xmlns:entities="clr-namespace:LilaRent.MobileApp.Entities"
+	xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+	
+	x:Class="LilaRent.MobileApp.Views.FilterChoiceView"
+	x:DataType="viewModels:FilterChoiceViewModel"
+
+	Style="{StaticResource PageWithTabsStyle}"
+	Title="Фильтры">
+
+
+    <Grid Margin="16" RowDefinitions="Auto,*,Auto">
+        <Border
+			Grid.Row="0"
+            Style="{StaticResource MediumBlockBorderStyle}"
+            Padding="16,20,16,26">
+
+            <VerticalStackLayout Spacing="12">
+                <components:FieldEntry 
+					LabelText="Город"
+					Placeholder="Минск..."
+					Text="{Binding Town}" />
+
+                <VerticalStackLayout Spacing="6">
+                    <Label
+						Text="Цена" 
+						Style="{StaticResource PrimaryDarkLabelStyle}" />
+
+                    <Grid 
+						ColumnDefinitions="*,*" 
+						ColumnSpacing="16">
+
+                        <Border 
+							Grid.Column="0"
+							Style="{StaticResource MediumAccentBorderStyle}">
+
+                            <Entry 
+								Style="{StaticResource FieldEntryStyle}"
+								Placeholder="{markup:Localize 'от'}"
+								Text="{Binding MinPrice, Mode=TwoWay}"
+								Keyboard="Numeric" />
+
+                        </Border>
+
+                        <Border 
+							Grid.Column="1"
+							Style="{StaticResource MediumAccentBorderStyle}">
+
+                            <Entry 
+								Style="{StaticResource FieldEntryStyle}"
+								Placeholder="{markup:Localize 'до'}"
+								Text="{Binding MaxPrice, Mode=TwoWay}"
+								Keyboard="Numeric" />
+
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="6">
+                    <Label 
+						Text="Валюта для отображения цены" 
+						Style="{StaticResource PrimaryDarkLabelStyle}" />
+
+                    <coreComponents:CollectionExpanderView 
+						x:Name="CurrencyExpander"
+						Margin="0,0,0,6"
+						Style="{StaticResource FieldCollectionExpanderStyle}">
+
+                        <coreComponents:CollectionExpanderView.HeaderTemplate>
+                            <DataTemplate x:DataType="viewModels:Currency">
+                                <Label
+									Style="{StaticResource AdditionalDarkLabelStyle}"
+									VerticalOptions="Center" 
+									Text="{markup:Localize {Binding}}" />
+
+                            </DataTemplate>
+                        </coreComponents:CollectionExpanderView.HeaderTemplate>
+
+                        <coreComponents:CollectionExpanderView.ItemTemplate>
+                            <DataTemplate x:DataType="viewModels:Currency">
+                                <VerticalStackLayout 
+									BackgroundColor="{toolkit:AppThemeResource BlockBackgroundColor}">
+
+                                    <Label 
+										Text="{markup:Localize {Binding}}"
+										Style="{StaticResource AdditionalDarkLabelStyle}" 
+										Padding="16,0"
+										VerticalTextAlignment="Center"
+										HeightRequest="{StaticResource InputHeight}" />
+
+                                    <components:Line Style="{StaticResource OutlineLineStyle}" />
+
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup Name="CommonStates">
+                                            <VisualState Name="Normal" />
+
+                                            <VisualState Name="Selected">
+                                                <VisualState.Setters>
+                                                    <Setter Property="BackgroundColor" Value="Transparent" />
+                                                </VisualState.Setters>
+                                            </VisualState>
+
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </VerticalStackLayout>
+                            </DataTemplate>
+                        </coreComponents:CollectionExpanderView.ItemTemplate>
+                    </coreComponents:CollectionExpanderView>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="6">
+                    <Label
+						Text="Длительность" 
+						Style="{StaticResource PrimaryDarkLabelStyle}" />
+
+                    <Grid 
+						ColumnDefinitions="*,*" 
+						ColumnSpacing="16">
+
+                        <Border 
+							Grid.Column="0"
+							Style="{StaticResource MediumAccentBorderStyle}">
+
+                            <Entry 
+						        Style="{StaticResource FieldEntryStyle}"
+						        Placeholder="{markup:Localize 'от'}"
+						        Text="{Binding MinTime, Mode=TwoWay}"
+						        Keyboard="Numeric" />
+
+                        </Border>
+
+                        <Border 
+							Grid.Column="1"
+							Style="{StaticResource MediumAccentBorderStyle}">
+
+                            <Entry 
+								Style="{StaticResource FieldEntryStyle}"
+								Placeholder="{markup:Localize 'до'}"
+								Text="{Binding MaxTime, Mode=TwoWay}"
+								Keyboard="Numeric" />
+
+                        </Border>
+                    </Grid>
+                </VerticalStackLayout>
+
+                <coreComponents:CollectionExpanderView 
+					x:Name="DurationExpander"
+					Margin="0,0,0,6"
+					Style="{StaticResource FieldCollectionExpanderStyle}">
+
+                    <coreComponents:CollectionExpanderView.HeaderTemplate>
+                        <DataTemplate x:DataType="viewModels:TimeStep">
+                            <Label
+								Style="{StaticResource AdditionalDarkLabelStyle}"
+								VerticalOptions="Center" 
+								Text="{markup:Localize {Binding}, InitialConverter={converters:TimeStepToStringConverter}}" />
+
+                        </DataTemplate>
+                    </coreComponents:CollectionExpanderView.HeaderTemplate>
+
+                    <coreComponents:CollectionExpanderView.ItemTemplate>
+                        <DataTemplate x:DataType="viewModels:TimeStep">
+                            <VerticalStackLayout 
+								BackgroundColor="{toolkit:AppThemeResource BlockBackgroundColor}">
+
+                                <Label 
+									Text="{markup:Localize {Binding}, InitialConverter={converters:TimeStepToStringConverter}}"
+									Style="{StaticResource AdditionalDarkLabelStyle}" 
+									Padding="16,0"
+									VerticalTextAlignment="Center"
+									HeightRequest="{StaticResource InputHeight}" />
+
+                                <components:Line Style="{StaticResource OutlineLineStyle}" />
+
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup Name="CommonStates">
+                                        <VisualState Name="Normal" />
+
+                                        <VisualState Name="Selected">
+                                            <VisualState.Setters>
+                                                <Setter Property="BackgroundColor" Value="Transparent" />
+                                            </VisualState.Setters>
+                                        </VisualState>
+
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </coreComponents:CollectionExpanderView.ItemTemplate>
+                </coreComponents:CollectionExpanderView>
+            </VerticalStackLayout>
+        </Border>
+
+        <VerticalStackLayout 
+			Grid.Row="2" 
+			Spacing="12">
+
+            <Button
+				Text="Сбросить все настройки"
+				Style="{StaticResource AdditionalButtonStyle}"
+				Command="{Binding ClearFiltersCommand}" />
+
+            <Button 
+				Text="Показать 30 тыс. объявлений" 
+				Style="{StaticResource PrimaryButtonStyle}"
+				Command="{Binding UseFiltersCommand}" />
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

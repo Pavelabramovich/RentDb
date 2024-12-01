@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<DataTemplate 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converters="clr-namespace:LilaRent.MobileApp.Converters"
+    xmlns:entities="clr-namespace:LilaRent.MobileApp.Entities"
+    xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+    
+    x:Class="LilaRent.MobileApp.Resources.DataTemplates.OrderNoteDataTemplate"
+	x:DataType="entities:OrderBasic">
+    
+	<Border>
+        <Grid RowSpacing="10" Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+
+                <RowDefinition />
+
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="40"/>
+
+                <RowDefinition/>
+
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+
+                <RowDefinition/>
+
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="40"/>
+
+            </Grid.RowDefinitions>
+
+            <Label 
+                Grid.Row="0" 
+                Text="{markup:Localize {Binding Status}, StringFormat='Status: {0}', InitialConverter={converters:OrderStatusToStringConverter}}"/>
+
+            <Label 
+                Grid.Row="2" 
+                Text="{markup:LocalizeFormat {Binding Start}, Converter={converters:DateTimeToDateStringConverter}, StringFormat='Date: {0}'}"/>
+
+            <Label Grid.Row="3">
+                <Label.Text>
+                    <markup:MultiLocalizeFormat StringFormat='Time: from {0} to {1}'>
+                        <Binding Converter="{converters:DateTimeToTimeStringConverter}" Path="Start"/>
+						<Binding Converter="{converters:DateTimeToTimeStringConverter}" Path="End"/>
+					</markup:MultiLocalizeFormat>
+                </Label.Text>
+            </Label>
+
+            <Label 
+                Grid.Row="5" 
+                Text="{markup:LocalizeFormat {Binding Title}, StringFormat='Rent object: {0}'}" />
+
+            <Label 
+                Grid.Row="6" 
+                Text="{markup:LocalizeFormat {Binding Owner}, StringFormat='Announcement owner: {0}'}"/>
+
+            <Grid Grid.Row="8">
+                <!--If we'll want to do binding here (and we want), we must pass this binding somehow to template-->
+                <Button/>
+
+                <Label 
+                    Text="{markup:Localize 'Go to advertisement page'}"
+					VerticalOptions="Center" 
+                    HorizontalOptions="Center" 
+					HorizontalTextAlignment="Center" 
+                    VerticalTextAlignment="Center"/>
+                
+            </Grid>
+
+            <Grid Grid.Row="9">
+                <Button/>
+
+                <Label 
+                    Text="{markup:Localize 'Go to the owner\'s page'}"
+					VerticalOptions="Center" 
+                    HorizontalOptions="Center" 
+					HorizontalTextAlignment="Center" 
+                    VerticalTextAlignment="Center"/>
+
+            </Grid>
+        </Grid>
+    </Border>
+</DataTemplate>

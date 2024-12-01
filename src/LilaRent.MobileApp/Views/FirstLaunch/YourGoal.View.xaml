@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+    xmlns:views="clr-namespace:LilaRent.MobileApp.Views"
+    xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+    xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+    xmlns:core="clr-namespace:LilaRent.MobileApp.Core"
+    xmlns:behaviors="clr-namespace:LilaRent.MobileApp.Behaviors"
+
+    x:Class="LilaRent.MobileApp.Views.YourGoalView"
+    x:DataType="viewModels:YourGoalViewModel"
+    
+    Style="{StaticResource TabslessPageStyle}">
+
+
+    <Grid RowDefinitions="160,170,50,*,Auto" Margin="16,0">
+        <Image 
+            Grid.Row="1"
+            Source="big_butterfly_outlined.svg" 
+            Aspect="AspectFit" />
+
+        <VerticalStackLayout
+            Grid.Row="3"
+            Margin="25,0"
+            Spacing="16">
+
+            <Label 
+                Text="Ваша цель" 
+                Style="{StaticResource SecondaryHeaderDarkStyle}" />
+
+            <Label
+                Text="В нашем приложении Вы можете искать помещения для работы или 
+                      сдавать помещения в аренду. В связи этим мы разграничили функционал для удобства."
+                Style="{StaticResource PrimaryDarkLabelStyle}" />
+
+        </VerticalStackLayout>
+
+        <Button 
+            Grid.Row="4"
+            Style="{StaticResource PrimaryButtonStyle}" 
+            Text="{markup:Localize 'Продолжить'}"
+            Command="{Binding ContinueCommand}" />
+
+    </Grid>
+</ContentPage>

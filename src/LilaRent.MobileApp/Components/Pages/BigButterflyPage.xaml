@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewComponents="clr-namespace:LilaRent.MobileApp.Components.Views"
+
+    x:Class="LilaRent.MobileApp.Components.BigButterflyPage"
+    x:Name="This">
+
+
+    <ContentPage.Content>
+        <Grid
+            Margin="16"
+            RowDefinitions="Auto,*,Auto">
+
+            <viewComponents:BigButterflyView
+                Grid.Row="0"
+                HeaderText="{Binding HeaderText, Source={Reference This}}"
+                InnerContent="{Binding InnerContent, Source={Reference This}}" />
+
+            <VerticalStackLayout
+                x:Name="ButtonsLayout"
+                Grid.Row="2"
+                Spacing="12" />
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

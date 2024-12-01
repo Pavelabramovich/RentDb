@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:entities="clr-namespace:LilaRent.MobileApp.Entities"
+	xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+	xmlns:converters="clr-namespace:LilaRent.MobileApp.Converters"
+	xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+
+    x:Class="LilaRent.MobileApp.Components.Views.OrderCardView"
+    x:DataType="entities:OrderBasic">
+
+
+    <Border Style="{StaticResource MediumBlockBorderStyle}" Padding="16,8">
+        <VerticalStackLayout>
+            <VerticalStackLayout Margin="0,5">
+                <Label Text="Дата" Style="{StaticResource CardHeaderDarkStyle}" />
+                <Label Margin="0,5" Text="{Binding Date}" Style="{StaticResource PrimaryDarkLabelStyle}" />
+            </VerticalStackLayout>
+
+            <components:Line Margin="5" Style="{StaticResource AccentLineStyle}" />
+
+            <VerticalStackLayout Margin="0,5">
+                <Label Text="Время" Style="{StaticResource CardHeaderDarkStyle}" />
+                <Label Margin="0,5" Style="{StaticResource PrimaryDarkLabelStyle}">
+                    <Label.Text>
+                        <markup:MultiLocalizeFormat StringFormat='Time: from {0} to {1}'>
+                            <Binding Path="Range.Begin" Converter="{converters:TimeOnlyToStringConverter}"/>
+                            <Binding Path="Range.End" Converter="{converters:TimeOnlyToStringConverter}"/>
+                        </markup:MultiLocalizeFormat>
+                    </Label.Text>
+                </Label>
+            </VerticalStackLayout>
+
+            <components:Line Margin="5" Style="{StaticResource AccentLineStyle}" />
+
+            <VerticalStackLayout Margin="0,5">
+                <Label Text="Объект аренды"  Style="{StaticResource CardHeaderDarkStyle}" />
+                <Label Margin="0,5" Text="{Binding Announcement.Title}" Style="{StaticResource PrimaryDarkLabelStyle}"/>
+            </VerticalStackLayout>
+
+            <components:Line Margin="5" Style="{StaticResource AccentLineStyle}" />
+
+            <VerticalStackLayout Margin="0,5">
+                <Grid ColumnDefinitions="*,40">
+
+                    <VerticalStackLayout Grid.Column="0">
+                        <Label Text="Владелец объявления" Style="{StaticResource CardHeaderDarkStyle}" />
+                        <Label Margin="0, 5" Text="{Binding Announcement.Profile.Name}" Style="{StaticResource PrimaryDarkLabelStyle}" />
+                    </VerticalStackLayout>
+
+                    <Image 
+						Grid.Column="1" 
+						Style="{StaticResource AdditionalActionImage}" 
+						VerticalOptions="Center" 
+						Aspect="Center" />
+
+                </Grid>
+            </VerticalStackLayout>
+
+            <components:Line Margin="5" Style="{StaticResource AccentLineStyle}" />
+
+            <VerticalStackLayout Margin="0,5">
+                <Label Text="Стоимость аренды"  Style="{StaticResource CardHeaderDarkStyle}" />
+                <Label Text="123 BYN" Margin="0,5" Style="{StaticResource PrimaryDarkLabelStyle}" />
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </Border>
+</ContentView>

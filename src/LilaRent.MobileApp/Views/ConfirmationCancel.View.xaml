@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:vm="clr-namespace:LilaRent.MobileApp.ViewModels"
+	xmlns:converters="clr-namespace:LilaRent.MobileApp.Converters"
+	xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+	xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+	xmlns:components="clr-namespace:LilaRent.MobileApp.Components.Views"
+	xmlns:views="clr-namespace:LilaRent.MobileApp.Components.Views"
+
+	x:Class="LilaRent.MobileApp.Views.ConfirmationCancelView"
+	x:DataType="vm:ConfirmationCancelViewModel"
+
+    Title="{markup:Localize 'Cancel order'}">
+
+
+    <Grid Margin="16" RowDefinitions="Auto,*,Auto">
+        <Border Grid.Row="0" Style="{StaticResource MediumBlockBorderStyle}" Padding="16,10">
+            <VerticalStackLayout Spacing="16">
+                <Label 
+					Style="{StaticResource CardHeaderDarkStyle}"
+					Text="{markup:Localize 'Do you want to cancel your order?'}" />
+
+                <Label
+					Style="{StaticResource PrimaryDarkLabelStyle}"
+					Text="{markup:Localize 'Warning! This action cant be undone.'}" />
+
+            </VerticalStackLayout>
+        </Border>
+
+        <VerticalStackLayout Grid.Row="2" Spacing="12">
+			<Button 
+				Style="{StaticResource SecondaryButtonStyle}"
+				Text="{markup:Localize 'Cancel order'}"
+				Command="{Binding CancelCommand}" />
+
+			<Button 
+				Style="{StaticResource PrimaryButtonStyle}"
+				Text="{markup:Localize 'Leave it'}"
+				Command="{Binding LeaveCommand}" />
+
+		</VerticalStackLayout>
+	</Grid>
+</ContentPage>

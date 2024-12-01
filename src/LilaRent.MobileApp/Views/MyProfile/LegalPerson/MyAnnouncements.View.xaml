@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+    xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+    xmlns:templates="clr-namespace:LilaRent.MobileApp.Resources.DataTemplates"
+
+    x:Class="LilaRent.MobileApp.Views.MyAnnouncementsView"
+    x:DataType="viewModels:MyAnnouncementsViewModel"
+
+    Title="Мои объявления">
+
+    <CollectionView 
+        x:Name="AnnouncementsCollectionView"
+        Margin="16,16,16,10"
+        ItemsSource="{Binding Announcements}"
+        SelectionMode="None">
+
+        <CollectionView.EmptyView>
+            <Label 
+		        Text="{markup:Localize 'Разве вы что-то выставляли, чтобы заходить сюда?'}" 
+		        HorizontalTextAlignment="Center" 
+		        Style="{StaticResource PrimaryDarkLabelStyle}"
+		        Margin="0,0,0,14" />
+
+        </CollectionView.EmptyView>
+
+
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical" ItemSpacing="16" />
+        </CollectionView.ItemsLayout>
+    </CollectionView>
+</ContentPage>

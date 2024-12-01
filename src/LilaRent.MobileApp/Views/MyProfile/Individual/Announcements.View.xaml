@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:coreComponents="clr-namespace:LilaRent.MobileApp.Components.Core"
+    xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+    xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+    xmlns:templates="clr-namespace:LilaRent.MobileApp.Resources.DataTemplates"
+    xmlns:entities="clr-namespace:LilaRent.MobileApp.Entities"
+
+    x:Class="LilaRent.MobileApp.Views.AnnouncementsView"
+    x:DataType="viewModels:AnnouncementsViewModel">
+
+
+    <CollectionView
+        Margin="16,6,16,10"
+	    ItemsSource="{Binding Announcements}"
+        SelectionMode="None">
+
+        <CollectionView.EmptyView>
+            <Label 
+			    Text="{markup:Localize 'Здесь пока нет объявлений'}" 
+			    HorizontalTextAlignment="Center" 
+			    Style="{StaticResource PrimaryDarkLabelStyle}"
+			    Margin="0,0,0,14" />
+
+        </CollectionView.EmptyView>
+
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical" ItemSpacing="16" />
+        </CollectionView.ItemsLayout>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="{x:Type entities:AnnouncementInfo}">
+                <templates:AnnouncementTemplate>
+                    <templates:AnnouncementTemplate.GestureRecognizers>
+                        <TapGestureRecognizer 
+						    Command="{Binding ClickCommand, Source={RelativeSource AncestorType={x:Type viewModels:AnnouncementsViewModel}}}" 
+						    CommandParameter="{Binding}"/>
+
+                    </templates:AnnouncementTemplate.GestureRecognizers>
+                </templates:AnnouncementTemplate>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentView>

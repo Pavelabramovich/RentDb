@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+    xmlns:coreComponents="clr-namespace:LilaRent.MobileApp.Components.Core"
+    xmlns:animations="clr-namespace:LilaRent.MobileApp.Animations">
+
+
+    <Style TargetType="Entry">
+        <Setter Property="TextColor" Value="Black" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontFamily" Value="OpenSansRegular" />
+        <Setter Property="FontAttributes" Value="None" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+
+        <!-- Remove because on Android this setter revert input underlining -->
+        <!--<Setter Property="BackgroundColor" Value="Transparent" />-->
+    </Style>
+
+
+    <!-- Style for Entry and Editor simultaneously -->
+    <Style x:Key="AdiitionalInputStyle" TargetType="{x:Type InputView}">
+        <Setter Property="FontFamily" Value="{StaticResource AdditionalTextFont}" />
+        <Setter Property="FontSize" Value="{StaticResource AdditionalTextFontSize}" />
+        <Setter Property="PlaceholderColor" Value="{toolkit:AppThemeResource AdditionalTextColor}" />
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryDarkTextColor}" />
+    </Style>
+
+    <Style x:Key="FieldInputStyle" TargetType="{x:Type InputView}" BasedOn="{StaticResource AdiitionalInputStyle}">
+        <Setter Property="Margin" Value="16,0" />
+    </Style>
+
+    <Style x:Key="FieldEntryStyle" TargetType="Entry" BasedOn="{StaticResource FieldInputStyle}">
+        <Setter Property="HeightRequest" Value="{StaticResource InputHeight}" />
+    </Style>
+
+    <Style x:Key="FieldEditorStyle" TargetType="Editor" BasedOn="{StaticResource FieldInputStyle}">
+
+        <!-- This values should be replaced by Padding property in special handler -->
+        <Setter Property="Margin" Value="16,4,16,3" />
+        <Setter Property="MinimumHeightRequest" Value="43" />
+    </Style>
+
+    <Style x:Key="PinEntryStyle" TargetType="components:PinEntry">
+        <Setter Property="FontSize" Value="60" />
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryDarkTextColor}" />
+        <Setter Property="PlaceholderColor" Value="{toolkit:AppThemeResource AdditionalTextColor}" />
+        <Setter Property="PlaceholderCharacter" Value='X' />
+        <Setter Property="CharacterSpacing" Value="4" />
+    </Style>
+
+
+    <!--<Style x:Key="FieldDatePicker" TargetType="DatePicker">
+        <Setter Property="FontFamily" Value="{StaticResource AdditionalTextFont}" />
+        <Setter Property="FontSize" Value="{StaticResource AdditionalTextFontSize}" />
+        <Setter Property="PlaceholderColor" Value="{toolkit:AppThemeResource AdditionalTextColor}" />
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryDarkTextColor}" />
+        <Setter Property="Margin" Value="16,0" />
+
+        <Setter Property="Margin" Value="16,3,16,0" />
+        <Setter Property="HeightRequest" Value="47" />
+    </Style>-->
+
+
+    <Style x:Key="FieldTimePickerStyle" TargetType="{x:Type components:TimePickerWithPlaceholder}">
+        <Setter Property="FontFamily" Value="{StaticResource AdditionalTextFont}" />
+        <Setter Property="FontSize" Value="{StaticResource AdditionalTextFontSize}" />
+        <Setter Property="PlaceholderColor" Value="{toolkit:AppThemeResource AdditionalTextColor}" />
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryDarkTextColor}" />
+        <Setter Property="Format" Value="HH:mm" />
+
+        <!-- This values should be replaced by VerticalTextAlignment property in special handler -->
+        <Setter Property="Margin" Value="16,3,16,0" />
+        <Setter Property="HeightRequest" Value="47" />
+    </Style>
+
+
+    <Style x:Key="FieldPickerStyle" TargetType="Picker">
+        <Setter Property="FontFamily" Value="{StaticResource AdditionalTextFont}" />
+        <Setter Property="FontSize" Value="{StaticResource AdditionalTextFontSize}" />
+        <Setter Property="TextColor" Value="{toolkit:AppThemeResource PrimaryDarkTextColor}" />
+        <Setter Property="Margin" Value="16,0" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+        <Setter Property="HeightRequest" Value="{StaticResource InputHeight}" />
+    </Style>
+
+    <Style x:Key="FieldCollectionExpanderStyle" TargetType="coreComponents:CollectionExpanderView">
+        <Setter Property="HeaderControlTemplate">
+            <ControlTemplate>
+                <Border 
+                    HeightRequest="{StaticResource InputHeight}"
+                    Padding="16,0"
+                    Style="{StaticResource MediumAccentBorderStyle}">
+
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+                        <ContentPresenter Grid.Column="0" />
+
+                        <Image
+                            x:Name="ExpanderArrow"
+                            InputTransparent="True"
+                            Margin="7"
+                            Grid.Column="2"
+                            Source="bottom_arrow_light.svg"
+                            Aspect="AspectFit">
+
+                            <Image.Triggers>
+                                <DataTrigger 
+                                    TargetType="Image"
+                                    Binding="{Binding IsExpanded, Source={RelativeSource AncestorType={x:Type coreComponents:CollectionExpanderView}}}"
+                                    Value="True">
+
+                                    <DataTrigger.EnterActions>
+                                        <animations:RotateAnimationAction Rotation="180" />
+                                    </DataTrigger.EnterActions>
+
+                                    <DataTrigger.ExitActions>
+                                        <animations:RotateAnimationAction Rotation="0" />
+                                    </DataTrigger.ExitActions>
+                                </DataTrigger>
+                            </Image.Triggers>
+                        </Image>
+
+                    </Grid>
+                </Border>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

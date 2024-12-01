@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+    xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+    xmlns:converters="clr-namespace:LilaRent.MobileApp.Converters"
+    xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+    xmlns:behaviors="clr-namespace:LilaRent.MobileApp.Behaviors"
+    xmlns:validation="clr-namespace:LilaRent.Application.Validation;assembly=LilaRent.Application"
+    
+    x:Class="LilaRent.MobileApp.Views.UpdateAnnouncementScheduleView"
+    x:DataType="viewModels:UpdateAnnouncementScheduleViewModel"
+    
+    Style="{StaticResource PageWithTabsStyle}"
+    Title="{markup:Localize 'ad editing'}">
+
+
+    <Grid 
+        RowDefinitions="Auto,*,Auto"
+        Margin="16">
+
+        <Border
+            Style="{StaticResource MediumBlockBorderStyle}"
+            Grid.Row="0"
+            Padding="16,20,16,16">
+
+            <VerticalStackLayout Spacing="24">
+                <VerticalStackLayout>
+                    <Label
+                        Margin="0,0,0,12"
+                        Style="{StaticResource PrimaryDarkLabelStyle}"
+                        Text="{markup:Localize 'Select the facility`s work schedule'}" />
+
+                    <Border 
+                        Style="{StaticResource MediumAdditionalBorderStyle}"
+                        Padding="15,12"
+                        Margin="0,0,0,12">
+
+                        <HorizontalStackLayout Spacing="16">
+                            <components:CheckBox 
+                                x:Name="IsFullDayCheckBox"
+                                CheckedChanged="IsFullDayCheckBox_CheckedChanged" />
+
+                            <Label
+                                Style="{StaticResource PrimaryDarkLabelStyle}"
+                                Text="{markup:Localize '24 hours a day'}"
+                                VerticalTextAlignment="Center" />
+
+                        </HorizontalStackLayout>
+
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <Label  
+                        Margin="0,0,0,6"
+                        Style="{StaticResource PrimaryDarkLabelStyle}"
+                        Text="{markup:Localize 'Time'}" />
+
+                    <Grid 
+                        ColumnDefinitions="*,*" 
+                        ColumnSpacing="16">
+
+                        <Border 
+                            Grid.Column="0"
+                            Style="{StaticResource MediumAccentBorderStyle}"
+                            Padding="{Binding StrokeThickness, Source={RelativeSource Self}, Converter={converters:DoubleNegateConverter}}">
+
+                            <Border.Triggers>
+                                <DataTrigger 
+                                    TargetType="Border"
+                                    Binding="{Binding RentStartError, Converter={StaticResource IsNullConverter}}"
+                                    Value="False">
+
+                                    <Setter Property="Stroke" Value="{toolkit:AppThemeResource ErrorColor}" />
+                                    <Setter Property="StrokeThickness" Value="{StaticResource ErrorBorderWidth}" />
+                                </DataTrigger>
+                            </Border.Triggers>
+
+                            <components:TimePickerWithPlaceholder 
+                                x:Name="FromPicker"
+                                Time="{Binding RentStart, Converter={StaticResource TimeOnlyToTimeSpanConverter}, Mode=TwoWay}"
+                                Placeholder="{markup:Localize 'from'}"
+                                Format="{markup:Localize 'from', StringFormat='\'{0}\' HH:mm'}"
+                                Style="{StaticResource FieldTimePickerStyle}" />
+
+                        </Border>
+
+                        <Border 
+                            Grid.Column="1"
+                            Style="{StaticResource MediumAccentBorderStyle}"
+                            Padding="{Binding StrokeThickness, Source={RelativeSource Self}, Converter={converters:DoubleNegateConverter}}">
+
+                            <Border.Triggers>
+                                <DataTrigger 
+                                    TargetType="Border"
+                                    Binding="{Binding RentEndError, Converter={StaticResource IsNullConverter}}"
+                                    Value="False">
+
+                                    <Setter Property="Stroke" Value="{toolkit:AppThemeResource ErrorColor}" />
+                                    <Setter Property="StrokeThickness" Value="{StaticResource ErrorBorderWidth}" />
+                                </DataTrigger>
+                            </Border.Triggers>
+
+                            <components:TimePickerWithPlaceholder 
+                                x:Name="ToPicker"
+                                Time="{Binding RentEnd, Converter={StaticResource TimeOnlyToTimeSpanConverter}, Mode=TwoWay}"
+                                Placeholder="{markup:Localize 'to'}"
+                                Format="{markup:Localize 'to', StringFormat='\'{0}\' HH:mm'}"
+                                Style="{StaticResource FieldTimePickerStyle}" />
+
+                        </Border>
+                    </Grid>
+
+                    <Label 
+                        Style="{StaticResource PrimaryDarkLabelStyle}"
+                        IsVisible="{Binding Text, Source={RelativeSource Self}, Converter={StaticResource IsStringNotNullOrEmptyConverter}}">
+
+                        <Label.Text>
+                            <markup:Localize FinalConverter="{StaticResource FirstUpperRestLowerConverter}">
+                                <MultiBinding Converter="{StaticResource FirstNotNullOrNullMultiConverter}">
+                                    <Binding Path="RentStartError" />
+                                    <Binding Path="RentEndError" />
+                                </MultiBinding>
+                            </markup:Localize>
+                        </Label.Text>
+                    </Label>
+                </VerticalStackLayout>
+
+                <components:FieldEntry
+                    x:Name="BreakEntry"
+                    LabelText="{markup:Localize 'Closed for booking by clients break between appointments'}"
+                    Placeholder="{markup:Localize 'Specify time in minutes'}"
+                    Keyboard="Numeric"
+                    Text="{Binding Break, Converter={StaticResource StringToIntConverter}}"
+                    IsValid="{Binding BreakError, Converter={StaticResource IsNullConverter}}"
+                    ErrorText="{markup:Localize {Binding BreakError}, FinalConverter={StaticResource FirstUpperRestLowerConverter}}"
+                    TextChanged="FieldEntry_TextChanged">
+
+                    <components:FieldEntry.Behaviors>
+                        <behaviors:NumericCoercingBehavior
+                            x:TypeArguments="components:FieldEntry"
+                            MaximumDecimalPlaces="0"
+                            MinimumValue="0"
+                            MaximumValue="720" />
+
+                    </components:FieldEntry.Behaviors>
+                </components:FieldEntry>
+            </VerticalStackLayout>
+        </Border>
+
+        <VerticalStackLayout Grid.Row="2" Spacing="12">
+            <Button
+                Style="{StaticResource AdditionalButtonStyle}" 
+                Text="{markup:Localize 'Client Access Settings'}"
+                Command="{Binding ToAccessSettingsCommand}" />
+
+            <Button
+               Command="{Binding NextCommand}"
+               Text="{markup:Localize 'Continue'}"
+               Style="{StaticResource PrimaryButtonStyle}"/>
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+    xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+    xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+    xmlns:dto="clr-namespace:LilaRent.Application.Dto;assembly=LilaRent.Application"
+
+    x:Class="LilaRent.MobileApp.Views.UpdateAnnouncementFilesView"
+    x:DataType="viewModels:UpdateAnnouncementFilesViewModel"
+
+    Title="{markup:Localize 'ad editing'}">
+
+
+    <Grid 
+        RowDefinitions="Auto,*,Auto"
+        Margin="16">
+
+        <VerticalStackLayout Spacing="16">
+            <VerticalStackLayout Spacing="12">
+                <Label 
+                    Text="{markup:Localize 'Attach a photo of the rental object'}"
+                    Style="{StaticResource PrimaryDarkLabelStyle}" />
+
+                <components:ContentButton
+                    Style="{StaticResource AdditionalContentButtonStyle}"
+                    Padding="{Binding BorderWidth, Source={RelativeSource Self}, Converter={StaticResource DoubleNegateConverter}}"
+                    Clicked="ContentButton_Clicked">
+
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label 
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Style="{StaticResource ButtonDarkLabelStyle}"
+                            VerticalTextAlignment="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="{markup:Localize 'Upload photo'}" />
+
+                        <Image 
+                            Grid.Column="1" 
+                            Source="images.svg" 
+                            Aspect="AspectFit" 
+                            Margin="0,7,20,7" />
+
+                    </Grid>
+
+                    <components:ContentButton.Triggers>
+                        <DataTrigger
+                            TargetType="components:ContentButton"
+                            Binding="{Binding ImageError, Converter={StaticResource IsStringNotNullOrEmptyConverter}}"
+                            Value="True">
+
+                            <Setter Property="BorderColor" Value="{toolkit:AppThemeResource ErrorColor}" />
+                            <Setter Property="BorderWidth" Value="{StaticResource ErrorBorderWidth}" />
+                        </DataTrigger>
+                    </components:ContentButton.Triggers>
+                </components:ContentButton>
+
+                <CollectionView 
+                    ItemsSource="{Binding Images}"
+                    IsVisible="{Binding Images.Count, Converter={StaticResource IsPositiveConverter}}">
+
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="4" HorizontalItemSpacing="16" VerticalItemSpacing="16" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="{x:Type ImageSource}">
+                            <Border
+                                Style="{StaticResource SmallBlockBorderStyle}"
+                                HeightRequest="{Binding Width, Source={RelativeSource Self}}">
+
+                                <Grid 
+                                    RowDefinitions="3,25,*" 
+                                    ColumnDefinitions="*,25,3">
+
+                                    <Image
+                                        x:Name="Image"
+                                        Grid.Row="0"
+                                        Grid.RowSpan="3"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="3"
+                                        Source="{Binding}"
+                                        Aspect="AspectFill" />
+
+                                    <Grid
+                                        Grid.Row="0"
+                                        Grid.RowSpan="3"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="3"
+                                        BackgroundColor="{toolkit:AppThemeResource BlockBackgroundColor}"
+                                        IsVisible="{Binding IsLoading, Source={Reference Image}}"
+                                        Padding="15">
+
+                                        <ActivityIndicator 
+                                            Color="{toolkit:AppThemeResource OutlineColor}"
+                                            IsRunning="{Binding IsLoading, Source={Reference Image}}" />
+
+                                    </Grid>
+
+                                    <ImageButton
+                                        Padding="4"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        BackgroundColor="{toolkit:AppThemeResource BlockBackgroundColor}"
+                                        BorderColor="{toolkit:AppThemeResource OutlineColor}"
+                                        CornerRadius="{StaticResource ExtraSmallCornerRadius}"
+                                        BorderWidth="{StaticResource BorderWidth}"
+                                        Aspect="AspectFit" 
+                                        Source="cross.svg"
+                                        Command="{Binding RemovePhotoCommand, 
+                                                          Source={RelativeSource AncestorType={x:Type viewModels:UpdateAnnouncementFilesViewModel}}}"
+                                        CommandParameter="{Binding}" />
+
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Label
+                    Style="{StaticResource PrimaryDarkLabelStyle}"
+                    Text="{markup:Localize {Binding ImageError}, FinalConverter={StaticResource FirstUpperRestLowerConverter}}"
+                    IsVisible="{Binding ImageError, Converter={StaticResource IsStringNotNullOrEmptyConverter}}" />
+
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="10">
+                <Label 
+                    Text="{markup:Localize 'Attach the Offer Agreement'}"
+                    Style="{StaticResource PrimaryDarkLabelStyle}" />
+
+                <components:ContentButton
+                    Style="{StaticResource AdditionalContentButtonStyle}"
+                    Clicked="ContentButton2_Clicked">
+
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label 
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Style="{StaticResource ButtonDarkLabelStyle}"
+                            VerticalTextAlignment="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="{markup:Localize 'Upload agreement'}" />
+
+                        <Image 
+                            Grid.Column="1" 
+                            Source="sheet_with_arrow.svg" 
+                            Aspect="AspectFit" 
+                            Margin="0,7,20,7" />
+
+                    </Grid>
+
+                    <components:ContentButton.Triggers>
+                        <DataTrigger
+                            TargetType="components:ContentButton"
+                            Binding="{Binding NewOfferAgreementError, Converter={StaticResource IsStringNotNullOrEmptyConverter}}"
+                            Value="True">
+
+                            <Setter Property="BorderColor" Value="{toolkit:AppThemeResource ErrorColor}" />
+                            <Setter Property="BorderWidth" Value="{StaticResource ErrorBorderWidth}" />
+                        </DataTrigger>
+                    </components:ContentButton.Triggers>
+                </components:ContentButton>
+            </VerticalStackLayout>
+
+            <Label
+                Style="{StaticResource PrimaryDarkLabelStyle}"
+                Text="{markup:LocalizeFormat 
+                    {Binding NewOfferAgreementPath, Converter={StaticResource FilePathToNameConverter}}, 
+                    StringFormat='File {0} is loaded'}"
+                IsVisible="{Binding NewOfferAgreementPath, Converter={StaticResource IsNotNullConverter}}" />
+
+            <Label
+                Style="{StaticResource PrimaryDarkLabelStyle}"
+                Text="{markup:Localize {Binding NewOfferAgreementError}, FinalConverter={StaticResource FirstUpperRestLowerConverter}}"
+                IsVisible="{Binding NewOfferAgreementError, Converter={StaticResource IsStringNotNullOrEmptyConverter}}" />
+
+        </VerticalStackLayout>
+
+        <Button 
+            Grid.Row="3"
+            Style="{StaticResource PrimaryButtonStyle}" 
+            Text="{markup:Localize 'Continue'}"
+            Command="{Binding NextCommand}" />
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,5 @@
+﻿{
+    "JWT": {
+        "Key": "This is my secret key for jwt refresh token"
+    }
+}

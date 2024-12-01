@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="This email is not exist" xml:space="preserve">
+    <value>This email is not exist</value>
+  </data>
+  <data name="Login or password is invalid" xml:space="preserve">
+    <value>Login or password is invalid</value>
+  </data>
+  <data name="This login is already registered in the system" xml:space="preserve">
+    <value>This login is already registered in the system</value>
+  </data>
+  <data name="This file format is not supported" xml:space="preserve">
+    <value>This file format is not supported</value>
+  </data>
+  <data name="This login is not registered in the system" xml:space="preserve">
+    <value>This login is not registered in the system</value>
+  </data>
+  <data name="minimum login length is 6" xml:space="preserve">
+    <value>minimum login length is 6</value>
+  </data>
+  <data name="minimum email length is 6" xml:space="preserve">
+    <value>minimum email length is 6</value>
+  </data>
+  <data name="maximum login length is 30" xml:space="preserve">
+    <value>maximum login length is 30</value>
+  </data>
+  <data name="maximum email length is 30" xml:space="preserve">
+    <value>maximum email length is 30</value>
+  </data>
+  <data name="email allows letters of Russian and English alphabets only" xml:space="preserve">
+    <value>email allows letters of Russian and English alphabets only</value>
+  </data>
+  <data name="login allows letters of Russian and English alphabets only" xml:space="preserve">
+    <value>login allows letters of Russian and English alphabets only</value>
+  </data>
+  <data name="email allows numbers from 0 to 9 only" xml:space="preserve">
+    <value>email allows numbers from 0 to 9 only</value>
+  </data>
+  <data name="login allows numbers from 0 to 9 only" xml:space="preserve">
+    <value>login allows numbers from 0 to 9 only</value>
+  </data>
+  <data name="spaces in login are not allowed" xml:space="preserve">
+    <value>spaces in login are not allowed</value>
+  </data>
+  <data name="spaces in email are not allowed" xml:space="preserve">
+    <value>spaces in email are not allowed</value>
+  </data>
+  <data name="allowed special characters in email: '.-#@%&amp;/" xml:space="preserve">
+    <value>allowed special characters in email: '.-#@%&amp;/</value>
+  </data>
+  <data name="allowed special characters in login: '.-#@%&amp;/" xml:space="preserve">
+    <value>allowed special characters in login: '.-#@%&amp;/</value>
+  </data>
+  <data name="invalid email format in login" xml:space="preserve">
+    <value>invalid email format in login</value>
+  </data>
+  <data name="invalid email format in email" xml:space="preserve">
+    <value>invalid email format</value>
+  </data>
+  <data name="minimum password length is 6" xml:space="preserve">
+    <value>minimum password length is 6</value>
+  </data>
+  <data name="password allows letters of English alphabets only" xml:space="preserve">
+    <value>password allows letters of English alphabets only</value>
+  </data>
+  <data name="password allows numbers from 0 to 9 only" xml:space="preserve">
+    <value>password allows numbers from 0 to 9 only</value>
+  </data>
+  <data name="spaces in password are not allowed" xml:space="preserve">
+    <value>spaces in password are not allowed</value>
+  </data>
+  <data name="password allows special characters: !#$%&amp;'*+,-./:;&lt;=&gt;?@^_`|~()[]{}" xml:space="preserve">
+    <value>password allows special characters: !#$%&amp;'*+,-./:;&lt;=&gt;?@^_`|~()[]{}</value>
+  </data>
+  <data name="allowed phone formats are only +375 (XX) XXX XXXX and +7 (ХХХ) ХХХ ХХХХ" xml:space="preserve">
+    <value>allowed phone formats are only +375 (XX) XXX XXXX and +7 (ХХХ) ХХХ ХХХХ</value>
+  </data>
+  <data name="allowed verification code length is 6" xml:space="preserve">
+    <value>allowed verification code length is 6</value>
+  </data>
+  <data name="verification code allows numbers from 0 to 9 only" xml:space="preserve">
+    <value>verification code allows numbers from 0 to 9 only</value>
+  </data>
+  <data name="maximum password length is 20" xml:space="preserve">
+    <value>maximum password length is 20</value>
+  </data>
+  <data name="login is required" xml:space="preserve">
+    <value>login is required</value>
+  </data>
+  <data name="phone is required" xml:space="preserve">
+    <value>phone is required</value>
+  </data>
+  <data name="verification code is required" xml:space="preserve">
+    <value>verification code is required</value>
+  </data>
+  <data name="password is required" xml:space="preserve">
+    <value>password is required</value>
+  </data>
+  <data name="passwords do not match" xml:space="preserve">
+    <value>passwords do not match</value>
+  </data>
+  <data name="rent object name is required" xml:space="preserve">
+    <value>rent object name is required</value>
+  </data>
+  <data name="address is required" xml:space="preserve">
+    <value>address is required</value>
+  </data>
+  <data name="description is required" xml:space="preserve">
+    <value>description is required</value>
+  </data>
+  <data name="minimum address length is 3" xml:space="preserve">
+    <value>minimum address length is 3</value>
+  </data>
+  <data name="maximum address length is 70" xml:space="preserve">
+    <value>maximum address length is 70</value>
+  </data>
+  <data name="address allows letters of Russian and English alphabets only" xml:space="preserve">
+    <value>address allows letters of Russian and English alphabets only</value>
+  </data>
+  <data name="minimum rent object name length is 1" xml:space="preserve">
+    <value>minimum rent object name length is 1</value>
+  </data>
+  <data name="maximum rent object name length is 50" xml:space="preserve">
+    <value>maximum rent object name length is 50</value>
+  </data>
+  <data name="rent object name allows letters of Russian and English alphabets only" xml:space="preserve">
+    <value>rent object name allows letters of Russian and English alphabets only</value>
+  </data>
+  <data name="rent object name allows numbers from 0 to 9 only" xml:space="preserve">
+    <value>rent object name allows numbers from 0 to 9 only</value>
+  </data>
+  <data name="rent object name allows special characters: '.,-" xml:space="preserve">
+    <value>rent object name allows special characters: '.,-</value>
+  </data>
+  <data name="minimum description length is 2" xml:space="preserve">
+    <value>minimum description length is 2</value>
+  </data>
+  <data name="maximum description length is 500" xml:space="preserve">
+    <value>maximum description length is 500</value>
+  </data>
+  <data name="description allows letters of Russian and English alphabets only" xml:space="preserve">
+    <value>description allows letters of Russian and English alphabets only</value>
+  </data>
+  <data name="description allows numbers from 0 to 9 only" xml:space="preserve">
+    <value>description allows numbers from 0 to 9 only</value>
+  </data>
+  <data name="allowed special characters in description: '.-#@%&amp;/\&quot;,:?!$" xml:space="preserve">
+    <value>allowed special characters in description: '.-#@%&amp;/\",:?!$</value>
+  </data>
+  <data name="image allows only .png, .jpg, .jpeg and .svg formats" xml:space="preserve">
+    <value>image allows only .png, .jpg, .jpeg and .svg formats</value>
+  </data>
+  <data name="maximum image size is 5 MB" xml:space="preserve">
+    <value>maximum image size is 5 MB</value>
+  </data>
+  <data name="offer agreement allows only .pdf and .doc formats" xml:space="preserve">
+    <value>offer agreement allows only .pdf and .doc formats</value>
+  </data>
+  <data name="Add at least one image" xml:space="preserve">
+    <value>Add at least one image</value>
+  </data>
+  <data name="offer agreement is required" xml:space="preserve">
+    <value>offer agreement is required</value>
+  </data>
+  <data name="break must be positive" xml:space="preserve">
+    <value>break must be positive</value>
+  </data>
+  <data name="maximum break is 720 minutes" xml:space="preserve">
+    <value>maximum break is 720 minutes</value>
+  </data>
+  <data name="rent start is required" xml:space="preserve">
+    <value>rent start is required</value>
+  </data>
+  <data name="rent end is required" xml:space="preserve">
+    <value>rent end is required</value>
+  </data>
+  <data name="rent ent time should be greather then rent start time" xml:space="preserve">
+    <value>rent ent time should be greather then rent start time</value>
+  </data>
+  <data name="enter numeric break" xml:space="preserve">
+    <value>enter numeric break</value>
+  </data>
+  <data name="enter correct minimum rent time" xml:space="preserve">
+    <value>enter correct minimum rent time</value>
+  </data>
+  <data name="enter correct maximum rent time" xml:space="preserve">
+    <value>enter correct maximum rent time</value>
+  </data>
+  <data name="The value must be greater than or equal to minimum rent time" xml:space="preserve">
+    <value>The value must be greater than or equal to minimum rent time</value>
+  </data>
+  <data name="enter minimum rent time that multiple of 10 minutes" xml:space="preserve">
+    <value>enter minimum rent time that multiple of 10 minutes</value>
+  </data>
+  <data name="price is required" xml:space="preserve">
+    <value>price is required</value>
+  </data>
+  <data name="enter valid minimum time for discount" xml:space="preserve">
+    <value>enter valid minimum time for discount</value>
+  </data>
+  <data name="enter minimum time for discount that multiple of 10 minutes" xml:space="preserve">
+    <value>enter minimum time for discount that multiple of 10 minutes</value>
+  </data>
+  <data name="enter maximum time for discount that multiple of 10 minutes" xml:space="preserve">
+    <value>enter maximum time for discount that multiple of 10 minutes</value>
+  </data>
+  <data name="enter valid maximum time for discount" xml:space="preserve">
+    <value>enter valid maximum time for discount</value>
+  </data>
+  <data name="enter valid discount percentage" xml:space="preserve">
+    <value>enter valid discount percentage</value>
+  </data>
+  <data name="The value must be greater than or equal to minimum time for discount" xml:space="preserve">
+    <value>The value must be greater than or equal to minimum time for discount</value>
+  </data>
+  <data name="discount percentage must be positive" xml:space="preserve">
+    <value>discount percentage must be positive</value>
+  </data>
+  <data name="maximum value of discount percentage is 100%" xml:space="preserve">
+    <value>maximum value of discount percentage is 100%</value>
+  </data>
+  <data name="enter maximum rent time that multiple of 10 minutes" xml:space="preserve">
+    <value>enter maximum rent time that multiple of 10 minutes</value>
+  </data>
+  <data name="ad editing" xml:space="preserve">
+    <value>ad editing</value>
+  </data>
+</root>

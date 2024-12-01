@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+    xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+    xmlns:converters="clr-namespace:LilaRent.MobileApp.Converters"
+    xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+    xmlns:entities="clr-namespace:LilaRent.MobileApp.Entities"
+    xmlns:validation="clr-namespace:LilaRent.Application.Validation;assembly=LilaRent.Application"
+    
+    x:Class="LilaRent.MobileApp.Views.RegistrationContactsView"
+    x:DataType="viewModels:RegistrationContactsViewModel"
+    
+    Style="{StaticResource TabslessPageStyle}">
+
+
+    <Grid
+        Margin="{Thickness 
+            Left='16', 
+            Top={StaticResource AuthenticationHeaderMargin}, 
+            Right='16', 
+            Bottom='0'}"
+        RowDefinitions="Auto,*,Auto">
+
+        <VerticalStackLayout
+            Grid.Row="0"
+            Spacing="16">
+
+            <Label 
+                Text="Персональные данные"
+                Style="{StaticResource SecondaryHeaderDarkStyle}"
+                TextTransform="Uppercase"
+                HorizontalTextAlignment="Center" />
+
+            <components:FieldEntry
+                LabelText="Имя или наименование организации" 
+                Placeholder="{markup:Localize 'Введите Ваше имя...'}"
+                Text="{Binding Name}"
+                IsValid="{Binding NameError, Converter={StaticResource IsStringNullOrEmptyConverter}}"
+                MaxLength="{x:Static validation:NameConstraints.MaxLength}" />
+
+            <components:FieldEntry
+                LabelText="Номер телефона" 
+                Placeholder="{markup:Localize 'Введите номер телефон...'}"
+                Keyboard="Telephone"
+                Text="{Binding Phone}"
+                IsValid="{Binding PhoneError, Converter={StaticResource IsStringNullOrEmptyConverter}}"
+                MaxLength="50" />
+
+            <components:FieldEntry
+                LabelText="E-mail" 
+                Placeholder="{markup:Localize 'Адрес электронной почты (необязательно)'}"
+                Text="{Binding Email}"
+                Keyboard="Email"
+                IsValid="{Binding EmailError, Converter={StaticResource IsStringNullOrEmptyConverter}}"
+                MaxLength="{x:Static validation:EmailConstraints.MaxLength}" />
+
+            <Label 
+                Style="{StaticResource PrimaryDarkLabelStyle}"
+                IsVisible="{Binding Text, Source={RelativeSource Self}, Converter={StaticResource IsStringNotNullOrEmptyConverter}}">
+
+                <Label.Text>
+                    <markup:Localize FinalConverter="{StaticResource FirstUpperRestLowerConverter}">
+                        <MultiBinding Converter="{StaticResource ErrorsConverter}">
+                            <Binding Path="NameError" />
+                            <Binding Path="PhoneError" />
+                            <Binding Path="EmailError" />
+                        </MultiBinding>
+                    </markup:Localize>
+                </Label.Text>
+            </Label>
+        </VerticalStackLayout>
+
+        <Button
+            Grid.Row="2"
+            Style="{StaticResource PrimaryButtonStyle}"
+            Text="Далее"
+            Command="{Binding ContinueCommand}" />
+
+    </Grid>
+</ContentPage>

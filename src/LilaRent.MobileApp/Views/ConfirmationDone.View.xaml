@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:vm="clr-namespace:LilaRent.MobileApp.ViewModels"
+	xmlns:converters="clr-namespace:LilaRent.MobileApp.Converters"
+	xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+	xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+	xmlns:components="clr-namespace:LilaRent.MobileApp.Components.Views"
+	xmlns:views="clr-namespace:LilaRent.MobileApp.Components.Views"
+
+	x:Class="LilaRent.MobileApp.Views.ConfirmationDoneView"
+	x:DataType="vm:ConfirmationDoneViewModel"
+
+    Title="Аренда оформлена">
+
+    <ContentPage.Resources>
+        <converters:TimeOnlyToTimeSpanConverter x:Key="TimeOnlyToTimeSpanConverter" />
+    </ContentPage.Resources>
+
+
+    <Grid Margin="16" RowDefinitions="*,Auto">
+        <VerticalStackLayout Grid.Row="0">
+            <views:OrderCardView BindingContext="{Binding Order}" />
+
+            <Grid Margin="0, 16" ColumnDefinitions="Auto,*,Auto">
+                <Label Grid.Column="0" Text="Стоимость аренды:" Style="{StaticResource PrimaryDarkLabelStyle}"/>
+                <Label Grid.Column="2" Text="123 BYN" Style="{StaticResource CardHeaderDarkStyle}"/>
+            </Grid>
+
+        </VerticalStackLayout>
+
+        <VerticalStackLayout 
+			Grid.Row="1" 
+			VerticalOptions="End"
+			Spacing="12">
+
+            <Button 
+				Style="{StaticResource AdditionalButtonStyle}" 
+				Text="Написать арендатору" 
+				VerticalOptions="End" />
+
+            <Button 
+				Style="{StaticResource PrimaryButtonStyle}" 
+				Command="{Binding CancelOrderCommand}"
+				Text="Отменить аренду" 
+				VerticalOptions="End" />
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

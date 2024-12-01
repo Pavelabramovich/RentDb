@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:core="clr-namespace:LilaRent.MobileApp.Components.Core">
+
+
+    <x:Int32 x:Key="ExtraSmallCornerRadius">2</x:Int32>
+    <x:Int32 x:Key="SmallCornerRadius">5</x:Int32>
+    <x:Int32 x:Key="MediumCornerRadius">10</x:Int32>
+
+    <RoundRectangle x:Key="ExtraSmallRoundRectangle" CornerRadius="{StaticResource ExtraSmallCornerRadius}" />
+    <RoundRectangle x:Key="SmallRoundRectangle" CornerRadius="{StaticResource SmallCornerRadius}" />
+    <RoundRectangle x:Key="MediumRoundRectangle" CornerRadius="{StaticResource MediumCornerRadius}" />
+
+    <x:Double x:Key="BorderWidth">1</x:Double>
+    <x:Double x:Key="ErrorBorderWidth">2</x:Double>
+
+
+    <x:Double x:Key="ItemSpacing">16</x:Double>
+
+
+    <x:Double x:Key="ButtonHeight">55</x:Double>
+    <x:Double x:Key="InputHeight">50</x:Double>
+
+    <x:Double x:Key="CheckBoxHeight">25</x:Double>
+
+    <x:Double x:Key="AuthenticationHeaderMargin">140</x:Double>
+
+
+
+    <ControlTemplate x:Key="ContentOnlyControlTemplate">
+        <ContentPresenter />
+    </ControlTemplate>
+
+
+    <ControlTemplate x:Key="DefaultTabsControlTemplate">
+        <Grid RowDefinitions="Auto,*">
+            <core:CollectionPresenter 
+                x:Name="TabsCollection"
+                Grid.Row="0"
+                ItemsLayout="HorizontalList" />
+
+            <ContentPresenter Grid.Row="1" />
+        </Grid>
+    </ControlTemplate>
+
+    <DataTemplate x:Key="DefaultTabTemplate">
+        <VerticalStackLayout>
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal" />
+
+                    <VisualState Name="Selected">
+                        <VisualState.Setters>
+                            <Setter 
+                                TargetName="SelectionUnderline" 
+                                Property="Border.BackgroundColor" 
+                                Value="Black" />
+
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+
+            <Label 
+                FontSize="14" 
+                Text="{Binding}" 
+                TextColor="Black" 
+                Margin="0,6" />
+
+            <BoxView
+                x:Name="SelectionUnderline"
+                HeightRequest="2" 
+                BackgroundColor="Transparent" />
+
+        </VerticalStackLayout>
+    </DataTemplate>
+
+
+    <ControlTemplate x:Key="DefaultExpanderCollectionHeaderControlTemplate">
+        <Border Padding="10">
+            <ContentPresenter />
+        </Border>
+    </ControlTemplate>
+
+    <DataTemplate x:Key="DefaultExpanderCollectionHeaderTemplate">
+        <Label Text="{Binding}" TextColor="Black" />
+    </DataTemplate>
+
+    <DataTemplate x:Key="DefaultExpanderCollectionItemTemplate">
+        <Border Padding="10">
+            <Label Text="{Binding}" TextColor="#333" />
+        </Border>
+    </DataTemplate>
+
+    <x:Double x:Key="ActivityIndicatorSize">70</x:Double>
+
+    <DataTemplate x:Key="LoadingPopupFactory">
+        <toolkit:Popup Color="Transparent">
+            <ActivityIndicator
+                HeightRequest="{StaticResource ActivityIndicatorSize}"
+                WidthRequest="{StaticResource ActivityIndicatorSize}"
+                IsRunning="True"
+                Color="White" />
+
+        </toolkit:Popup>
+    </DataTemplate>
+
+</ResourceDictionary>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+    xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+    xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
+    xmlns:views="clr-namespace:LilaRent.MobileApp.Views"
+
+    x:Class="LilaRent.MobileApp.Views.RegistrationCompletedView"
+    x:DataType="viewModels:RegistrationCompletedViewModel"
+    
+    Style="{StaticResource TabslessPageStyle}">
+
+    <views:NavigationView.PageBackButtonStyle>
+        <Style TargetType="ImageButton">
+            <Setter Property="IsVisible" Value="False" />
+        </Style>
+    </views:NavigationView.PageBackButtonStyle>
+
+
+    <Grid 
+        Margin="16,0"
+        RowDefinitions="*,Auto,*,Auto">
+
+        <VerticalStackLayout 
+            Grid.Row="1" 
+            Spacing="20"
+            Margin="35,0">
+
+            <Image 
+                HeightRequest="110"
+                Source="circled_ok.svg" 
+                Aspect="AspectFit" />
+
+            <Label
+                Text="Регистрация прошла успешно"
+                Style="{StaticResource CardHeaderDarkStyle}" />
+
+            <Label 
+                Text="{Binding Name, StringFormat='{0}, мы рады, что Вы присоединились к нам!'}" 
+                Style="{StaticResource PrimaryDarkLabelStyle}" />
+
+        </VerticalStackLayout>
+
+        <Button 
+            Grid.Row="3"
+            Command="{Binding ContinueCommand}"
+            Style="{StaticResource PrimaryButtonStyle}"
+            Text="Продолжить" />
+
+    </Grid>
+</ContentPage>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:coreComponents="clr-namespace:LilaRent.MobileApp.Components.Core"
+    xmlns:viewsComponents="clr-namespace:LilaRent.MobileApp.Components.Views"
+    xmlns:viewModels="clr-namespace:LilaRent.MobileApp.ViewModels"
+    xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
+    xmlns:entities="clr-namespace:LilaRent.MobileApp.Entities"
+
+    x:Class="LilaRent.MobileApp.Views.OwnersView"
+    x:DataType="viewModels:OwnersViewModel">
+
+    <CollectionView
+        Margin="16,6,16,10"
+        ItemsSource="{Binding Profiles}"
+        SelectionMode="None">
+
+        <CollectionView.EmptyView>
+            <Label 
+				Text="{markup:Localize 'Здесь пока нет арендодателей'}" 
+				HorizontalTextAlignment="Center" 
+				Style="{StaticResource PrimaryDarkLabelStyle}"
+				Margin="0,0,0,14" />
+
+        </CollectionView.EmptyView>
+
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical" ItemSpacing="16" />
+        </CollectionView.ItemsLayout>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="{x:Type entities:Profile}">
+                <viewsComponents:ProfileCardView>
+                    <viewsComponents:ProfileCardView.GestureRecognizers>
+                        <TapGestureRecognizer 
+                            Command="{Binding ToProfileCommand, Source={RelativeSource AncestorType={x:Type viewModels:OwnersViewModel}}}" 
+                            CommandParameter="{Binding}"/>
+
+                    </viewsComponents:ProfileCardView.GestureRecognizers>
+                </viewsComponents:ProfileCardView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
+
+</ContentView>

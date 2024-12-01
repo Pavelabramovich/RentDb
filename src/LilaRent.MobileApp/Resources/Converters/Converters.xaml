@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:converters="clr-namespace:LilaRent.MobileApp.Converters">
+
+
+    <toolkit:IsStringNullOrEmptyConverter x:Key="IsStringNullOrEmptyConverter" />
+    <toolkit:IsStringNotNullOrEmptyConverter x:Key="IsStringNotNullOrEmptyConverter" />
+    <toolkit:IsListNullOrEmptyConverter x:Key="IsNullOrEmptyConverter" />
+    <toolkit:IsListNotNullOrEmptyConverter x:Key="IsListNotNullOrEmptyConverter" />
+    <toolkit:IsNullConverter x:Key="IsNullConverter" />
+    <toolkit:IsNotNullConverter x:Key="IsNotNullConverter" />
+    <toolkit:IsStringNullOrWhiteSpaceConverter x:Key="IsStringNullOrWhiteSpaceConverter" />
+    <toolkit:IsStringNotNullOrWhiteSpaceConverter x:Key="IsStringNotNullOrWhiteSpaceConverter" />
+    <converters:IsAnyNotNullMultiConverter x:Key="IsAnyNotNullMultiConverter" />
+
+    <toolkit:TextCaseConverter Type="FirstUpperRestLower" x:Key="FirstUpperRestLowerConverter" />
+
+    <converters:FirstNotNullOrNullMultiConverter x:Key="FirstNotNullOrNullMultiConverter" />
+
+    <converters:TimeOnlyToTimeSpanConverter x:Key="TimeOnlyToTimeSpanConverter" />
+
+    <converters:ParseStringConverter x:TypeArguments="x:Int32" x:Key="StringToIntConverter" />
+    <converters:ParseStringConverter x:TypeArguments="x:Single" x:Key="StringToFloatConverter" />
+    <converters:ParseStringConverter x:TypeArguments="x:Double" x:Key="StringToDoubleConverter" />
+    <converters:ParseStringConverter x:TypeArguments="x:Decimal" x:Key="StringToDecimalConverter" />
+
+    <converters:TimeStepToStringConverter x:Key="TimeStepToStringConverter" />
+    <converters:TimeUnitToMultiplierStringConverter x:Key="TimeUnitToMultiplierStringConverter" />
+
+    <converters:FilePathToNameConverter x:Key="FilePathToNameConverter" />
+
+    <converters:DoubleNegateConverter x:Key="DoubleNegateConverter" />
+
+    <converters:IsPositiveConverter x:Key="IsPositiveConverter" />
+
+    <!--<toolkit:CompareConverter
+        x:Key="IsPositiveConverter"
+        x:TypeArguments="{x:Type x:Int32}"
+        ComparisonOperator="Greater"
+        ComparingValue="0"
+        TrueObject="True"
+        FalseObject="False" />-->
+
+</ResourceDictionary>
