@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace LilaRent.MobileApp.ViewModels
 {
-	public class HistoryNavigationViewModel: NavigationViewModel
+	public class HistoryNavigationViewModel : NavigationViewModel
 	{
-		public HistoryNavigationViewModel(IServiceProvider serviceProvider): base(serviceProvider, typeof(HistoryViewModel)) { }
+		public HistoryNavigationViewModel(IServiceProvider serviceProvider)
+			: base(serviceProvider, typeof(HistoryAnnouncementsViewModel)) 
+		{ }
 	}
 }

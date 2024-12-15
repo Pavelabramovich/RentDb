@@ -54,6 +54,8 @@ internal class GetAnnouncementById2Handler : IRequestHandler<GetAnnouncementById
             IsPromoted = announcement.IsPromoted,
             ProfileId = announcement.ProfileId,
             ProfileName = announcement.Profile.Name,
+            CloseTime = announcement.CloseTime,
+            OpenTime = announcement.OpenTime,
 
             //OpenTime = announcement.OpenTime,
             //CloseTime = announcement.CloseTime,

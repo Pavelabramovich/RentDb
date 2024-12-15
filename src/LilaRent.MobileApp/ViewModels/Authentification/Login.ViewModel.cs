@@ -73,7 +73,7 @@ public partial class LoginViewModel : ObservableValidator
             await SecureStorage.Default.SetAsync("AccessToken", tokens.AccessToken);
             await SecureStorage.Default.SetAsync("RefreshToken", tokens.RefreshToken);
 
-            var profile = await _userService.GetFirstProfileIdAsycn(Login);
+            var profile = await _userService.GetFirstProfileIdAsycn(Login) ?? throw null;
 
             _profileManager.CurrentProfile = profile;   
             // Preferences.Set("Profile", JsonSerializer.Serialize(profile));

@@ -7,12 +7,14 @@
 	xmlns:markup="clr-namespace:LilaRent.MobileApp.MarkupExtensions"
 	xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
 	xmlns:componentsViews="clr-namespace:LilaRent.MobileApp.Components.Views"
+    xmlns:behaviors="clr-namespace:LilaRent.MobileApp.Behaviors"
 	xmlns:components="clr-namespace:LilaRent.MobileApp.Components"
 
     x:Class="LilaRent.MobileApp.Views.ConfirmationView"
 	x:DataType="viewModels:ConfirmationViewModel"
 
-    Title="{markup:Localize 'Забронировать'}">
+    Title="{markup:Localize 'Забронировать'}"
+    behaviors:LoadingBehaviour.IsLoading="{Binding IsServerRequested}">
 
     <ContentPage.Resources>
         <converters:TimeOnlyToTimeSpanConverter x:Key="TimeOnlyToTimeSpanConverter" />
@@ -28,7 +30,7 @@
 			VerticalOptions="Fill"
             Spacing="16">
 
-            <componentsViews:ProfileCardView BindingContext="{Binding Profile}" />
+            <!--<componentsViews:ProfileCardView BindingContext="{Binding Profile}" />-->
 
             <Border Style="{StaticResource MediumBlockBorderStyle}" Padding="16">
                 <VerticalStackLayout Spacing="16">
@@ -41,7 +43,13 @@
                             Style="{StaticResource MediumAccentBorderStyle}" 
                             HeightRequest="{StaticResource InputHeight}">
 
-                            <Picker x:Name="positionsPicker" SelectedItem="{Binding CurrentPosition}" Style="{StaticResource FieldPickerStyle}" />
+                            <Entry 
+                                Style="{StaticResource FieldEntryStyle}"
+                                Text="{Binding Announcement.RentObjectName}"
+                                IsReadOnly="True"
+                                TextColor="Gray" />
+                                 
+                            <!--<Picker x:Name="positionsPicker" SelectedItem="{Binding CurrentPosition}" Style="{StaticResource FieldPickerStyle}" />-->
                         </Border>
                     </VerticalStackLayout>
 
@@ -54,7 +62,8 @@
                             Style="{StaticResource MediumAccentBorderStyle}" 
                             HeightRequest="{StaticResource InputHeight}">
 
-                            <Picker ItemsSource="{Binding Dates}" SelectedItem="{Binding Date}" Style="{StaticResource FieldPickerStyle}" />
+                            <DatePicker Date="{Binding Date}" Margin="16,4,16,0" />
+                            <!--<Picker ItemsSource="{Binding Dates}" SelectedItem="{Binding Date}" Style="{StaticResource FieldPickerStyle}" />-->
                         </Border>
                     </VerticalStackLayout>
 
@@ -102,17 +111,17 @@
                 </VerticalStackLayout>
             </Border>
 
-            <Grid ColumnDefinitions="Auto,*,Auto">
+            <!--<Grid ColumnDefinitions="Auto,*,Auto">
                 <Label Grid.Column="0" Text="Стоимость аренды:" Style="{StaticResource PrimaryDarkLabelStyle}"/>
                 <Label Grid.Column="2" Text="123 BYN" Style="{StaticResource CardHeaderDarkStyle}"/>
-            </Grid>
+            </Grid>-->
         </VerticalStackLayout>
 
         <VerticalStackLayout Grid.Row="1" VerticalOptions="End" Spacing="12">
-            <Button 
+            <!--<Button 
 				Style="{StaticResource AdditionalButtonStyle}" 
 				Text="Написать арендатору" 
-				VerticalOptions="End" />
+				VerticalOptions="End" />-->
 
             <Button 
 				Style="{StaticResource PrimaryButtonStyle}" 

@@ -153,7 +153,9 @@
                     </components:FieldEntry.Behaviors>
                 </components:FieldEntry>
 
-                <HorizontalStackLayout Spacing="10">
+               
+
+                <!--<HorizontalStackLayout Spacing="10">
                     <components:CheckBox 
                         x:Name="CheckBox"
                         Grid.Column="0" 
@@ -170,9 +172,26 @@
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                         </Label.GestureRecognizers>
                     </Label>
-                </HorizontalStackLayout>
+                </HorizontalStackLayout>-->
 
-               
+                <HorizontalStackLayout Spacing="10">
+                    <components:CheckBox 
+                        x:Name="CheckBox2"
+                        Grid.Column="0" 
+                        IsChecked="{Binding IsPromoted}" />
+
+                    <Label
+                        Grid.Column="1"
+                        Style="{StaticResource PrimaryDarkLabelStyle}"
+                        LineBreakMode="WordWrap"
+                        Text="{markup:Localize 'Продвигать'}"
+                        VerticalTextAlignment="Center">
+
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer2_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </HorizontalStackLayout>
             </VerticalStackLayout>
         </Border>
 

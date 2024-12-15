@@ -18,6 +18,7 @@ public partial class CatalogView : ContentPage
 
     private async void CatalogView_Appearing(object? sender, EventArgs e)
     {
+        await Task.Delay(700);
         await ((CatalogViewModel)BindingContext).LoadCommand.ExecuteAsync(null);
     }
 }

@@ -54,8 +54,13 @@ public partial class NewAnnouncementDurationView : ContentPage
         }
     }
 
-    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    //private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    //{
+    //    CheckBox.IsChecked = !CheckBox.IsChecked;
+    //}
+
+    private void TapGestureRecognizer2_Tapped(object sender, TappedEventArgs e)
     {
-        CheckBox.IsChecked = !CheckBox.IsChecked;
+        CheckBox2.IsChecked = !CheckBox2.IsChecked;
     }
 }

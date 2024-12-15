@@ -19,5 +19,8 @@ public record AnnouncementDetailsDto
     public required IEnumerable<FileDto> Images { get; init; }
     public required FileDto OfferAgreement { get; init; }
 
+    public required TimeOnly OpenTime { get; init; }
+    public required TimeOnly CloseTime { get; init; }
+
     public required IEnumerable<AnnouncementSummaryDto> SimularAnnouncements { get; init; }
 }

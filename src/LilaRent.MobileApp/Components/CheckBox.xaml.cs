@@ -8,7 +8,8 @@ public partial class CheckBox : ContentView
 		typeof(bool), 
 		typeof(CheckBox),
 		defaultValue: false,
-		propertyChanged: IsCheckedChanged
+		defaultBindingMode: BindingMode.TwoWay,
+        propertyChanged: IsCheckedChanged
 	);
 
     public event EventHandler<CheckedChangedEventArgs>? CheckedChanged;

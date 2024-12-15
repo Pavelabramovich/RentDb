@@ -1,5 +1,6 @@
 ﻿using LilaRent.Application.Dto;
 using LilaRent.Application.UseCases.Queries;
+using LilaRent.Domain.Fields;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,15 +24,33 @@ public class ProfileController : ControllerBase
     [HttpGet("of-{userLogin}")]
     public async Task<ActionResult<ProfileSummaryDto>> GetFirstProfile([FromRoute] string userLogin)
     {
-        var profile = await _mediator.Send(new GetFirstUserProfileCommand(userLogin));
+        var profile = await _mediator.Send(new GetFirstUserProfileQuery(userLogin));
         return Ok(profile);
     }
 
     [HttpGet("owner/{id:guid}")]
     public async Task<ActionResult<LegalPersonProfileDto>> GetLegalPersonProfile([FromRoute] Guid id)
     {
-        var profile = await _mediator.Send(new GetLegalPersonProfileCommand(id));
+        var profile = await _mediator.Send(new GetLegalPersonProfileQuery(id));
         return Ok(profile);
+    }
+
+    [HttpGet("previos/{id:guid}")]
+    public async Task<ActionResult<IEnumerable<AnnouncementSummaryDto>>> GetPrevios([FromRoute] Guid id)
+    {
+        var announcements = await _mediator.Send(new GetPreviosReservedAnnouncementsQuery(id));
+        return Ok(announcements);
+    }
+
+    [HttpGet("reservations/{id:guid}/{type}")]
+    public async Task<ActionResult<IEnumerable<ReservationSummaryDto>>> GetReservations([FromRoute] Guid id, [FromRoute] string type)
+    {
+        var legalEntityType = type.StartsWith("l") 
+            ? LegalEntityType.LegalPerson 
+            : LegalEntityType.Individual;
+
+        var reservations = await _mediator.Send(new GetProfileReservationQuery(id, legalEntityType));
+        return Ok(reservations);
     }
 
     //[HttpPost]

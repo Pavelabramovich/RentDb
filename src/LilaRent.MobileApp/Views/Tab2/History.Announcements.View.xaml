@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentView
+<ContentPage
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:coreComponents="clr-namespace:LilaRent.MobileApp.Components.Core"
@@ -9,17 +9,20 @@
     xmlns:entities="clr-namespace:LilaRent.MobileApp.Entities"
 	xmlns:views="clr-namespace:LilaRent.MobileApp.Views"
     xmlns:viewsComponents="clr-namespace:LilaRent.MobileApp.Components.Views"
-
+    xmlns:dto="clr-namespace:LilaRent.Application.Dto;assembly=LilaRent.Application"
 
     x:Class="LilaRent.MobileApp.Views.HistoryAnnouncementsView"
-    x:DataType="viewModels:HistoryAnnouncementsViewModel">
+    x:DataType="viewModels:HistoryAnnouncementsViewModel"
+    
+    Title="Мои записи">
 
-   
+
+    
 
     <CollectionView 
         x:Name="AnnouncementsCollectionView"
         Margin="16,6,16,10"
-        ItemsSource="{Binding Announcements}"
+        ItemsSource="{Binding Reservations}"
         SelectionMode="None">
 
         <CollectionView.EmptyView>
@@ -37,17 +40,24 @@
         </CollectionView.ItemsLayout>
 
         <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="{x:Type entities:AnnouncementInfo}">
-                <templates:AnnouncementTemplate>
-                    <templates:AnnouncementTemplate.GestureRecognizers>
-                        <TapGestureRecognizer 
-				            Command="{Binding ClickCommand, Source={RelativeSource AncestorType={x:Type viewModels:HistoryAnnouncementsViewModel}}}" 
-				            CommandParameter="{Binding}"/>
+            <DataTemplate x:DataType="{x:Type dto:ReservationSummaryDto}">
+                <Border Style="{StaticResource MediumBlockBorderStyle}" Padding="12">
+                    <VerticalStackLayout>
+                        <Label Text="Запись" Style="{StaticResource CardHeaderDarkStyle}" />
+                        <Label Text="{Binding ProfileName}" Style="{StaticResource AdditionalDarkLabelStyle}" />
 
-                    </templates:AnnouncementTemplate.GestureRecognizers>
-                </templates:AnnouncementTemplate>
+                        <Label Style="{StaticResource AdditionalDarkLabelStyle}">
+                            <Label.Text>
+                                <MultiBinding StringFormat="с {0} по {1}">
+                                    <Binding Path="Begin" Converter="{StaticResource DateTimeToTimeStringConverter}" />
+                                    <Binding Path="End" Converter="{StaticResource DateTimeToTimeStringConverter}" />
+                                </MultiBinding>
+                            </Label.Text>
+                        </Label>
+                    </VerticalStackLayout>
+                </Border>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
 
-</ContentView>
+</ContentPage>

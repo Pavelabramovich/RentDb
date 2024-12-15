@@ -9,7 +9,7 @@ using MediatR;
 namespace LilaRent.Application.UseCases.Queries;
 
 
-public class GetFirstUserProfileHandler : IRequestHandler<GetFirstUserProfileCommand, ProfileSummaryDto>
+public class GetFirstUserProfileHandler : IRequestHandler<GetFirstUserProfileQuery, ProfileSummaryDto>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IFileService _fileService;
@@ -24,7 +24,7 @@ public class GetFirstUserProfileHandler : IRequestHandler<GetFirstUserProfileCom
     }
 
 
-    public async Task<ProfileSummaryDto> Handle(GetFirstUserProfileCommand request, CancellationToken cancellationToken)
+    public async Task<ProfileSummaryDto> Handle(GetFirstUserProfileQuery request, CancellationToken cancellationToken)
     {
         var login = request.login;
 

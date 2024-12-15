@@ -20,15 +20,15 @@ public partial class ConfirmationView : ContentPage
 	{
 		base.OnBindingContextChanged();
 
-		ConfirmationViewModel _vm = BindingContext as ConfirmationViewModel;
+		//ConfirmationViewModel _vm = BindingContext as ConfirmationViewModel;
 
-		if(_vm is null)
-			throw new ArgumentException($"Confirmation view Binding context should has type " +
-			$"{typeof(ConfirmationViewModel)} instead of {BindingContext.GetType()}");
+		//if(_vm is null)
+		//	throw new ArgumentException($"Confirmation view Binding context should has type " +
+		//	$"{typeof(ConfirmationViewModel)} instead of {BindingContext.GetType()}");
 
 
-		positionsPicker.ItemsSource = _vm.Ranges.Keys.ToList();
-		positionsPicker.SelectedIndex = 0;
+		//positionsPicker.ItemsSource = _vm.Ranges.Keys.ToList();
+		//positionsPicker.SelectedIndex = 0;
 	}
 
 }

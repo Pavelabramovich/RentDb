@@ -56,11 +56,11 @@ public static class SetupViewViewModelsExtension
 
             .AddWithVVmResolving(Vs.Singleton<MainBottomTabbedView>(), Vms.Singleton<MainTabbedViewModel>(serviceProvider => new(
                 serviceProvider,
-                currentTabIndex: 3,
+                currentTabIndex: 2,
                 [
                     typeof(CatalogNavigationViewModel),
                     typeof(HistoryNavigationViewModel),
-                    typeof(ManagementNavigationViewModel),
+             //       typeof(ManagementNavigationViewModel),
                     typeof(MyProfileNavigationViewModel),
                 ]))
             )
@@ -76,7 +76,7 @@ public static class SetupViewViewModelsExtension
             .AddWithVVmResolving(Vs.Singleton<ManagementNavigationView>(), Vms.Singleton<ManagementNavigationViewModel>())
             .AddWithVVmResolving(Vs.Singleton<ManagementView>(), Vms.Singleton<ManagementViewModel>())
 
-            .AddWithVVmResolving(Vs.Singleton<MyProfileNavigationView>(), Vms.Singleton<MyProfileNavigationViewModel>())
+            .AddWithVVmResolving(Vs.Transient<MyProfileNavigationView>(), Vms.Transient<MyProfileNavigationViewModel>())
             .AddWithVVmResolving(Vs.Singleton<MyIndividualProfileView>(), Vms.Singleton<MyIndividualProfileViewModel>())
             .AddWithVVmResolving(Vs.Singleton<MyLegalPersonProfileView>(), Vms.Singleton<MyLegalPersonProfileViewModel>())
             .AddWithVVmResolving(Vs.Singleton<MyAnnouncementsView>(), Vms.Singleton<MyAnnouncementsViewModel>())
@@ -99,8 +99,14 @@ public static class SetupViewViewModelsExtension
             .AddWithVVmResolving(Vs.Transient<ConfirmationCancelView>(), Vms.Transient<ConfirmationCancelViewModel>())
             .AddWithVVmResolving(Vs.Transient<ConfirmationCanceledView>(), Vms.Transient<ConfirmationCanceledViewModel>())
 
+            .AddWithVVmResolving(Vs.Transient<NewAnnouncementPaymentView>(), Vms.Transient<NewAnnouncementPaymentViewModel>())
+
             .AddWithVVmResolving(Vs.Transient<HistoryAnnouncementsView>(), Vms.Transient<HistoryAnnouncementsViewModel>())
             .AddWithVVmResolving(Vs.Transient<HistoryOwnersView>(), Vms.Transient<HistoryOwnersViewModel>());
+
+
+
+
 
   //      builder.Services.AddWithVVmResolving(Vs.Singleton<WelcomeView>(), Vms.Singleton<WelcomeViewModel>());
   //      builder.Services.AddWithVVmResolving(Vs.Singleton<YourGoalView>(), Vms.Singleton<YourGoalViewModel>());

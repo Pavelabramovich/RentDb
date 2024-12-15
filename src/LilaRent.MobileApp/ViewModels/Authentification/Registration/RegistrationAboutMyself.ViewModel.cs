@@ -49,6 +49,7 @@ public partial class RegistrationAboutMyselfViewModel : ObservableValidator
     {
         _navigationService = navigationService;
         _userService = userService;
+        _profileManager = profileManager;
 
         AboutMyself = string.Empty;
         ImagePath = null;

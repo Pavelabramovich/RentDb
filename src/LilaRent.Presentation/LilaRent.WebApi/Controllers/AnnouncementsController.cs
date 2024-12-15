@@ -6,9 +6,6 @@ using LilaRent.Requests.RequestModels;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.StaticFiles;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Security.Claims;
 
 
@@ -44,6 +41,13 @@ public class AnnouncementsController : ControllerBase
         return Ok(dto);
     }
 
+    [HttpGet("{id:guid}/reservations")]
+    public async Task<ActionResult<IEnumerable<ReservationSummaryDto>>> GetReservations([FromRoute] Guid id)
+    {
+        var reservations = await _mediator.Send(new GetAnnouncementReservationQuery(id));
+        return Ok(reservations);
+    }
+
     [HttpGet("2/{id:guid}")]
     public async Task<ActionResult<AnnouncementDetailsDto>> GetAnnouncementDetails2([FromRoute] Guid id)
     {
@@ -61,6 +65,17 @@ public class AnnouncementsController : ControllerBase
         var announcements = await _mediator.Send(new GetAnnouncementByProfileIdQuery(userId, profileId));
         return Ok(announcements);
     }
+
+    [HttpPost("reservations")]
+    public async Task<IActionResult> PostReservation(
+        [FromBody] ReservationCreatingRequestModel request)
+    {
+        var dto = request.Dto;
+
+        await _mediator.Send(new CreateReservationCommand(dto));
+        return NoContent();
+    }
+
 
     [HttpPost]
     public async Task<IActionResult> PostAnnouncement(

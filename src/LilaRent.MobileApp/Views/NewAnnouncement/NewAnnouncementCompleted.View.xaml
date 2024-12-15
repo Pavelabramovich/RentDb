@@ -30,7 +30,7 @@
                 Aspect="AspectFit" />
 
             <Label 
-                Text="{markup:Localize 'Your ad has been successfully published.'}" 
+                Text="{markup:Localize 'Your ad has been successfully published'}" 
                 Style="{StaticResource PrimaryDarkLabelStyle}"
                 HorizontalTextAlignment="Center" />
 

@@ -17,6 +17,9 @@
     <toolkit:IsStringNotNullOrWhiteSpaceConverter x:Key="IsStringNotNullOrWhiteSpaceConverter" />
     <converters:IsAnyNotNullMultiConverter x:Key="IsAnyNotNullMultiConverter" />
 
+
+    <converters:DateTimeToTimeStringConverter x:Key="DateTimeToTimeStringConverter" />
+
     <toolkit:TextCaseConverter Type="FirstUpperRestLower" x:Key="FirstUpperRestLowerConverter" />
 
     <converters:FirstNotNullOrNullMultiConverter x:Key="FirstNotNullOrNullMultiConverter" />

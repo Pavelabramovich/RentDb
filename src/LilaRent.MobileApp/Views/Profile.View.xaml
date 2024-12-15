@@ -146,7 +146,7 @@
                     </VerticalStackLayout>
                 </Border>
 
-                <Button Style="{StaticResource PrimaryButtonStyle}" Text="Записаться" Command="{Binding ToAppointmentCommand}" />
+                <!--<Button Style="{StaticResource PrimaryButtonStyle}" Text="Записаться" Command="{Binding ToAppointmentCommand}" />-->
 
                 <VerticalStackLayout Spacing="16">
                     <Label 

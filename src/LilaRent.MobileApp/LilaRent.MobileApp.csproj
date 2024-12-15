@@ -404,6 +404,9 @@
 	  <MauiXaml Update="Views\NewAnnouncement\NewAnnouncementCompleted.View.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\NewAnnouncement\NewAnnouncementPaymentView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\RemovingAnnouncement\RemovingAnnouncementClosedView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -601,12 +604,6 @@
 	  <ProjectReference Include="..\LilaRent.Application\LilaRent.Application.csproj" />
 	  <ProjectReference Include="..\LilaRent.Domain\LilaRent.Domain.csproj" />
 	  <ProjectReference Include="..\LilaRent.Presentation\LilaRent.Requests\LilaRent.Requests.csproj" />
-	</ItemGroup>
-
-        
-
-	<ItemGroup>
-	  <Folder Include="ViewModels\NewAnnouncement\" />
 	</ItemGroup>
 
     <PropertyGroup>

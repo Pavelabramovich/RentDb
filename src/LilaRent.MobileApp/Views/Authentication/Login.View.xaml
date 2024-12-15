@@ -76,7 +76,7 @@
                 Text="Войти"
                 Command="{Binding ContinueCommand}" />
 
-            <Grid
+            <!--<Grid
                 HeightRequest="{StaticResource ButtonHeight}"
                 RowDefinitions="*,Auto,*"
                 ColumnDefinitions="*,Auto,*">
@@ -91,7 +91,7 @@
                         <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
                     </Label.GestureRecognizers>
                 </Label>
-            </Grid>
+            </Grid>-->
         </VerticalStackLayout>
     </Grid>
 </ContentPage>

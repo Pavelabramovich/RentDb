@@ -7,6 +7,7 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using CreateModel = LilaRent.Requests.RequestModels.UserWithProfileCreatingRequestModel;
 using System.Net.Http.Json;
+using System.Threading;
 
 
 namespace LilaRent.Requests.Services;
@@ -77,6 +78,28 @@ public class UserService : IUserService
             ?? throw new InvalidCastException("Can not cast responce to profile summary dto");
 
         return profileDto;
+    }
+
+    public async Task<IEnumerable<ReservationSummaryDto>> GetProfileReservations(Guid profileId, LegalEntityType legalEntityType, CancellationToken cancellationToken)
+    {
+        var type = legalEntityType.ToString().ToLower()[..1];
+
+        var endpoint = $"{_serverUrl}/profiles/reservations/{profileId}/{type}";
+
+        var response = await _httpClient.GetAsync(endpoint, cancellationToken);
+
+        var options = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true,
+            Converters = { new JsonStringEnumConverter() }
+        };
+
+        // var json = await response.Content.ReadAsStringAsync();
+
+        var reservations = await response.Content.ReadFromJsonAsync<IEnumerable<ReservationSummaryDto>>(options)
+            ?? throw new InvalidCastException("Can not cast responce to profile summary dto");
+
+        return reservations;
     }
 
     public async Task<LegalPersonProfileDto> GetLegalPersonProfile(Guid id, CancellationToken cancellationToken = default)

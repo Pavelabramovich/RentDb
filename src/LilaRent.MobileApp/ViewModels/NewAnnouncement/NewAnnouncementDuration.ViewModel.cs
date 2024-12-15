@@ -2,11 +2,13 @@
 using CommunityToolkit.Mvvm.Input;
 using LilaRent.Application.Validation;
 using LilaRent.Domain.Fields;
+using LilaRent.MobileApp.Core;
 using LilaRent.MobileApp.Core.Builders;
 using LilaRent.MobileApp.Core.Validation;
 using LilaRent.MobileApp.Extensions;
 using LilaRent.MobileApp.Services;
 using LilaRent.Requests.Services;
+using LilaRent.Requests.Services.Payment;
 using System.ComponentModel.DataAnnotations;
 
 
@@ -18,7 +20,8 @@ public partial class NewAnnouncementDurationViewModel : ObservableValidator
 {
     private readonly INavigationService _navigationService;
     private readonly IAnnouncementService _announcementService;
-    private readonly IProfileService _profileService;
+    private readonly IProfileManager _profileService;
+    private readonly PaymentService _paymentService;
 
     public AnnouncementCreatingDtoBuilder? Builder { get; set; }
 
@@ -49,6 +52,9 @@ public partial class NewAnnouncementDurationViewModel : ObservableValidator
     [ObservableProperty]
     private bool _isDiscountUsed;
 
+    [ObservableProperty]
+    private bool _isPromoted;
+
 
     [ObservableProperty]
     private bool _isServerRequested;
@@ -64,12 +70,13 @@ public partial class NewAnnouncementDurationViewModel : ObservableValidator
     private string? _timeUnitRentCostError;
 
 
-
-    public NewAnnouncementDurationViewModel(INavigationService navigationService, IAnnouncementService announcementService, IProfileService profileService)
+    public NewAnnouncementDurationViewModel(
+        INavigationService navigationService, IAnnouncementService announcementService, IProfileManager profileService, PaymentService paymentService)
     {
         _navigationService = navigationService;
         _announcementService = announcementService;
         _profileService = profileService;
+        _paymentService = paymentService;
 
         MinRentTime = null;
         MaxRentTime = null;
@@ -110,12 +117,28 @@ public partial class NewAnnouncementDurationViewModel : ObservableValidator
         {
             IsServerRequested = true;
 
-            await _announcementService.AddAsync(announcement);
+            if (IsPromoted)
+            {
+                var url = await _paymentService.GetPaymentUrlAsync(announcement);
 
-            IsServerRequested = false;
+                IsServerRequested = false;
 
-            _navigationService.CurrentTabs.Navigation.PopOverRoot<NewAnnouncementCompletedViewModel>();
-            //_navigationService.CurrentTabs.Navigation.Push<NewAnnouncementCompletedViewModel>();
+                _navigationService.CurrentTabs.Navigation.Push<NewAnnouncementPaymentViewModel>(new
+                {
+                    Builder,
+                    PaymentUrl = url
+                });
+
+            }
+            else
+            {
+                await _announcementService.AddAsync(announcement);
+
+                IsServerRequested = false;
+
+                _navigationService.CurrentTabs.Navigation.PopOverRoot<NewAnnouncementCompletedViewModel>();
+                //_navigationService.CurrentTabs.Navigation.Push<NewAnnouncementCompletedViewModel>();
+            }
         }
         catch (Exception exception)
         {
@@ -180,5 +203,10 @@ public partial class NewAnnouncementDurationViewModel : ObservableValidator
         }
 
         return isValid;
+    }
+
+    partial void OnIsPromotedChanged(bool value)
+    {
+        ;
     }
 }

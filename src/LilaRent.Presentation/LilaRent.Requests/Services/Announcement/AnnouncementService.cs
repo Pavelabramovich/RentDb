@@ -11,6 +11,8 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using CreateModel = LilaRent.Requests.RequestModels.AnnouncementCreatingRequestModel;
 using UpdateModel = LilaRent.Requests.RequestModels.AnnouncementUpdatingRequestModel;
+using System.Text;
+using System;
 
 
 namespace LilaRent.Requests.Services;
@@ -45,6 +47,27 @@ public class AnnouncementService : IAnnouncementService
         // var json = await response.Content.ReadAsStringAsync();
 
         var announcements = await response.Content.ReadFromJsonAsync<IEnumerable<AnnouncementSummaryDto>>(options)
+            ?? throw new InvalidCastException("Can not cast responce to announcements");
+
+        return announcements;
+    }
+
+
+    public async Task<IEnumerable<ReservationSummaryDto>> GetReservations(Guid announcementId)
+    {
+        var endpoint = $"{_serverUrl}/announcements/{announcementId}/reservations";
+
+        var response = await _httpClient.GetAsync(endpoint);
+
+        var options = new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true,
+            Converters = { new JsonStringEnumConverter() }
+        };
+
+         var json = await response.Content.ReadAsStringAsync();
+
+        var announcements = await response.Content.ReadFromJsonAsync<IEnumerable<ReservationSummaryDto>>(options)
             ?? throw new InvalidCastException("Can not cast responce to announcements");
 
         return announcements;
@@ -300,6 +323,31 @@ public class AnnouncementService : IAnnouncementService
         {
             var error = await response.Content.ReadAsStringAsync();
             throw new Exception(error);
+        }
+    }
+
+    public async Task AddReservationAsync(ReservationCreatingDto reservationDto)
+    {
+        var endpoint = $"{_serverUrl}/announcements/reservations";
+
+        var requestModel = new ReservationCreatingRequestModel(reservationDto);
+
+        var json = JsonSerializer.Serialize(requestModel, new JsonSerializerOptions
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase 
+        });
+
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+
+        var response = await _httpClient.PostAsync(endpoint, content);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            Console.WriteLine($"Error: {response.StatusCode}");
+            var errorContent = await response.Content.ReadAsStringAsync();
+
+            throw new Exception(errorContent);
         }
     }
 

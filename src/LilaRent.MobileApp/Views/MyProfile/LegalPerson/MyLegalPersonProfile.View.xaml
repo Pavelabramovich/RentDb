@@ -61,7 +61,7 @@
 
             <components:Line Style="{StaticResource AccentLineStyle}"/>
 
-            <HorizontalStackLayout HeightRequest="50">
+            <!--<HorizontalStackLayout HeightRequest="50">
                 <Image Source="bell.svg" Margin="12.5,10,22.5,10" Aspect="AspectFit" WidthRequest="20" />
                 <Label Text="{markup:Localize 'Notifications'}" Style="{StaticResource PrimaryDarkLabelStyle}" VerticalOptions="Center" />
 
@@ -110,7 +110,7 @@
                 </HorizontalStackLayout.GestureRecognizers>
             </HorizontalStackLayout>
 
-            <components:Line Style="{StaticResource AccentLineStyle}"/>
+            <components:Line Style="{StaticResource AccentLineStyle}"/>-->
 
             <HorizontalStackLayout HeightRequest="50">
                 <Image Source="butterfly.svg" Margin="10,10,20,10" Aspect="AspectFit" WidthRequest="25" />

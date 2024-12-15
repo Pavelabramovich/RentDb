@@ -1,9 +1,6 @@
 using LilaRent.Application;
 using LilaRent.Application.DependencyInjection;
-
-//using LilaRent.DataBase.DependencyInjection;
 using LilaRent.Dapper.DependencyInjection;
-
 using LilaRent.Domain.Interfaces;
 using LilaRent.WebApi;
 using System.Text.Json.Serialization;
@@ -14,6 +11,19 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Configuration.AddJwtConfiguration();
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
 
 builder.Services.AddDtoMapper();
@@ -47,6 +57,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// Настройка маршрутизации.
+app.UseRouting();
+
+// Настройка CORS.
+app.UseCors();
 
 app.UseHttpsRedirection();
 

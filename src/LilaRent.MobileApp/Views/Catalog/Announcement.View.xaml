@@ -118,7 +118,7 @@
                 </Grid>
             </components:ContentButton>
 
-            <components:ContentButton
+            <!--<components:ContentButton
                 Style="{StaticResource SecondaryContentButtonStyle}">
 
                 <Grid ColumnDefinitions="*,Auto">
@@ -142,7 +142,7 @@
                     </Image>
 
                 </Grid>
-            </components:ContentButton>
+            </components:ContentButton>-->
 
             <Button 
                 Style="{StaticResource PrimaryButtonStyle}" 

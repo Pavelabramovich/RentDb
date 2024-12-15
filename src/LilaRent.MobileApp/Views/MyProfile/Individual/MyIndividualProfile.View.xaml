@@ -49,7 +49,7 @@
             </Grid>
         </Border>
 
-        <HorizontalStackLayout HeightRequest="50">
+        <!--<HorizontalStackLayout HeightRequest="50">
             <Image Source="heart.svg" Margin="10,10,20,10" Aspect="AspectFit" WidthRequest="25" />
             <Label Text="{markup:Localize 'Favorites'}" Style="{StaticResource PrimaryDarkLabelStyle}" VerticalOptions="Center" />
 
@@ -80,7 +80,7 @@
             </HorizontalStackLayout.GestureRecognizers>
         </HorizontalStackLayout>
 
-        <components:Line Style="{StaticResource AccentLineStyle}"/>
+        <components:Line Style="{StaticResource AccentLineStyle}"/>-->
 
         <HorizontalStackLayout HeightRequest="50">
             <Image Source="butterfly.svg" Margin="10,10,20,10" Aspect="AspectFit" WidthRequest="25" />

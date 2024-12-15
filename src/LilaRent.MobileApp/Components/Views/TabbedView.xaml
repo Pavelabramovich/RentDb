@@ -15,6 +15,7 @@
         ItemTemplate="{Binding TabViewTemplate, Source={Reference This}}"
         IsSwipeEnabled="{Binding IsSwipeEnabled, Source={Reference This}}"
         CurrentItemChanged="CarouselView_CurrentItemChanged"
-        Scrolled="CarouselView_Scrolled" />
+        Scrolled="CarouselView_Scrolled"
+        Loop="False" />
 
 </ContentView>

@@ -3,6 +3,7 @@ using LilaRent.Application.Validation;
 using LilaRent.MobileApp.Core;
 using LilaRent.MobileApp.Services;
 using LilaRent.Requests.Services;
+using LilaRent.Requests.Services.Payment;
 
 
 namespace LilaRent.MobileApp;
@@ -38,6 +39,8 @@ public static class SetupServicesExtension
         builder.Services.AddScoped<IAnnouncementService, AnnouncementService>();
         builder.Services.AddScoped<IUserService, UserService>();
         builder.Services.AddScoped<IAuthService, AuthService>();
+        builder.Services.AddScoped<IReservationService, ReservationService>();
+        builder.Services.AddScoped<PaymentService>();
 
         builder.Services.AddHttpClient();
 

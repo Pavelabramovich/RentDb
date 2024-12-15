@@ -15,10 +15,11 @@
     x:DataType="viewModels:CatalogViewModel"
     
     Style="{StaticResource PageWithTabsStyle}"
-    behaviors:LoadingBehaviour.IsLoading="{Binding IsServerRequested}">
+    behaviors:LoadingBehaviour.IsLoading="{Binding IsServerRequested}"
+    views:NavigationView.PageControlTemplate="{StaticResource ContentOnlyControlTemplate}">
 
 
-    <views:NavigationView.PageTitleView>
+    <!--<views:NavigationView.PageTitleView>
         <Grid 
             HeightRequest="50"
             ColumnDefinitions="*,50"
@@ -42,7 +43,7 @@
                 Source="filter_icon.png" />
 
         </Grid>
-	</views:NavigationView.PageTitleView>
+	</views:NavigationView.PageTitleView>-->
 
     <Grid Margin="16,16,16,0">
         <ScrollView>

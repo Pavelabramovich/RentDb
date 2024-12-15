@@ -12,13 +12,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Stripe.net" Version="47.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\LilaRent.Dapper\LilaRent.Dapper.csproj" />
     <ProjectReference Include="..\..\LilaRent.Application\LilaRent.Application.csproj" />
-    <ProjectReference Include="..\..\LilaRent.Infrastructure\LilaRent.DataBase\LilaRent.DataBase.csproj" />
     <ProjectReference Include="..\LilaRent.Requests\LilaRent.Requests.csproj" />
   </ItemGroup>
 

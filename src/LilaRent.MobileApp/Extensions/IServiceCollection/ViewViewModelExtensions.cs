@@ -203,6 +203,13 @@ public class ServiceFactory<TBaseService> where TBaseService : class
     {
         return new ServiceDescriptor<TService, TService>(ServiceLifetime.Transient);
     }
+
+    public static ServiceDescriptor<TService, TService> Transient<TService>(Func<IServiceProvider, TService> implementationFactory)
+        where TService : class, TBaseService
+    {
+        return new ServiceDescriptor<TService, TService>(ServiceLifetime.Transient, implementationFactory);
+    }
+
 }
 
 public class ViewServiceFactory : ServiceFactory<IView>

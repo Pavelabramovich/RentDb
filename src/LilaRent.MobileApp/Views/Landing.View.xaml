@@ -47,10 +47,10 @@
                 Text="{markup:Localize 'CONTINUE WITHOUT ENTER'}"
                 Command="{Binding ContinueWithoutEnterCommand}" />-->
 
-            <HorizontalStackLayout>
+            <!--<HorizontalStackLayout>
                 <Button Text="Ru" Clicked="Button_Clicked" />
                 <Button Text="En" Clicked="Button_Clicked_1" />
-            </HorizontalStackLayout>
+            </HorizontalStackLayout>-->
 
         </VerticalStackLayout>
     </Grid>

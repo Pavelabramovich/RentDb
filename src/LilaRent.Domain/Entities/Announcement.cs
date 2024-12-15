@@ -34,4 +34,6 @@ public record Announcement
     public virtual TimeSpan? MinTimeForDiscount { get; set; }
     public virtual TimeSpan? MaxTimeForDiscount { get; set; }
     public virtual int? DiscountPercentage { get; set; }
+
+    public virtual ICollection<Reservation> Reservations { get; init; } = new List<Reservation>();
 }

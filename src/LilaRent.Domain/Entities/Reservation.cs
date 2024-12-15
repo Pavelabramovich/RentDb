@@ -5,8 +5,8 @@ public record Reservation
 {
     public virtual Guid Id { get; } = Guid.NewGuid();
 
-    public virtual required Guid ProfileId { get; init; }
-    public virtual Profile? Profile { get; init; }
+    public virtual required Guid ClientId { get; init; }
+    public virtual IndividualProfile? Client { get; init; }
 
     public virtual required Guid AnnouncementId { get; init; }
     public virtual Announcement? Announcement { get; init; }

@@ -6,6 +6,7 @@ using LilaRent.MobileApp.Entities;
 using LilaRent.MobileApp.Services;
 using LilaRent.Application.Dto;
 using LilaRent.Requests.Services;
+using LilaRent.Domain.Entities;
 
 
 namespace LilaRent.MobileApp.ViewModels;
@@ -14,7 +15,7 @@ namespace LilaRent.MobileApp.ViewModels;
 [QueryProperty(nameof(Announcement), nameof(Announcement))]
 public partial class AnnouncementViewModel : ObservableObject
 {
-	private readonly IFakeAnnouncementsService _announcementsService;
+	private readonly IAnnouncementService _announcementService;
 	private readonly INavigationService _navigationService;
 	private readonly IUserService _userService;
 
@@ -23,9 +24,9 @@ public partial class AnnouncementViewModel : ObservableObject
 	private bool _isServerRequested;
 
 
-	public AnnouncementViewModel(IFakeAnnouncementsService annnouncementsService, INavigationService navigation, IUserService userService)
+	public AnnouncementViewModel(IAnnouncementService annnouncementsService, INavigationService navigation, IUserService userService)
 	{
-		_announcementsService = annnouncementsService;
+		_announcementService = annnouncementsService;
 		_navigationService = navigation;
 		_userService = userService;
 	}
@@ -70,9 +71,25 @@ public partial class AnnouncementViewModel : ObservableObject
 
 
 	[RelayCommand]
-	private void ToAppointment()
+	private async Task ToAppointment()
 	{
-		_navigationService.CurrentTabs.Navigation.Push<AppointmentViewModel>(new { AnnouncementId = Announcement.Id });
+		try
+		{
+			IsServerRequested = true;
+
+			var reservations = await _announcementService.GetReservations(Announcement.Id);
+
+			IsServerRequested = false;
+
+			_navigationService.CurrentTabs.Navigation.Push<ConfirmationViewModel>(new { Announcement, Reservations = reservations });
+		}
+		catch (Exception ex)
+		{
+			
+			IsServerRequested = false;
+
+			// Handle exceptions
+		}
 	}
 
 	[RelayCommand]

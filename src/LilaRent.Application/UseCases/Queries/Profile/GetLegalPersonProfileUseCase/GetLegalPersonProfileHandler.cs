@@ -8,7 +8,7 @@ using MediatR;
 namespace LilaRent.Application.UseCases.Queries;
 
 
-public class GetLegalPersonProfileHandler : IRequestHandler<GetLegalPersonProfileCommand, LegalPersonProfileDto>
+public class GetLegalPersonProfileHandler : IRequestHandler<GetLegalPersonProfileQuery, LegalPersonProfileDto>
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IFileService _fileService;
@@ -23,7 +23,7 @@ public class GetLegalPersonProfileHandler : IRequestHandler<GetLegalPersonProfil
     }
 
 
-    public async Task<LegalPersonProfileDto> Handle(GetLegalPersonProfileCommand request, CancellationToken cancellationToken)
+    public async Task<LegalPersonProfileDto> Handle(GetLegalPersonProfileQuery request, CancellationToken cancellationToken)
     {
         var id = request.ProfileId;
 

@@ -70,7 +70,7 @@ public partial class RegistrationCredentialsViewModel : ObservableValidator
         Builder.Login = Login;
         Builder.Password = Password;
 
-        _navigationService.Navigation.Push<RegistrationCodeViewModel>(new { Builder });
+        _navigationService.Navigation.Push<RegistrationGoalViewModel>(new { Builder });
     }
 
 
