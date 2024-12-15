@@ -27,8 +27,8 @@ internal class UpdateAnnouncementHandler : IRequestHandler<UpdateAnnouncementCom
     {
         var dto = request.Dto;
 
-        var duplicateName = await _unitOfWork.AnnouncementRepository
-            .GetWhereAsync(a => a.RentObjectName == dto.RentObjectName && a.Id != dto.Id, cancellationToken);
+        var duplicateName = await _unitOfWork.AnnouncementRepository.GetAllAsync();
+        duplicateName = duplicateName.Where(a => a.RentObjectName == dto.RentObjectName && a.Id != dto.Id);
 
         if (duplicateName.Any())
             throw new DuplicatedIdentifierException(dto.RentObjectName, $"Announcement with name = {dto.RentObjectName} already exists.");

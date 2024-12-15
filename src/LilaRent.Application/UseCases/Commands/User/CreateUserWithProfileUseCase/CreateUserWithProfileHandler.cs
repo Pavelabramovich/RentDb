@@ -66,7 +66,6 @@ internal class CreateUserWithProfileHandler : IRequestHandler<CreateUserWithProf
         catch
         {
             await _fileService.DeleteFileAsync(imagePath);
-
             throw;
         }
     }

@@ -27,14 +27,15 @@ internal class CreateAnnouncementHandler : IRequestHandler<CreateAnnouncementCom
     {
         var dto = request.Dto;
 
-        var duplicateName = await _unitOfWork.AnnouncementRepository.GetWhereAsync(a => a.RentObjectName == dto.RentObjectName, cancellationToken);
+        var duplicateName = await _unitOfWork.AnnouncementRepository.GetAllAsync();
+        duplicateName = duplicateName.Where(a => a.RentObjectName == dto.RentObjectName);
 
         if (duplicateName.Any())
             throw new DuplicatedIdentifierException(dto.RentObjectName, $"Announcement with name = {dto.RentObjectName} already exists.");
 
-        var profiles = await _unitOfWork.LegalPersonProfileRepository.GetWhereAsync(p => p.Id == dto.ProfileId, cancellationToken);
+        var profile = await _unitOfWork.LegalPersonProfileRepository.FindByIdAsync(dto.ProfileId, cancellationToken);
 
-        if (!profiles.Any())
+        if (profile is null)
             throw new InvalidOperationException("No profile with this id found.");
 
         var images = await Task.WhenAll(dto.Images.Select(async i =>

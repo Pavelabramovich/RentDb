@@ -23,13 +23,14 @@ internal class CreateReservationHandler : IRequestHandler<CreateReservationComma
 
     public async Task Handle(CreateReservationCommand request, CancellationToken cancellationToken)
     {
-        var dto = request.Dto ?? throw null;
+        var dto = request.Dto 
+            ?? throw null;
 
         if (dto.End < dto.Begin)
             throw null;
 
-        var announcementReservations = await _unitOfWork.ReservationRepository.GetWhereAsync(r => r.AnnouncementId == dto.AnnouncementId);
-
+        var announcementReservations = await _unitOfWork.ReservationRepository.GetAllAsync(cancellationToken);   
+        announcementReservations = announcementReservations.Where(r => r.AnnouncementId == dto.AnnouncementId);
 
         if (announcementReservations.Any(r => dto.Begin < r.End && dto.End > r.Begin))
         {
@@ -45,8 +46,8 @@ internal class CreateReservationHandler : IRequestHandler<CreateReservationComma
             CreatedAt = dto.CreatedAt.ToUniversalTime(),
         };
 
-        await _unitOfWork.ReservationRepository.AddAsync(newReservation);
+        await _unitOfWork.ReservationRepository.AddAsync(newReservation, cancellationToken);
 
-        await _unitOfWork.SaveChangesAsync();
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

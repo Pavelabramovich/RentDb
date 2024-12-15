@@ -13,7 +13,7 @@ public static class AddUnitOfWorkExtension
     public static IServiceCollection AddUnitOfWork(this IServiceCollection @this)
     {
         string connectionString = """
-            Server=localhost;
+            Host=localhost;
             Port=5432;
             User Id=postgres;
             Password=NotSqlite;
@@ -21,16 +21,7 @@ public static class AddUnitOfWorkExtension
             Include Error Detail = true;
             """;
 
-
-        //@this.AddScoped<LilaRentContext>(serviceProvider =>
-        //{
-
-
-        //    var options = new DbContextOptionsBuilder<LilaRentContext>().UseNpgsql(connectionString).Options;
-        //    return new LilaRentContext(options);
-        //});
-
-        @this.AddScoped<IUnitOfWork, UnitOfWork>();
+        @this.AddScoped<IUnitOfWork, UnitOfWork>(serviceProvider => new UnitOfWork(connectionString));
 
         return @this;
     }

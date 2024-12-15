@@ -3,8 +3,8 @@ using LilaRent.Dapper.SqlQueries;
 using LilaRent.Domain.Entities;
 using LilaRent.Domain.Interfaces;
 using Microsoft.Extensions.Configuration;
+using Npgsql;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq.Expressions;
 
 
@@ -16,10 +16,9 @@ internal class RefreshTokenRepository : IRefreshTokenRepository
     private readonly string _connectionString;
 
 
-    public RefreshTokenRepository(IConfiguration configuration)
+    public RefreshTokenRepository(string connectionString)
     {
-        _connectionString = configuration.GetConnectionString("DefaultConnection")
-            ?? throw null;
+        _connectionString = connectionString;
     }
 
 
@@ -41,10 +40,10 @@ internal class RefreshTokenRepository : IRefreshTokenRepository
 
     public async Task<IEnumerable<RefreshToken>> GetAllAsync(CancellationToken cancellationToken = default)
     {
-        using (IDbConnection connection = new Microsoft.Data.SqlClient.SqlConnection(_connectionString))
+        using (IDbConnection connection = new NpgsqlConnection(_connectionString))
         {
             connection.Open();
-            var result = await connection.QueryAsync<RefreshToken>(RefreshTokenQueries.All);
+            var result = await connection.QueryAsync<RefreshToken>(RefreshTokenSql.GetAll);
             return result.ToList();
         }
     }
@@ -64,9 +63,12 @@ internal class RefreshTokenRepository : IRefreshTokenRepository
         throw new NotImplementedException();
     }
 
-    public Task RemoveAsync(object id, CancellationToken cancellationToken = default)
+    public async Task RemoveAsync(object id, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        using var connection = new NpgsqlConnection(_connectionString);
+        connection.Open();
+
+        await connection.ExecuteAsync(RefreshTokenSql.Delete, new { UserId = (Guid)id });
     }
 
     public Task UpdateAsync(object id, RefreshToken entity, CancellationToken cancellationToken = default)
@@ -74,8 +76,11 @@ internal class RefreshTokenRepository : IRefreshTokenRepository
         throw new NotImplementedException();
     }
 
-    public Task UpsertUserRefreshTokenAsync(RefreshToken refreshToken, CancellationToken cancellationToken = default)
+    public async Task UpsertUserRefreshTokenAsync(RefreshToken refreshToken, CancellationToken cancellationToken = default)
     {
-        throw new NotImplementedException();
+        using var connection = new NpgsqlConnection(_connectionString);
+        connection.Open();
+
+        await connection.ExecuteAsync(RefreshTokenSql.Upsert, refreshToken);
     }
 }

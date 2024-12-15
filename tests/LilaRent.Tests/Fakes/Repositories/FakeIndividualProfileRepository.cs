@@ -27,4 +27,9 @@ internal class FakeIndividualProfileRepository : FakeRepository<IndividualProfil
     {
         throw new NotImplementedException();
     }
+
+    public Task<IEnumerable<Reservation>> GetReservations(Guid profileId)
+    {
+        throw new NotImplementedException();
+    }
 }

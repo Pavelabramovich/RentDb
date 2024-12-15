@@ -8,9 +8,6 @@ namespace LilaRent.Dapper;
 
 internal class UnitOfWork : IUnitOfWork
 {
-    // private protected readonly LilaRentContext _context;
-
-
     private readonly Lazy<IAnnouncementRepository> _announcementRepositoryLazy;
 
     private readonly Lazy<IProfileRepository> _profileRepositoryLazy;
@@ -26,18 +23,18 @@ internal class UnitOfWork : IUnitOfWork
     protected bool _disposed;
 
 
-    public UnitOfWork(IConfiguration configuration)
+    public UnitOfWork(string connectionString)
     {
-        //_context = context;
+        _announcementRepositoryLazy = new(() => new AnnouncementRepository(connectionString));
 
-        _announcementRepositoryLazy = new(() => new AnnouncementRepository(configuration));
+        _profileRepositoryLazy = new(() => new ProfileRepository(connectionString));
+        _legalPersonProfileRepositoryLazy = new(() => new LegalPersonProfileRepository(connectionString));
+        _individualProfileRepositoryLazy = new(() => new IndividualProfileRepository(connectionString));
 
-        //_profileRepositoryLazy = new(() => new ProfileRepository(_context));
-        //_legalPersonProfileRepositoryLazy = new(() => new LegalPersonProfileRepository(_context));
-        //_individualProfileRepositoryLazy = new(() => new IndividualProfileRepository(_context));
+        _userRepositoryLazy = new(() => new UserRepository(connectionString));
+        _refreshTokenRepositoryLazy = new(() => new RefreshTokenRepository(connectionString));
 
-        //_userRepositoryLazy = new(() => new UserRepository(_context));
-        _refreshTokenRepositoryLazy = new(() => new RefreshTokenRepository(configuration));
+        _reservationRepositoryLazy = new(() => new ReservationRepository(connectionString));
     }
 
 
