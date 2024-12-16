@@ -40,9 +40,14 @@ public class LegalPersonProfileRepository : ILegalPersonProfileRepository
         throw new NotImplementedException();
     }
 
-    public Task<IEnumerable<Reservation>> GetReservations(Guid profileId)
+    public async Task<IEnumerable<Reservation>> GetReservations(Guid profileId)
     {
-        throw new NotImplementedException();
+        using var connection = new NpgsqlConnection(_connectionString);
+        connection.Open();
+
+        var reservations = await connection.QueryAsync<Reservation>(LegalPersonProfileSql.GetReservations, new { Id = profileId });
+
+        return reservations;
     }
 
     public Task<IEnumerable<LegalPersonProfile>> GetWhereAsync(Expression<Func<LegalPersonProfile, bool>> filter, CancellationToken cancellationToken = default)

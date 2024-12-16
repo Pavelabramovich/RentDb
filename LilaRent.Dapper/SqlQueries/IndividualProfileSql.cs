@@ -38,4 +38,17 @@ public static class IndividualProfileSql
                       ON r.announcement_id = a.id
          WHERE ip.id = @Id
         """;
+
+    public const string GetReservations = """
+        SELECT id as Id
+             , client_id as ClientId
+             , announcement_id as AnnouncementId
+             , begin as Begin
+             , "end" as End
+             , created_at as CreatedAt
+             , changed_at as ChangedAt
+          FROM individual_profiles ip
+               JOIN reservations r 
+                 ON ip.id = r.client_id AND ap.id = @Id
+        """;
 }

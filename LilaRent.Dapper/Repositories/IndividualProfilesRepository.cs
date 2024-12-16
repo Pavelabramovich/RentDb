@@ -83,9 +83,14 @@ public class IndividualProfileRepository : IIndividualProfileRepository
         return announcements;
     }
 
-    public Task<IEnumerable<Reservation>> GetReservations(Guid profileId)
+    public async Task<IEnumerable<Reservation>> GetReservations(Guid profileId)
     {
-        throw new NotImplementedException();
+        using var connection = new NpgsqlConnection(_connectionString);
+        connection.Open();
+
+        var reservations = await connection.QueryAsync<Reservation>(IndividualProfileSql.GetReservations, new { Id = profileId });
+
+        return reservations;
     }
 
     public Task<IEnumerable<IndividualProfile>> GetWhereAsync(Expression<Func<IndividualProfile, bool>> filter, CancellationToken cancellationToken = default)

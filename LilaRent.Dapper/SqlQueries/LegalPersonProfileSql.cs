@@ -26,4 +26,19 @@ public static class LegalPersonProfileSql
                JOIN legal_person_profiles lp
                  ON lp.id = p.id AND lp.id = @Id
         """;
+
+    public const string GetReservations = """
+        SELECT id as Id
+             , client_id as ClientId
+             , announcement_id as AnnouncementId
+             , begin as Begin
+             , "end" as End
+             , created_at as CreatedAt
+             , changed_at as ChangedAt
+          FROM legal_person_profiles lp
+               JOIN announcements a
+                 ON lp.id = a.profile_id AND lp.id = @Id
+                    JOIN reservations r 
+                      ON a.id = r.announcement_id
+        """;
 }
